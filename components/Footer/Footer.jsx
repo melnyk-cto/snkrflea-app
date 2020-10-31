@@ -10,7 +10,7 @@ import { routes } from "../../constants/routes";
 // assets
 import styles from './Footer.module.scss'
 
-export const Footer = () => {
+export const Footer = ({setShowLogin}) => {
     return (
         <>
             <footer className={styles.footer}>
@@ -18,10 +18,17 @@ export const Footer = () => {
                     <div className={styles.footerTop}>
                         <ul className={styles.account}>
                             <li><Link href={routes.join}><a>Join</a></Link></li>
-                            <li><Link href={routes.login}><a>Login</a></Link></li>
+                            <li>
+                                <Link href={routes.login}>
+                                    <a onClick={(e) => {
+                                        setShowLogin(true);
+                                        e.preventDefault()
+                                    }}>Login</a>
+                                </Link>
+                            </li>
                         </ul>
                         <ul className={styles.social}>
-                            <li >
+                            <li>
                                 <a href="https://twitter.com/snkrflea" target="_blank" rel="noreferrer">
                                     <i className="fab fa-twitter" />
                                 </a>

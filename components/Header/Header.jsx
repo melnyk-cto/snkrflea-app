@@ -10,7 +10,7 @@ import { routes } from '../../constants/routes';
 // assets
 import styles from './Header.module.scss'
 
-export const Header = () => {
+export const Header = ({setShowLogin}) => {
 
     return (
         <header className={styles.header}>
@@ -30,23 +30,27 @@ export const Header = () => {
                     </div>
                     <div className={styles.navItems}>
                         <Link href={routes.account}>
-                            <a  className={styles.menuItem}>
+                            <a className={styles.menuItem}>
                                 Account
                             </a>
                         </Link>
+                        <Link href={routes.account}>
+                            <a
+                                onClick={(e) => {
+                                    setShowLogin(true);
+                                    e.preventDefault()
+                                }}
+                                className={styles.menuItem}>
+                                Login
+                            </a>
+                        </Link>
                         <Link href={routes.join}>
-                            <a className={styles.menuItem} >
+                            <a className={styles.menuItem}>
                                 Join
                             </a>
                         </Link>
-                        <Link href={routes.shop}>
-                            <a className={styles.menuItem}>
-                                Buy
-                            </a>
-                        </Link>
-
                         <Link href={routes.premium}>
-                            <a className={styles.menuItem} >
+                            <a className={styles.menuItem}>
                                 Premium
                             </a>
                         </Link>

@@ -18,7 +18,10 @@ export const Register = ({onSuccess, setShowLogin, setShowRegister}) => {
     return (
         <div className={styles.popup}>
             <div className={styles.popupInner}>
-                <span className={styles.close} />
+                <span onClick={() => {
+                    setShowLogin(false);
+                    setShowRegister(false)
+                }} className={styles.close} />
                 <span className={styles.back} onClick={() => {
                     setShowLogin(true);
                     setShowRegister(false)
@@ -71,7 +74,7 @@ export const Register = ({onSuccess, setShowLogin, setShowRegister}) => {
                         <div className={styles.buttons}>
                             <div className={styles.facebook}>
                                 <button type="button" className="button">
-                                    <i className="fab fa-facebook-f"/>
+                                    <i className="fab fa-facebook-f" />
                                     <span>Facebook</span>
                                 </button>
                             </div>

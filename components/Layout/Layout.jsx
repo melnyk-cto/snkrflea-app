@@ -11,7 +11,7 @@ import { Footer, Header, Login, Register } from "../../components";
 
 
 export const Layout = ({children}) => {
-    const [showRegister, setShowRegister] = useState(true);
+    const [showRegister, setShowRegister] = useState(false);
     const [showLogin, setShowLogin] = useState(false);
 
     const router = useRouter();
@@ -25,19 +25,17 @@ export const Layout = ({children}) => {
                 <title>SNKRFLEA</title>
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
             </Head>
-            <Header />
-            {showRegister &&
-            <Register
+            <Header setShowLogin={setShowLogin} />
+            {showRegister && <Register
                 onSuccess={handleSuccess}
                 setShowRegister={setShowRegister}
                 setShowLogin={setShowLogin} />}
-            {showLogin &&
-            <Login
+            {showLogin && <Login
                 onSuccess={handleSuccess}
                 setShowLogin={setShowLogin}
                 setShowRegister={setShowRegister} />}
             {children}
-            <Footer />
+            <Footer setShowLogin={setShowLogin} />
         </>
     )
 };

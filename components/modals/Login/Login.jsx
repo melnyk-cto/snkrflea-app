@@ -16,7 +16,10 @@ export const Login = ({onSuccess, setShowLogin, setShowRegister}) => {
     return (
         <div className={styles.popup}>
             <div className={styles.popupInner}>
-                <span className={styles.close} />
+                <span onClick={() => {
+                    setShowLogin(false);
+                    setShowRegister(false)
+                }} className={styles.close} />
                 <div className={styles.popupRight}>
                     <div className={styles.title}>
                         <h1>Login</h1>
@@ -28,7 +31,6 @@ export const Login = ({onSuccess, setShowLogin, setShowRegister}) => {
                             Create an account
                         </p>
                     </div>
-
                     <form action=''>
                         {errorMessage &&
                         <p className="error">{errorMessage}</p>}
