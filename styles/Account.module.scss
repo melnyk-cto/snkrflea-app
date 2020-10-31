@@ -1,0 +1,94 @@
+@import "./variables";
+
+.account {
+  padding: 71px 86px 0;
+  .container {
+    padding: 0 15px;
+  }
+  .content {
+    margin: 0 auto;
+    .title {
+      margin-bottom: 11px;
+      h1 {
+        font-size:   50px;
+        font-weight: bold;
+        line-height: 1.21;
+        color:       #000;
+      }
+    }
+    .menu {
+      .list {
+        display: flex;
+        .item {
+          margin: 0 15px 0 0;
+          a {
+            font-size:       20px;
+            font-weight:     bold;
+            line-height:     1.6;
+            text-decoration: none;
+          }
+          .active {
+            color:           #ff9200;
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+    .info {
+      max-width: 619px;
+      margin:    0 auto;
+      padding:   229px 0 316px;
+      h3, a {
+        font-size:   30px;
+        line-height: 1.55;
+        text-align:  center;
+        color:       #000000;
+        a {
+          color:           #ff9200;
+          font-weight:     bold;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .account {
+    padding: 71px 0;
+    .content {
+      .info {
+        max-width: 560px;
+        h3, a {
+          font-size: 26px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 567px) {
+  .account {
+    .content {
+      .title {
+        text-align: center;
+      }
+      .menu {
+        .list {
+          flex-direction: column;
+          align-items:    center;
+          .item {
+            margin: 0 0 10px;
+          }
+        }
+      }
+      .info {
+        max-width: 400px;
+        padding:   70px 0 0;
+        h3, a {
+          font-size: 20px;
+        }
+      }
+    }
+  }
+}

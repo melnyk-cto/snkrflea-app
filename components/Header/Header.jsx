@@ -29,9 +29,9 @@ export const Header = () => {
                         </div>
                     </div>
                     <div className={styles.navItems}>
-                        <Link href={routes.login}>
+                        <Link href={routes.account}>
                             <a  className={styles.menuItem}>
-                                Login
+                                Account
                             </a>
                         </Link>
                         <Link href={routes.join}>
