@@ -6,10 +6,10 @@ import Link from 'next/link'
 
 // components
 import { routes } from "../constants/routes";
+import { Layout } from "../components";
 
 // assets
 import styles from '../styles/Home.module.scss'
-import Layout from "./layout";
 
 const Home = () => {
     return (

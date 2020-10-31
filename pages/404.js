@@ -3,9 +3,10 @@ import React from 'react'
 
 // library
 import Link from 'next/link'
+import PropTypes from 'prop-types'
 
 // components
-import Layout from "./layout";
+import {Layout} from "../components";
 import { routes } from "../constants/routes";
 
 // assets
@@ -25,6 +26,10 @@ const Custom404 = () => {
             </section>
         </Layout>
     );
+};
+
+Layout.propTypes = {
+    children: PropTypes.node.isRequired,
 };
 
 export default Custom404

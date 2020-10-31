@@ -5,7 +5,7 @@ import React from 'react'
 import Link from 'next/link'
 
 // components
-import Layout from "../layout";
+import { Layout } from "../../components";
 import { routes } from "../../constants/routes";
 
 // assets

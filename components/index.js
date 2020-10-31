@@ -1,2 +1,5 @@
 export * from './Header/Header'
 export * from './Footer/Footer'
+export * from './Layout/Layout'
+export * from './modals/Register/Register'
+export * from './modals/Login/Login'

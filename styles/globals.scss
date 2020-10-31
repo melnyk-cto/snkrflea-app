@@ -1,14 +1,22 @@
 @import "./variables";
+@import "../public/fonts/FontAwesome/css/font-awesome.min.css";
 
 @media (any-hover: hover) {
 
 }
 
 *, *:after, *:before {
-  margin:     0;
-  padding:    0;
-  box-sizing: border-box;
-  outline:    none;
+  margin:      0;
+  padding:     0;
+  box-sizing:  border-box;
+  outline:     none;
+  font-family: Apercu, sans-serif;
+  color:       $blackColor;
+  font-style:  normal;
+}
+
+i:after, i:before {
+  font-family: "Font Awesome 5 Brands", sans-serif;
 }
 
 body, html {
@@ -18,8 +26,7 @@ body, html {
 }
 
 html {
-  font-size:   16px;
-  font-family: Avenir, sans-serif;
+  font-size: 16px;
 }
 
 h1 {
@@ -27,7 +34,6 @@ h1 {
   font-size:     50px;
   font-weight:   bold;
   line-height:   1.6;
-  color:         $blackColor;
   margin-bottom: 24px;
   span {
     color: $mainColor;
@@ -43,13 +49,14 @@ h1 {
 //  margin-bottom: 1rem;
 //}
 //
-//h3 {
-//  font-size:     2.25rem;
-//  font-family:   'Roboto Slab', sans-serif;
-//  font-weight:   200;
-//  line-height:   2.68;
-//  margin-bottom: 1.625rem;
-//}
+h3 {
+  font-family:   ITCAvantGardeGothicPro, sans-serif;
+  font-size:     30px;
+  font-weight:   bold;
+  line-height:   1.23;
+  margin-bottom: 1.25rem;
+}
+
 //
 //h4 {
 //  font-size:     1.875rem;
@@ -69,11 +76,11 @@ h1 {
 
 
 p, a {
-  font-family:   Apercu, sans-serif;
-  font-size:     18px;
+  font-size:     1rem;
   line-height:   1.22;
   color:         $blackColor;
   margin-bottom: 0;
+  font-weight:   normal;
 }
 
 
@@ -94,17 +101,65 @@ ul {
   list-style: none;
 }
 
+label {
+  margin-bottom: 0.25rem;
+  font-size:     1rem;
+  font-weight:   bold;
+  line-height:   1.55;
+  display:       block;
+  span {
+    padding-left: 1rem;
+  }
+  &.checkbox {
+    display:         flex;
+    align-items:     flex-start;
+    justify-content: flex-start;
+    margin:          1rem 1rem 2rem 1rem;
+    input {
+      display: none;
+      &:checked + span:before, &:checked + span:after {
+        display: block;
+      }
+    }
+  }
+  .checkmark {
+    width:         1.25rem;
+    height:        1.25rem;
+    border-radius: 0.25rem;
+    border:        solid 2px #345dee;
+    margin-right:  0.625rem;
+    cursor:        pointer;
+    position:      relative;
+    z-index:       1;
+    &:before, &:after {
+      display:          none;
+      content:          '';
+      position:         absolute;
+      z-index:          1;
+      left:             50%;
+      top:              50%;
+      transform:        translate(-50%, 0) rotate(45deg);
+      transform-origin: center;
+      width:            70%;
+      height:           2px;
+      background:       #345dee;
+    }
+    &:after {
+      transform: translate(-50%, 0) rotate(-45deg);
+    }
+  }
+}
 
 input, textarea, select {
   width:            100%;
   border:           0.0625rem solid #E4E8EB;
-  font-family:      Avenir, sans-serif;
-  padding:          1rem;
+  padding:          1.15rem 1rem;
   font-size:        0.875rem;
   line-height:      1.36;
   color:            $blackColor;
   box-shadow:       none;
-  background-color: transparent;
+  border-radius:    0.5rem;
+  background-color: $whiteColor;
   &::placeholder {
     color: #728387;
   }
@@ -123,6 +178,13 @@ iframe {
 
 #root {
   height: 100%;
+}
+
+button {
+  cursor: pointer;
+  &:hover, &:active {
+    opacity: .7;
+  }
 }
 
 button[disabled] {
@@ -146,7 +208,6 @@ input[disabled] {
   color:           $mainColor;
   border-radius:   8px;
   width:           177px;
-  font-family:     Apercu, sans-serif;
   font-size:       20px;
   line-height:     1.2;
   letter-spacing:  -0.2px;
