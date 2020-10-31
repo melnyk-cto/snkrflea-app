@@ -1,65 +1,80 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+// core
+import React from 'react'
 
-export default function Home() {
-  return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+// library
+import Link from 'next/link'
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+// components
+import { routes } from "../constants/routes";
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
+// assets
+import styles from '../styles/Home.module.scss'
+import Layout from "./layout";
 
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
+const Home = () => {
+    return (
+        <Layout>
+            <section className={styles.home}>
+                <div className="container">
+                    <div className={styles.slider}>
+                        <div className={styles.image}>
+                            <img src='/images/home/slider/jacket.jpg' alt='' />
+                        </div>
+                        <div className={styles.image}>
+                            <img src='/images/home/slider/boots.png' alt='' />
+                        </div>
+                        <div className={styles.image}>
+                            <img src='/images/home/slider/jacket.jpg' alt='' />
+                        </div>
+                        <div className={styles.image}>
+                            <img src='/images/home/slider/boots.png' alt='' />
+                        </div>
+                    </div>
+                    <div className={styles.homeInner}>
+                        <h1 className={styles.title}>Buy and sell all your items <span>100% FREE</span></h1>
+                        <ul className={styles.list}>
+                            <li>
+                                Become a PREMIUM MEMBER and get access to HUNDREDS of discount links
+                            </li>
+                            <li>
+                                Real-time alerts on discounts and restocks from
+                                <img src='/images/home/kith.jpg' alt='' />,
+                                <img src='/images/home/amazon.jpg' alt='' />, and 56 sites
+                            </li>
+                            <li>
+                                Upload unlimited items for sale or trade
+                            </li>
+                            <li>
+                                Never pay a buyer or seller fee again
+                            </li>
+                        </ul>
+                        <div className={styles.bottom}>
+                            <div className={styles.buttons}>
+                                <button type='button' className='btn-primary'>
+                                    Start selling for free
+                                </button>
+                                <button type='button' className='btn-second'>
+                                    Become a premium member
+                                </button>
+                            </div>
+                            <div className={styles.info}>
+                                <img src='/images/home/paypal.jpg' alt='' />
+                                <img src='/icons/home/secure.svg' alt='' />
+                                <p>
+                                    Paypal protection for buyers <br />
+                                    and sellers.
+                                    <Link href={routes.home}>
+                                        <a> Learn more</a>
+                                    </Link>
+                                </p>
+                            </div>
+                        </div>
 
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
+                    </div>
+                </div>
+            </section>
+        </Layout>
+    )
+};
 
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
-    </div>
-  )
-}
+export default Home

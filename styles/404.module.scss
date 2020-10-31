@@ -1,0 +1,39 @@
+.errorPage {
+  padding: 291px 0;
+  .errorPageContent {
+    text-align: center;
+    max-width:  784px;
+    margin:     0 auto;
+    a {
+      font-size:   50px;
+      font-weight: bold;
+      color:       #ff9200;
+      line-height: 0.81;
+    }
+    h1 {
+      line-height:   1.39;
+      margin-bottom: 48px;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .errorPage {
+    .errorPageContent {
+      a {
+        font-size: 40px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 567px) {
+  .errorPage {
+    .errorPageContent {
+      max-width: 380px;
+      a {
+        font-size: 25px;
+      }
+    }
+  }
+}
