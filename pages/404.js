@@ -6,6 +6,7 @@ import Link from 'next/link'
 
 // components
 import Layout from "./layout";
+import { routes } from "../constants/routes";
 
 // assets
 import styles from '../styles/404.module.scss'
@@ -16,9 +17,9 @@ const Custom404 = () => {
         <Layout>
             <section className={styles.errorPage}>
                 <div className="container">
-                    <div className={styles.errorPageContent}>
+                    <div className={styles.content}>
                         <h1>Whoops you've landed on a page that doesn't exist</h1>
-                        <Link href="/"><a>Go back home</a></Link>
+                        <Link href={routes.home}><a>Go back home</a></Link>
                     </div>
                 </div>
             </section>
