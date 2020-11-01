@@ -6,16 +6,11 @@
   .homeInner {
     padding: 12px 36px 0 104px;
   }
-  .slider {
-    display:     flex;
-    align-items: center;
-    overflow:    hidden;
-    .image {
-      width:     33vw;
-      min-width: 33vw;
-      max-width: 600px;
-      margin:    0 20px;
-    }
+  .slideImage {
+    width:     33vw;
+    min-width: 33vw;
+    max-width: 600px;
+    margin:    0 20px;
   }
   .list {
     margin-bottom: 35px;

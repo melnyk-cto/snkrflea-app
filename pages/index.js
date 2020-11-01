@@ -3,6 +3,7 @@ import React from 'react'
 
 // library
 import Link from 'next/link'
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 // components
 import { routes } from "../constants/routes";
@@ -16,22 +17,30 @@ const Home = () => {
         <Layout>
             <section className={styles.home}>
                 <div className="container">
-                    <div className={styles.slider}>
-                        <div className={styles.image}>
-                            <img src='/images/home/slider/jacket.jpg' alt='' />
-                        </div>
-                        <div className={styles.image}>
-                            <img src='/images/home/slider/boots.png' alt='' />
-                        </div>
-                        <div className={styles.image}>
-                            <img src='/images/home/slider/jacket.jpg' alt='' />
-                        </div>
-                        <div className={styles.image}>
-                            <img src='/images/home/slider/boots.png' alt='' />
-                        </div>
-                    </div>
+                    <Swiper spaceBetween={50} slidesPerView={3}>
+                        <SwiperSlide>
+                            <div className={styles.slideImage}>
+                                <img src='/images/home/slider/jacket.png' alt='' />
+                            </div>
+                        </SwiperSlide>
+                        <SwiperSlide>
+                            <div className={styles.slideImage}>
+                                <img src='/images/home/slider/boots.png' alt='' />
+                            </div>
+                        </SwiperSlide>
+                        <SwiperSlide>
+                            <div className={styles.slideImage}>
+                                <img src='/images/home/slider/jacket.png' alt='' />
+                            </div>
+                        </SwiperSlide>
+                        <SwiperSlide>
+                            <div className={styles.slideImage}>
+                                <img src='/images/home/slider/boots.png' alt='' />
+                            </div>
+                        </SwiperSlide>
+                    </Swiper>
                     <div className={styles.homeInner}>
-                        <h1 className={styles.title}>Buy and sell all your items <span>100% FREE</span></h1>
+                        <h1>Buy and sell all your items <span>100% FREE</span></h1>
                         <ul className={styles.list}>
                             <li>
                                 Become a PREMIUM MEMBER and get access to HUNDREDS of discount links
