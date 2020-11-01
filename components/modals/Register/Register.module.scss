@@ -1,5 +1,41 @@
 @import "../../../styles/variables";
 
+.back {
+  position:     absolute;
+  z-index:      1;
+  left:         2rem;
+  top:          2rem;
+  font-size:    16px;
+  font-weight:  bold;
+  padding-left: 1.75rem;
+  cursor:       pointer;
+  &:before {
+    content:         '';
+    position:        absolute;
+    left:            0;
+    top:             50%;
+    transform:       translate(0, -50%) rotate(180deg);
+    background:      url("../../../public/icons/right-arrow.svg") center center no-repeat;
+    background-size: contain;
+    width:           1.25rem;
+    height:          1.25rem;
+  }
+  &:hover, &:active {
+    opacity: .7;
+  }
+}
+
+.login {
+  display:     none;
+  font-size:   13px;
+  font-weight: bold;
+  cursor:      pointer;
+  color:       $blackColor;
+  &:hover, &:active {
+    opacity: .7;
+  }
+}
+
 .popupLeft {
   width:       41.5%;
   padding-top: 0.75rem;
@@ -7,19 +43,11 @@
     display:         inline-block;
     font-size:       20px;
     font-weight:     bold;
-    line-height:     0.7;
+    line-height:     1.2;
     text-decoration: none;
     padding:         20px 10px;
-    border-bottom:   2px solid $whiteColor;
-    width: 100%;
-  }
-}
-
-.popupRight {
-  width:         49%;
-  padding-right: 5%;
-  h1 {
-    margin-bottom: 0.875rem;
+    border-bottom:   2px solid rgba(0, 0, 0, 0.1);
+    width:           100%;
   }
   h3 {
     padding-left: 0.75rem;
@@ -27,6 +55,18 @@
       opacity:     0.5;
       font-weight: normal;
     }
+  }
+}
+
+.popupRight {
+  width:         49%;
+  padding-right: 5%;
+  h1 {
+    margin-bottom:   0.875rem;
+    line-height:     1.1;
+    display:         flex;
+    align-items:     center;
+    justify-content: space-between;
   }
   .continue {
     width: 100%;
@@ -41,15 +81,17 @@
     align-items:     center;
     button {
       border-radius: 0.5rem;
-      border:        solid 2px #345dee;
+      border:        solid 2px $secondColor;
       display:       flex;
       align-items:   center;
+      width:         100%;
     }
     .facebook, .google {
+      max-width: 167px;
       i {
         padding: 0.75rem 1rem;
         &:before {
-          color:     #345dee;
+          color:     $secondColor;
           font-size: 18px;
         }
       }
@@ -58,8 +100,8 @@
         font-weight: bold;
         line-height: 1;
         text-align:  center;
-        color:       #345dee;
-        border-left: solid 2px #345dee;
+        color:       $secondColor;
+        border-left: solid 2px $secondColor;
         padding:     0.75rem 0;
         display:     inline-block;
         width:       117px;
@@ -67,6 +109,81 @@
     }
     .facebook {
       margin-right: 2rem;
+    }
+  }
+}
+
+
+@media screen and (max-width: 768px) {
+  .back {
+    display: none;
+  }
+  .login {
+    display: block;
+  }
+  .popupLeft {
+    width: 100%;
+    ul {
+      margin-bottom: 2rem;
+      li {
+        font-size: 1rem;
+        padding:   10px 10px;
+      }
+    }
+    h3 {
+      border:          solid 2px $mainColor;
+      border-radius:   5px;
+      padding:         8px 28px 8px 8px;
+      justify-content: space-between;
+      display:         flex;
+      align-items:     center;
+      position:        relative;
+      z-index:         1;
+      &:after {
+        content:       '';
+        position:      absolute;
+        z-index:       1;
+        right:         0.75rem;
+        top:           45%;
+        transform:     translate(0, -50%) rotate(45deg);
+        width:         0.5rem;
+        height:        0.5rem;
+        background:    $whiteColor;
+        border-right:  1px solid $blackColor;
+        border-bottom: 1px solid $blackColor;
+        opacity:       0.6;
+      }
+      &:active {
+        opacity: .7;
+      }
+      &.show {
+        &:after {
+          top:           55%;
+          transform: translate(0, -50%) rotate(-135deg);
+        }
+      }
+    }
+  }
+  .popupRight {
+    width: 100%;
+    .buttons {
+      .google, .facebook {
+        width: 48%;
+        i {
+          padding: 0.5rem 0.75rem;
+          &:before {
+            font-size: 16px;
+          }
+        }
+        span {
+          font-size: 1rem;
+          padding:   0.5rem 0;
+          width:     100%;
+        }
+      }
+      .facebook {
+        margin-right: 1rem;
+      }
     }
   }
 }

@@ -152,10 +152,6 @@ iframe {
   width: 100%;
 }
 
-#root {
-  height: 100%;
-}
-
 button {
   cursor: pointer;
   &:hover, &:active {
@@ -229,13 +225,15 @@ input[disabled] {
 
 // swiper slider
 .swiper-container {
-  width: 130vw;
-  transform: translate(-50%,0);
-  left: 50%;
+  width:     130vw;
+  transform: translate(-50%, 0);
+  left:      50%;
 }
+
 .swiper-wrapper {
   align-items: center;
 }
+
 
 @media screen and (max-width: 768px) {
   h1 {
@@ -247,12 +245,18 @@ input[disabled] {
   h1 {
     font-size: 1.875rem;
   }
+  h3 {
+    font-size: 1.25rem;
+  }
   p, li, a, label, input, input::placeholder {
     font-size: 0.875rem;
   }
   label {
     span {
       display: none;
+    }
+    .checkmark {
+      display: block;
     }
     input {
       padding: 0.75rem 0.875rem;
@@ -264,8 +268,8 @@ input[disabled] {
 
   // swiper slider
   .swiper-container {
-    width: 100vw;
-    transform: translate(0,0);
-    left: 0;
+    width:     100vw;
+    transform: translate(0, 0);
+    left:      0;
   }
 }

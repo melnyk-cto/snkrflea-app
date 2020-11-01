@@ -15,23 +15,39 @@ import styles from './Register.module.scss'
 
 export const Register = ({onSuccess, setShowLogin, setShowRegister}) => {
     const [errorMessage, setErrorMessage] = useState(false);
+    const [showDescription, setShowDescription] = useState(true);
     return (
         <ModalLayout
             maxWidth='1301px'
             setShowLogin={setShowLogin}
             setShowRegister={setShowRegister}>
             <div className={styles.popupLeft}>
-                <h3>Starter <span>Free</span></h3>
-                <ul>
+                <h3 onClick={() => setShowDescription(!showDescription)}
+                    className={showDescription ? styles.show : ''}>Starter <span>Free</span></h3>
+                {showDescription && <ul>
                     <li>Open your own store</li>
                     <li>Upload unlimited items for sale</li>
                     <li>Never pay a commission or seller fee</li>
                     <li>Link your paypal</li>
                     <li>Get a custom link for your store</li>
-                </ul>
+                </ul>}
             </div>
+            <span className={styles.back} onClick={() => {
+                setShowLogin(true);
+                setShowRegister(false)
+            }}>
+                Back
+                </span>
             <div className={styles.popupRight}>
-                <h1>Create your account</h1>
+                <h1>
+                    Create your account
+                    <span className={styles.login} onClick={() => {
+                        setShowLogin(true);
+                        setShowRegister(false)
+                    }}>
+                    Login
+                </span>
+                </h1>
                 <form action=''>
                     {errorMessage &&
                     <p className="error">{errorMessage}</p>}
@@ -47,8 +63,9 @@ export const Register = ({onSuccess, setShowLogin, setShowRegister}) => {
                         <input type="checkbox" />
                         <span className="checkmark" />
                         <p>
-                            By creating an account, you agree to the <a href={routes.privacy}>Terms and
-                            Conditions</a> and <a href={routes.privacy}>Privacy Policy</a>
+                            By creating an account, you agree to the
+                            <Link href={routes.privacy}><a>Terms and
+                                Conditions</a></Link> and <Link href={routes.privacy}><a>Privacy Policy</a></Link>
                         </p>
                     </label>
                     <button type="submit" className={classNames('btn-second', styles.continue)}>Continue</button>
