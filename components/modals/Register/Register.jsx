@@ -23,21 +23,11 @@ export const Register = ({onSuccess, setShowLogin, setShowRegister}) => {
             <div className={styles.popupLeft}>
                 <h3>Starter <span>Free</span></h3>
                 <ul>
-                    <li>
-                        <Link href={routes.home}><a>Open your own store</a></Link>
-                    </li>
-                    <li>
-                        <Link href={routes.home}><a>Upload unlimited items for sale</a></Link>
-                    </li>
-                    <li>
-                        <Link href={routes.home}><a>Never pay a commission or seller fee</a></Link>
-                    </li>
-                    <li>
-                        <Link href={routes.home}><a>Link your paypal</a></Link>
-                    </li>
-                    <li>
-                        <Link href={routes.home}><a>Get a custom link for your store</a></Link>
-                    </li>
+                    <li>Open your own store</li>
+                    <li>Upload unlimited items for sale</li>
+                    <li>Never pay a commission or seller fee</li>
+                    <li>Link your paypal</li>
+                    <li>Get a custom link for your store</li>
                 </ul>
             </div>
             <div className={styles.popupRight}>

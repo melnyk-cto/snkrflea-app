@@ -4,15 +4,14 @@
   width:       41.5%;
   padding-top: 0.75rem;
   li {
-    a {
-      display:         inline-block;
-      font-size:       20px;
-      font-weight:     bold;
-      line-height:     0.7;
-      text-decoration: none;
-      padding:         20px 10px;
-    }
-    border-bottom: 2px solid $whiteColor;
+    display:         inline-block;
+    font-size:       20px;
+    font-weight:     bold;
+    line-height:     0.7;
+    text-decoration: none;
+    padding:         20px 10px;
+    border-bottom:   2px solid $whiteColor;
+    width: 100%;
   }
 }
 

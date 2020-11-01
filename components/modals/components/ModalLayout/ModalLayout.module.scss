@@ -50,3 +50,16 @@
     background:      #f2f1ed;
   }
 }
+
+@media screen and (max-width: 567px) {
+  .popup {
+    .close {
+      &:before, &:after {
+        width: 65%;
+      }
+    }
+    .popupInner {
+      padding: 60px 5.5% 6.5% 5.75%;
+    }
+  }
+}

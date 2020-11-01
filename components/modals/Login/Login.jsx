@@ -19,8 +19,7 @@ export const Login = ({onSuccess, setShowLogin, setShowRegister}) => {
             setShowLogin={setShowLogin}
             setShowRegister={setShowRegister}>
             <div className={styles.popupRight}>
-                <div className={styles.title}>
-                    <h1>Login</h1>
+                <h1>Login
                     <p onClick={() => {
                         setShowLogin(false);
                         setShowRegister(true)
@@ -28,7 +27,7 @@ export const Login = ({onSuccess, setShowLogin, setShowRegister}) => {
                        className={styles.create}>
                         Create an account
                     </p>
-                </div>
+                </h1>
                 <form action=''>
                     {errorMessage &&
                     <p className="error">{errorMessage}</p>}

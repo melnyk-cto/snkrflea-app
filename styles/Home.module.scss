@@ -6,11 +6,8 @@
   .homeInner {
     padding: 12px 36px 0 104px;
   }
-  .slideImage {
-    width:     33vw;
-    min-width: 33vw;
-    max-width: 600px;
-    margin:    0 20px;
+  .slider {
+    overflow: hidden;
   }
   .list {
     margin-bottom: 35px;
@@ -96,9 +93,6 @@
     }
     .slider {
       padding: 54px 0 0 0;
-      .image {
-        min-width: 66vw;
-      }
     }
     .list {
       li {
@@ -114,6 +108,7 @@
     .buttons {
       align-items:   center;
       margin-bottom: 44px;
+      width:         100%;
     }
     .info {
       margin-left:     0;

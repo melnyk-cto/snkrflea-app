@@ -17,28 +17,40 @@ const Home = () => {
         <Layout>
             <section className={styles.home}>
                 <div className="container">
-                    <Swiper spaceBetween={50} slidesPerView={3}>
-                        <SwiperSlide>
-                            <div className={styles.slideImage}>
-                                <img src='/images/home/slider/jacket.png' alt='' />
-                            </div>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <div className={styles.slideImage}>
-                                <img src='/images/home/slider/boots.png' alt='' />
-                            </div>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <div className={styles.slideImage}>
-                                <img src='/images/home/slider/jacket.png' alt='' />
-                            </div>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <div className={styles.slideImage}>
-                                <img src='/images/home/slider/boots.png' alt='' />
-                            </div>
-                        </SwiperSlide>
-                    </Swiper>
+                    <div className={styles.slider}>
+                        <Swiper
+                            spaceBetween={20}
+                            slidesPerView={1}
+                            loop='true'
+                            clickable='true'
+                            breakpoints={{
+                                567: {
+                                    slidesPerView: 3
+                                },
+                            }}
+                        >
+                            <SwiperSlide>
+                                <div className={styles.slideImage}>
+                                    <img src='/images/home/slider/jacket.png' alt='' />
+                                </div>
+                            </SwiperSlide>
+                            <SwiperSlide>
+                                <div className={styles.slideImage}>
+                                    <img src='/images/home/slider/boots.png' alt='' />
+                                </div>
+                            </SwiperSlide>
+                            <SwiperSlide>
+                                <div className={styles.slideImage}>
+                                    <img src='/images/home/slider/jacket.png' alt='' />
+                                </div>
+                            </SwiperSlide>
+                            <SwiperSlide>
+                                <div className={styles.slideImage}>
+                                    <img src='/images/home/slider/boots.png' alt='' />
+                                </div>
+                            </SwiperSlide>
+                        </Swiper>
+                    </div>
                     <div className={styles.homeInner}>
                         <h1>Buy and sell all your items <span>100% FREE</span></h1>
                         <ul className={styles.list}>

@@ -2,14 +2,12 @@
 
 .popupRight {
   width: 100%;
-  .title {
+  h1 {
+    margin-bottom:   2.5rem;
     display:         flex;
     align-items:     center;
     justify-content: space-between;
     width:           100%;
-  }
-  h1 {
-    margin-bottom: 2.5rem;
   }
   h3 {
     padding-left: 0.75rem;
@@ -44,8 +42,10 @@
       border:        solid 2px $secondColor;
       display:       flex;
       align-items:   center;
+      width: 100%;
     }
     .facebook, .google {
+      max-width: 167px;
       i {
         padding: 0.75rem 1rem;
         &:before {
@@ -67,6 +67,36 @@
     }
     .facebook {
       margin-right: 2rem;
+    }
+  }
+}
+
+@media screen and (max-width: 567px) {
+  .popupRight {
+    h1 {
+      margin-bottom: 1.5rem;
+    }
+    .create {
+      font-size: 0.75rem;
+    }
+    .buttons {
+      .google, .facebook {
+        width: 48%;
+        i {
+          padding: 0.5rem 0.75rem;
+          &:before {
+            font-size: 16px;
+          }
+        }
+        span {
+          font-size: 1rem;
+          padding:   0.5rem 0;
+          width:     100%;
+        }
+      }
+      .facebook {
+        margin-right: 1rem;
+      }
     }
   }
 }
