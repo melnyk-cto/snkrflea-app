@@ -3,15 +3,24 @@ import React, { useState } from 'react'
 
 // library
 // import PropTypes from 'prop-types'
-import Link from 'next/link'
-import { routes } from "../../../constants/routes";
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 
+import { loginSchema } from '../../../schemas/index';
+import { SocialButton } from '../../SocialButton'
 // assets
 import styles from './Login.module.scss'
 import classNames from "classnames";
 
 export const Login = ({onSuccess, setShowLogin, setShowRegister}) => {
-    const [errorMessage, setErrorMessage] = useState(false);
+    const responseFacebook = (response) => {
+        console.log(response);
+      }
+
+    const responseGoogle = (response) => {
+        console.log(response);
+        
+    }
 
     return (
         <div className={styles.popup}>
@@ -31,34 +40,53 @@ export const Login = ({onSuccess, setShowLogin, setShowRegister}) => {
                             Create an account
                         </p>
                     </div>
-                    <form action=''>
-                        {errorMessage &&
-                        <p className="error">{errorMessage}</p>}
-                        <label>
-                            <span>Email</span>
-                            <input type='text' placeholder='Enter Email' />
-                        </label>
-                        <label>
-                            <span>Password</span>
-                            <input type='text' placeholder='Password' />
-                        </label>
-                        <button type="submit" className={classNames('btn-second', styles.continue)}>Continue</button>
-                        <p className={styles.signUp}>Or continue with</p>
+                    <div>
+                <Formik
+                initialValues={{ email: '', password: '' }}
+                validationSchema={loginSchema}
+                onSubmit={(values, { setSubmitting }) => {
+                    setTimeout(() => {
+                    alert(JSON.stringify(values, null, 2));
+                    setSubmitting(false);
+                    }, 4000);
+                }}
+                >
+                {({ isSubmitting }) => (
+                    <Form>
+                    <Field type="email" name="email" />
+                    <ErrorMessage name="email" component="div" />
+                    <Field type="password" name="password" />
+                    <ErrorMessage name="password" component="div" />
+                    <button type="submit" 
+                            className={classNames('btn-second', styles.continue)} 
+                            disabled={isSubmitting}>
+                            Continue
+                    </button>
+                    <p className={styles.signUp}>Or continue with</p>
                         <div className={styles.buttons}>
-                            <div className={styles.facebook}>
-                                <button type="button" className="button">
-                                    <i className="fab fa-facebook-f" />
-                                    <span>Facebook</span>
-                                </button>
-                            </div>
-                            <div className={styles.google}>
-                                <button type="button" className='button'>
-                                    <i className="fab fa-google" />
-                                    <span>Google</span>
-                                </button>
-                            </div>
+                        <FacebookLogin
+                            appId="799782497476434"
+                            autoLoad={false}
+                            callback={responseFacebook}
+                            render={renderProps => (
+                                <SocialButton  
+                                         onClick={renderProps.onClick}
+                                         styles={styles.google} 
+                                         iconClasses={"fab fa-facebook-f"} 
+                                         buttonText={"Facebook"}  />
+                                )}  
+                                />
+                                <SocialButton  styles={styles.google} 
+                                iconClasses={"fab fa-facebook-f"} 
+                                buttonText={"Google"}
+                                onClick={() => {
+                                    window.location.href = "http://localhost:4000/api/auth/google";
+                                }} />
                         </div>
-                    </form>
+                    </Form>
+                )}
+                </Formik>
+            </div>
                 </div>
             </div>
         </div>
