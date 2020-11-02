@@ -41,7 +41,7 @@ export const PremiumPayment = ({setShowPremiumPlan}) => {
                     <li className={styles.total}>Total <span>$102.00</span></li>
                 </ul>
                 <p className={styles.renews}>*Renews automatically at end of month unless canceled</p>
-                <button type='button'>Pay</button>
+                <button type='button' className='btn-primary'>Pay</button>
                 <button type='button' className={styles.stripe}>Powered by <span>stripe</span></button>
             </div>
         </ModalLayout>
