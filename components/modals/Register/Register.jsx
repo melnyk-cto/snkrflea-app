@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 
 // library
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 import Link from 'next/link'
 import classNames from 'classnames'
 
@@ -13,14 +13,12 @@ import { ModalLayout } from "../../../components";
 // assets
 import styles from './Register.module.scss'
 
-export const Register = ({onSuccess, setShowLogin, setShowRegister}) => {
-    const [errorMessage, setErrorMessage] = useState(false);
+export const Register = ({setShowLogin, setShowRegister}) => {
     const [showDescription, setShowDescription] = useState(true);
     return (
         <ModalLayout
             maxWidth='1301px'
-            setShowLogin={setShowLogin}
-            setShowRegister={setShowRegister}>
+            showPopup={setShowRegister}>
             <div className={styles.popupLeft}>
                 <h3 onClick={() => setShowDescription(!showDescription)}
                     className={showDescription ? styles.show : ''}>Starter <span>Free</span></h3>
@@ -49,8 +47,6 @@ export const Register = ({onSuccess, setShowLogin, setShowRegister}) => {
                 </span>
                 </h1>
                 <form action=''>
-                    {errorMessage &&
-                    <p className="error">{errorMessage}</p>}
                     <label>
                         <span>Email</span>
                         <input type='text' placeholder='Enter Email' />
@@ -88,8 +84,4 @@ export const Register = ({onSuccess, setShowLogin, setShowRegister}) => {
             </div>
         </ModalLayout>
     )
-};
-
-Register.propTypes = {
-    onSuccess: PropTypes.func.isRequired,
 };

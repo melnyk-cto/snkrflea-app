@@ -1,8 +1,8 @@
 // core
-import React, { useState } from 'react'
+import React  from 'react'
 
 // library
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import classNames from "classnames";
 
 // components
@@ -11,13 +11,11 @@ import { ModalLayout } from "../../../components";
 // assets
 import styles from './Login.module.scss'
 
-export const Login = ({onSuccess, setShowLogin, setShowRegister}) => {
-    const [errorMessage, setErrorMessage] = useState(false);
+export const Login = ({setShowLogin, setShowRegister}) => {
     return (
         <ModalLayout
             maxWidth='649px'
-            setShowLogin={setShowLogin}
-            setShowRegister={setShowRegister}>
+            showPopup={setShowLogin}>
             <div className={styles.popupRight}>
                 <h1>Login
                     <p onClick={() => {
@@ -29,8 +27,6 @@ export const Login = ({onSuccess, setShowLogin, setShowRegister}) => {
                     </p>
                 </h1>
                 <form action=''>
-                    {errorMessage &&
-                    <p className="error">{errorMessage}</p>}
                     <label>
                         <span>Email</span>
                         <input type='text' placeholder='Enter Email' />
@@ -59,9 +55,4 @@ export const Login = ({onSuccess, setShowLogin, setShowRegister}) => {
             </div>
         </ModalLayout>
     )
-};
-
-
-Login.propTypes = {
-    onSuccess: PropTypes.func.isRequired,
 };

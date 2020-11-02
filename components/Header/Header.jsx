@@ -10,7 +10,7 @@ import { routes } from '../../constants/routes';
 // assets
 import styles from './Header.module.scss'
 
-export const Header = ({setShowLogin}) => {
+export const Header = ({setShowLogin, setShowPremiumPlan}) => {
 
     return (
         <header className={styles.header}>
@@ -23,9 +23,7 @@ export const Header = ({setShowLogin}) => {
                             </a>
                         </Link>
                         <div className={styles.search}>
-                            {/*<SearchIcon />*/}
                             <img src='/icons/search.svg' alt='' />
-
                         </div>
                     </div>
                     <div className={styles.navItems}>
@@ -39,8 +37,7 @@ export const Header = ({setShowLogin}) => {
                                 onClick={(e) => {
                                     setShowLogin(true);
                                     e.preventDefault()
-                                }}
-                                className={styles.menuItem}>
+                                }} className={styles.menuItem}>
                                 Login
                             </a>
                         </Link>
@@ -49,8 +46,11 @@ export const Header = ({setShowLogin}) => {
                                 Join
                             </a>
                         </Link>
-                        <Link href={routes.premium}>
-                            <a className={styles.menuItem}>
+                        <Link href={routes.home}>
+                            <a onClick={(e) => {
+                                setShowPremiumPlan(true);
+                                e.preventDefault()
+                            }} className={styles.menuItem}>
                                 Premium
                             </a>
                         </Link>

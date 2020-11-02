@@ -19,7 +19,7 @@ export const Footer = ({setShowLogin}) => {
                         <ul className={styles.account}>
                             <li><Link href={routes.join}><a>Join</a></Link></li>
                             <li>
-                                <Link href={routes.login}>
+                                <Link href={routes.home}>
                                     <a onClick={(e) => {
                                         setShowLogin(true);
                                         e.preventDefault()

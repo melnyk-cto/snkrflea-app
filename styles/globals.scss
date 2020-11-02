@@ -47,6 +47,10 @@ h3 {
   font-weight:   bold;
   line-height:   1.23;
   margin-bottom: 1.25rem;
+  span {
+    font-family: ITCAvantGardeGothicPro, sans-serif;
+    font-weight: normal;
+  }
 }
 
 
@@ -169,7 +173,7 @@ input[disabled] {
   border:         0.0625rem solid #E4E8EB;
 }
 
-.btn-primary, .btn-second {
+button, .btn-second {
   cursor:          pointer;
   display:         flex;
   align-items:     center;
