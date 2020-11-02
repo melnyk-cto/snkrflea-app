@@ -21,7 +21,6 @@ export const Login = ({setShowLogin, setShowRegister}) => {
 
     const responseGoogle = (response) => {
         console.log(response);
-
     };
 
     return (
