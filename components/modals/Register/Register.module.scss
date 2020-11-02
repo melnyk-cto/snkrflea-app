@@ -68,6 +68,11 @@
     align-items:     center;
     justify-content: space-between;
   }
+  .error {
+    color:     red;
+    font-size: 0.75rem;
+    padding-left: 1rem;
+  }
   .continue {
     width: 100%;
   }
