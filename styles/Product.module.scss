@@ -1,0 +1,37 @@
+@import "./variables";
+
+.product {
+  flex:           1 0 auto;
+  padding-bottom: 60px;
+  h1 {
+    margin-bottom: 8px;
+    padding-left:  0.75rem;
+  }
+  .productInner {
+    padding:   3.75% 1rem 1rem 6.5%;
+    max-width: 594px;
+    button {
+      width: 100%;
+    }
+  }
+  .productList {
+    margin-bottom: 0.75rem;
+    li {
+      margin-bottom: 0.75rem;
+    }
+    h6 {
+      padding-left: 1.25rem;
+    }
+  }
+}
+
+
+@media screen and (max-width: 768px) {
+  .product {
+    .productInner {
+      padding:   3.75% 1rem 1rem 6.5%;
+
+    }
+  }
+}
+

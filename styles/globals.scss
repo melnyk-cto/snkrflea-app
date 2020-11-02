@@ -53,6 +53,13 @@ h3 {
   }
 }
 
+h6 {
+  font-size:     1rem;
+  font-weight:   bold;
+  line-height:   1.55;
+  margin-bottom: 6px;
+}
+
 
 p, a {
   font-size:     1rem;
@@ -236,6 +243,75 @@ button, .btn-second {
 
 .swiper-wrapper {
   align-items: center;
+}
+
+// select
+.select {
+  .select__control {
+    border:     none;
+    background: $whiteColor;
+    cursor:     pointer;
+  }
+  .select__value-container {
+    padding-left: 1.25rem;
+  }
+  .select__indicator {
+    opacity: .6;
+    &-separator {
+      display: none;
+    }
+  }
+  .select__placeholder, .select__single-value {
+    font-family: Apercu, sans-serif;
+    font-size:   16px;
+    font-weight: normal;
+    color:       $blackColor;
+    margin-left: 0;
+  }
+  .select__menu {
+    background:    $mainColor;
+    border:        none;
+    border-radius: 9px;
+    overflow:      hidden;
+    box-shadow:    0 2px 4px 0 #939393;
+    &-list {
+      padding: 0;
+      border:  none;
+    }
+  }
+  .select__option {
+    background:  $whiteColor;
+    color:       $blackColor;
+    border:      none;
+    cursor:      pointer;
+    font-weight: bold;
+    &:active {
+      background: rgba(255, 146, 0, 0.8);
+    }
+    &--is-selected {
+      background: $mainColor;
+      color:      $whiteColor;
+    }
+    &--is-focused {
+      background: rgba(255, 146, 0, 0.8);
+      color:      $whiteColor;
+    }
+  }
+}
+
+// Drop Zone
+.dropZone {
+  background: $whiteColor;
+  .active {
+    height:          241px;
+    width:           100%;
+    display:         flex;
+    align-items:     center;
+    justify-content: center;
+    font-size:       16px;
+    font-weight:     normal;
+    cursor:          move;
+  }
 }
 
 
