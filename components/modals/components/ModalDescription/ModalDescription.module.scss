@@ -68,7 +68,7 @@
 @media screen and (max-width: 768px) {
   .listWrapper {
     width:   100%;
-    padding: 0.75rem 0 2rem;
+    padding: 0.75rem 1rem;
     .title {
       border:          solid 2px $mainColor;
       border-radius:   5px;
@@ -78,7 +78,7 @@
       align-items:     center;
       position:        relative;
       z-index:         1;
-      margin-bottom:   0.75rem;
+      margin-bottom:   0;
       &:after {
         content:       '';
         position:      absolute;
