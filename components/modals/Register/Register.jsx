@@ -26,6 +26,7 @@ export const Register = () => {
 
     const setShowRegister = (state) => dispatch(authActions.showRegisterModal(state));
     const setShowLogin = (state) => dispatch(authActions.showLoginModal(state));
+    const setShowPlans = (state) => dispatch(authActions.showPlansModal(state));
 
     const responseFacebook = (response) => {
         console.log(response);
@@ -40,7 +41,7 @@ export const Register = () => {
             maxWidth='1301px'
             showPopup={setShowRegister}>
             <span className={styles.back} onClick={() => {
-                setShowLogin(true);
+                setShowPlans(true);
                 setShowRegister(false)
             }}>
                 Back

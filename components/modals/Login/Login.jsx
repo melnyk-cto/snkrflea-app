@@ -18,7 +18,7 @@ import styles from './Login.module.scss'
 
 export const Login = () => {
     const dispatch = useDispatch();
-    const setShowRegister = (state) => dispatch(authActions.showRegisterModal(state));
+    const setShowPlans = (state) => dispatch(authActions.showPlansModal(state));
     const setShowLogin = (state) => dispatch(authActions.showLoginModal(state));
 
     const responseFacebook = (response) => {
@@ -37,7 +37,7 @@ export const Login = () => {
                 <h1>Login
                     <p onClick={() => {
                         setShowLogin(false);
-                        setShowRegister(true);
+                        setShowPlans(true);
                     }}
                        className={styles.create}>
                         Create an account

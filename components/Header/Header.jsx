@@ -15,8 +15,8 @@ import styles from './Header.module.scss'
 export const Header = () => {
     const dispatch = useDispatch();
 
-    const setShowPremiumPlan = (state) => dispatch(authActions.showPremiumPlanModal(state));
     const setShowLogin = (state) => dispatch(authActions.showLoginModal(state));
+    const setShowPlans = (state) => dispatch(authActions.showPlansModal(state));
 
     return (
         <header className={styles.header}>
@@ -39,16 +39,23 @@ export const Header = () => {
                         {/*    </a>*/}
                         {/*</Link>*/}
                         <Link href={routes.account}>
-                            <a
-                                onClick={(e) => {
-                                    setShowLogin(true);
-                                    e.preventDefault()
-                                }} className={styles.menuItem}>
+                            <a onClick={(e) => {
+                                setShowLogin(true);
+                                e.preventDefault()
+                            }}
+                               className={styles.menuItem}
+                            >
                                 Login
                             </a>
                         </Link>
                         <Link href={routes.home}>
-                            <a className={styles.menuItem}>
+                            <a
+                                onClick={(e) => {
+                                    setShowPlans(true);
+                                    e.preventDefault()
+                                }}
+                                className={styles.menuItem}
+                            >
                                 Join
                             </a>
                         </Link>
@@ -58,10 +65,7 @@ export const Header = () => {
                             </a>
                         </Link>
                         <Link href={routes.home}>
-                            <a onClick={(e) => {
-                                setShowPremiumPlan(true);
-                                e.preventDefault()
-                            }} className={styles.menuItem}>
+                            <a className={styles.menuItem}>
                                 Premium
                             </a>
                         </Link>

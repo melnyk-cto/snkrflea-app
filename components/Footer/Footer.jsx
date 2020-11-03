@@ -16,6 +16,7 @@ export const Footer = () => {
     const dispatch = useDispatch();
 
     const setShowLogin = (state) => dispatch(authActions.showLoginModal(state));
+    const setShowPlans = (state) => dispatch(authActions.showPlansModal(state));
 
     return (
         <>
@@ -23,7 +24,14 @@ export const Footer = () => {
                 <div className="container">
                     <div className={styles.footerTop}>
                         <ul className={styles.account}>
-                            <li><Link href={routes.home}><a>Join</a></Link></li>
+                            <li>
+                                <Link href={routes.home}>
+                                    <a onClick={(e) => {
+                                        setShowPlans(true);
+                                        e.preventDefault()
+                                    }}>Join</a>
+                                </Link>
+                            </li>
                             <li>
                                 <Link href={routes.home}>
                                     <a onClick={(e) => {

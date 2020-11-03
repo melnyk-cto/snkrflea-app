@@ -1,6 +1,8 @@
 // core
 import React from 'react'
 
+// library
+import { useDispatch } from "react-redux";
 
 // components
 import { ModalDescription, ModalLayout } from "../../../components";
@@ -10,6 +12,7 @@ import { authActions } from "../../../redux/auth/actions";
 import styles from './Plans.module.scss'
 
 export const Plans = () => {
+    const dispatch = useDispatch();
 
     const setShowPlans = (state) => dispatch(authActions.showPlansModal(state));
 

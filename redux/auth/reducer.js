@@ -2,7 +2,7 @@ import { handleActions } from 'redux-actions';
 import { authActions } from './actions';
 
 const initialState = {
-    registerModalShowing: true,
+    registerModalShowing: false,
     loginModalShowing: false,
     premiumPaymentModalShowing: false,
     plansModalShowing: false,

@@ -22,7 +22,7 @@ import { authActions } from "../../../redux/auth/actions";
 export const RegisterPremium = () => {
     const dispatch = useDispatch();
 
-    const [success, setSuccess] = useState(true);
+    const [success, setSuccess] = useState(false);
 
     const setShowRegisterPremium = (state) => dispatch(authActions.showRegisterPremiumModal(state));
 

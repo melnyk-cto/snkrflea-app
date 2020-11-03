@@ -14,12 +14,12 @@ import styles from './PremiumPayment.module.scss'
 export const PremiumPayment = () => {
     const dispatch = useDispatch();
 
-    const setShowPremiumPlan = (state) => dispatch(authActions.showPremiumPlanModal(state));
+    const setShowRegisterPremium = (state) => dispatch(authActions.showRegisterPremiumModal(state));
 
     return (
         <ModalLayout
             maxWidth='1301px'
-            showPopup={setShowPremiumPlan}>
+            showPopup={setShowRegisterPremium}>
             <ModalDescription
                 premium={true}
                 title='Premium'
