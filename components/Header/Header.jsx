@@ -3,14 +3,20 @@ import React from 'react'
 
 // library
 import Link from 'next/link'
+import { useDispatch } from "react-redux";
 
 // components
 import { routes } from '../../constants/routes';
+import { authActions } from "../../redux/auth/actions";
 
 // assets
 import styles from './Header.module.scss'
 
-export const Header = ({setShowLogin, setShowPremiumPlan}) => {
+export const Header = () => {
+    const dispatch = useDispatch();
+
+    const setShowPremiumPlan = (state) => dispatch(authActions.showPremiumPlanModal(state));
+    const setShowLogin = (state) => dispatch(authActions.showLoginModal(state));
 
     return (
         <header className={styles.header}>

@@ -1,14 +1,21 @@
 // core
 import React from 'react'
 
+// library
+import { useDispatch } from "react-redux";
 
 // components
 import { ModalDescription, ModalLayout } from "../../../components";
+import { authActions } from "../../../redux/auth/actions";
 
 // assets
 import styles from './PremiumPayment.module.scss'
 
-export const PremiumPayment = ({setShowPremiumPlan}) => {
+export const PremiumPayment = () => {
+    const dispatch = useDispatch();
+
+    const setShowPremiumPlan = (state) => dispatch(authActions.showPremiumPlanModal(state));
+
     return (
         <ModalLayout
             maxWidth='1301px'

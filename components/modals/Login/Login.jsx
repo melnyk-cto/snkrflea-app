@@ -16,9 +16,10 @@ import { authActions } from "../../../redux/auth/actions";
 // assets
 import styles from './Login.module.scss'
 
-export const Login = ({setShowLogin}) => {
+export const Login = () => {
     const dispatch = useDispatch();
     const setShowRegister = (state) => dispatch(authActions.showRegisterModal(state));
+    const setShowLogin = (state) => dispatch(authActions.showLoginModal(state));
 
     const responseFacebook = (response) => {
         console.log(response);

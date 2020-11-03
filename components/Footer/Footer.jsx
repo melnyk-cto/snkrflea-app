@@ -3,14 +3,20 @@ import React from 'react'
 
 // library
 import Link from 'next/link'
+import { useDispatch } from "react-redux";
 
 // components
 import { routes } from "../../constants/routes";
+import { authActions } from "../../redux/auth/actions";
 
 // assets
 import styles from './Footer.module.scss'
 
-export const Footer = ({setShowLogin}) => {
+export const Footer = () => {
+    const dispatch = useDispatch();
+
+    const setShowLogin = (state) => dispatch(authActions.showLoginModal(state));
+
     return (
         <>
             <footer className={styles.footer}>

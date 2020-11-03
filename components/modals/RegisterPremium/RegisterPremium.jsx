@@ -16,9 +16,15 @@ import { routes } from "../../../constants/routes";
 
 // assets
 import styles from './RegisterPremium.module.scss'
+import { useDispatch } from "react-redux";
+import { authActions } from "../../../redux/auth/actions";
 
-export const RegisterPremium = ({setShowRegisterPremium}) => {
+export const RegisterPremium = () => {
+    const dispatch = useDispatch();
+
     const [success, setSuccess] = useState(true);
+
+    const setShowRegisterPremium = (state) => dispatch(authActions.showRegisterPremiumModal(state));
 
     const responseFacebook = (response) => {
         console.log(response);

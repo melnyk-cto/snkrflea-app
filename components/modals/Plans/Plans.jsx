@@ -4,11 +4,15 @@ import React from 'react'
 
 // components
 import { ModalDescription, ModalLayout } from "../../../components";
+import { authActions } from "../../../redux/auth/actions";
 
 // assets
 import styles from './Plans.module.scss'
 
-export const Plans = ({setShowPlans}) => {
+export const Plans = () => {
+
+    const setShowPlans = (state) => dispatch(authActions.showPlansModal(state));
+
     return (
         <ModalLayout
             maxWidth='1301px'
