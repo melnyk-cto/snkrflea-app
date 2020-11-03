@@ -1,38 +1,23 @@
 // core
-import React, { useState } from 'react'
+import React from 'react'
 
-// library
-import classNames from 'classnames'
 
 // components
-import { ModalLayout } from "../../../components";
+import { ModalDescription, ModalLayout } from "../../../components";
 
 // assets
 import styles from './PremiumPayment.module.scss'
 
 export const PremiumPayment = ({setShowPremiumPlan}) => {
-    const [showDescription, setShowDescription] = useState(true);
     return (
         <ModalLayout
             maxWidth='1301px'
             showPopup={setShowPremiumPlan}>
-            <div className={classNames(styles.popupLeft, styles.black)}>
-                <h3 onClick={() => setShowDescription(!showDescription)}
-                    className={classNames(showDescription ? styles.show : '')}>Premium <span>$99/month</span>
-                </h3>
-                {showDescription && <ul>
-                    <li>Open your own store</li>
-                    <li>Open your own store</li>
-                    <li>Never pay a commission or seller fee</li>
-                    <li>Link your paypal</li>
-                    <li>Get a custom link for your store</li>
-                    <li>Get access to hundreds of discount links</li>
-                    <li>Discount links from sites like Kith, Walmart, target, Amazon, Fargetch, Bestbuy and more!</li>
-                    <li>Up to 50 new discount links per day</li>
-                    <li>Monthly giveaways. Up to 10 rare sneakers per month</li>
-                    <li>Exclusive monthly hype drops. (i.e. box logos for $99.99)</li>
-                </ul>}
-            </div>
+            <ModalDescription
+                premium={true}
+                title='Premium'
+                subTitle='$99/month'
+            />
             <div className={styles.popupRight}>
                 <h1>Payment</h1>
                 <ul className={styles.plans}>

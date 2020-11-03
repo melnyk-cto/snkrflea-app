@@ -1,60 +1,5 @@
 @import "../../../styles/variables";
 
-.popupLeft {
-  width:            41.5%;
-  padding-top:      0.75rem;
-  border-radius:    9px;
-  background-color: $blackColor;
-  li {
-    display:         inline-block;
-    font-size:       20px;
-    font-weight:     bold;
-    line-height:     1.2;
-    text-decoration: none;
-    padding:         20px 10px;
-    width:           100%;
-    color:           $whiteColor;
-    border-bottom:   2px solid rgba(0, 0, 0, 0.1);
-  }
-  h3 {
-    padding-left: 0.75rem;
-    color:        $whiteColor;
-    span {
-      color:       $whiteColor;
-      opacity:     1;
-      margin-left: 1rem;
-    }
-  }
-  &.black {
-    width: 58%;
-    h3 {
-      padding-left: 34px;
-    }
-    ul {
-      padding: 0 34px;
-      li {
-        padding-left: 40px;
-        position:     relative;
-        &:not(:last-child) {
-          border-bottom: 2px solid $mainColor;
-        }
-        &:before {
-          content:         '';
-          position:        absolute;
-          background:      url("../../../public/icons/check.svg") center center no-repeat;
-          background-size: contain;
-          width:           23px;
-          height:          20px;
-          z-index:         1;
-          left:            0;
-          top:             50%;
-          transform:       translate(0, -50%);
-        }
-      }
-    }
-  }
-}
-
 .popupRight {
   width:      38%;
   text-align: center;
@@ -114,62 +59,7 @@
   }
 }
 
-
 @media screen and (max-width: 1100px) {
-  .popupLeft {
-    width: 100%;
-    &.black {
-      width: 100%;
-      h3 {
-        border: solid 2px transparent;
-        &:after {
-          border-right:  1px solid $whiteColor;
-          border-bottom: 1px solid $whiteColor;
-        }
-      }
-    }
-    ul {
-      margin-bottom: 2rem;
-      li {
-        font-size: 1rem;
-        padding:   10px 10px;
-      }
-    }
-    h3 {
-      border:          solid 2px $mainColor;
-      border-radius:   5px;
-      padding:         8px 32px 8px 8px;
-      justify-content: space-between;
-      display:         flex;
-      align-items:     center;
-      position:        relative;
-      z-index:         1;
-      margin-bottom:   0.75rem;
-      &:after {
-        content:       '';
-        position:      absolute;
-        z-index:       1;
-        right:         0.75rem;
-        top:           45%;
-        transform:     translate(0, -50%) rotate(45deg);
-        width:         0.5rem;
-        height:        0.5rem;
-        background:    transparent;
-        border-right:  1px solid $blackColor;
-        border-bottom: 1px solid $blackColor;
-        opacity:       0.6;
-      }
-      &:active {
-        opacity: .7;
-      }
-      &.show {
-        &:after {
-          top:       55%;
-          transform: translate(0, -50%) rotate(-135deg);
-        }
-      }
-    }
-  }
   .popupRight {
     width:     100%;
     padding:   32px 0;
