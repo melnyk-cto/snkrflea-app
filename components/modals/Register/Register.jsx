@@ -7,18 +7,22 @@ import classNames from "classnames";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 import Link from 'next/link'
+import { useDispatch } from 'react-redux';
 
 // components
 import { registerSchema } from '../../../schemas/index';
 import { SocialButton } from '../../SocialButton/SocialButton'
 import { ModalDescription, ModalLayout } from "../../../components";
 import { routes } from "../../../constants/routes";
+import { authActions } from "../../../redux/auth/actions";
 
 // assets
 import styles from './Register.module.scss'
 
-export const Register = ({setShowLogin, setShowRegister}) => {
+export const Register = ({setShowLogin}) => {
+    const dispatch = useDispatch();
     const [success, setSuccess] = useState(false);
+    const setShowRegister = (state) => dispatch(authActions.showRegisterModal(state));
 
     const responseFacebook = (response) => {
         console.log(response);

@@ -5,16 +5,21 @@ import React from 'react'
 import classNames from "classnames";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
+import { useDispatch } from "react-redux";
 
 // components
 import { loginSchema } from '../../../schemas/index';
 import { SocialButton } from '../../SocialButton/SocialButton'
 import { ModalLayout } from "../../../components";
+import { authActions } from "../../../redux/auth/actions";
 
 // assets
 import styles from './Login.module.scss'
 
-export const Login = ({setShowLogin, setShowRegister}) => {
+export const Login = ({setShowLogin}) => {
+    const dispatch = useDispatch();
+    const setShowRegister = (state) => dispatch(authActions.showRegisterModal(state));
+
     const responseFacebook = (response) => {
         console.log(response);
     };
@@ -31,7 +36,7 @@ export const Login = ({setShowLogin, setShowRegister}) => {
                 <h1>Login
                     <p onClick={() => {
                         setShowLogin(false);
-                        setShowRegister(true)
+                        setShowRegister(true);
                     }}
                        className={styles.create}>
                         Create an account

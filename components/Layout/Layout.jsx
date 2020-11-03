@@ -4,18 +4,21 @@ import React, { useState } from 'react'
 // library
 import Head from 'next/head'
 import PropTypes from 'prop-types'
+import { useSelector } from "react-redux";
 
 // components
 import { Footer, Header, Login, PremiumPayment, Register, Plans, RegisterPremium } from "../../components";
+import { showRegisterModal } from "../../redux/auth/selectors";
 
 
 export const Layout = ({children}) => {
-    const [showRegister, setShowRegister] = useState(false);
     const [showLogin, setShowLogin] = useState(false);
     const [showPremiumPlan, setShowPremiumPlan] = useState(false);
     const [showPlans, setShowPlans] = useState(false);
     const [showRegisterPremium, setShowRegisterPremium] = useState(false);
 
+
+    const showRegister = useSelector(showRegisterModal);
     return (
         <>
             <Head>
@@ -26,9 +29,9 @@ export const Layout = ({children}) => {
                 setShowLogin={setShowLogin}
                 setShowPremiumPlan={setShowPremiumPlan}
             />
-            {showRegister && <Register setShowRegister={setShowRegister} setShowLogin={setShowLogin} />}
-            {showRegisterPremium && <RegisterPremium setShowRegisterPremium={setShowRegisterPremium}  />}
-            {showLogin && <Login setShowLogin={setShowLogin} setShowRegister={setShowRegister} />}
+            {showRegister && <Register setShowLogin={setShowLogin} />}
+            {showRegisterPremium && <RegisterPremium setShowRegisterPremium={setShowRegisterPremium} />}
+            {showLogin && <Login setShowLogin={setShowLogin} />}
             {showPremiumPlan && <PremiumPayment setShowPremiumPlan={setShowPremiumPlan} />}
             {showPlans && <Plans setShowPlans={setShowPlans} />}
             {children}
