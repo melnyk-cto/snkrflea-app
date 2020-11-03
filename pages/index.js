@@ -4,6 +4,7 @@ import React from 'react'
 // library
 import Link from 'next/link'
 import { Swiper, SwiperSlide } from 'swiper/react';
+import SwiperCore, { Autoplay } from 'swiper';
 
 // components
 import { routes } from "../constants/routes";
@@ -13,19 +14,23 @@ import { Layout } from "../components";
 import styles from '../styles/Home.module.scss'
 
 const Home = () => {
+    SwiperCore.use([Autoplay]);
     return (
         <Layout>
             <section className={styles.home}>
                 <div className="container">
                     <div className={styles.slider}>
                         <Swiper
+                            autoplay={{delay: 2000}}
+                            speed={1000}
                             spaceBetween={20}
+                            loopedSlides={4}
                             slidesPerView={1}
-                            loop='true'
+                            loop={true}
                             clickable='true'
                             breakpoints={{
                                 567: {
-                                    slidesPerView: 3
+                                    slidesPerView: 3,
                                 },
                             }}
                         >
