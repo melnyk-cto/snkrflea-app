@@ -1,5 +1,5 @@
 // core
-import React from 'react'
+import React, { useState } from 'react'
 
 // library
 // import PropTypes from 'prop-types'
@@ -18,6 +18,8 @@ import { routes } from "../../../constants/routes";
 import styles from './Register.module.scss'
 
 export const Register = ({setShowLogin, setShowRegister}) => {
+    const [success, setSuccess] = useState(false);
+
     const responseFacebook = (response) => {
         console.log(response);
     };
@@ -39,17 +41,17 @@ export const Register = ({setShowLogin, setShowRegister}) => {
             <ModalDescription
                 title='Starter'
                 subTitle='Free' />
-            <div className={styles.popupRight}>
-                <h1>
-                    Create your account
-                    <span className={styles.login} onClick={() => {
-                        setShowLogin(true);
-                        setShowRegister(false)
-                    }}>
+            {!success ?
+                <div className={styles.popupRight}>
+                    <h1>
+                        Create your account
+                        <span className={styles.login} onClick={() => {
+                            setShowLogin(true);
+                            setShowRegister(false)
+                        }}>
                     Login
                 </span>
-                </h1>
-                <Formik
+                    </h1> <Formik
                     initialValues={{email: '', password: ''}}
                     validationSchema={registerSchema}
                     onSubmit={(values, {setSubmitting}) => {
@@ -108,7 +110,11 @@ export const Register = ({setShowLogin, setShowRegister}) => {
                         </Form>
                     )}
                 </Formik>
-            </div>
+                </div>
+                : <div className={styles.success}>
+                    <h3>Your account was <br /> successfully created!</h3>
+                    <button type='button' className='btn-second'>Create my store</button>
+                </div>}
         </ModalLayout>
     )
 };

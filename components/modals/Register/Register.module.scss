@@ -91,6 +91,17 @@
   }
 }
 
+.success {
+  display:         flex;
+  flex-direction:  column;
+  width:           44%;
+  justify-content: center;
+  text-align:      center;
+  button {
+    width: 100%;
+  }
+}
+
 
 @media screen and (max-width: 768px) {
   .back {

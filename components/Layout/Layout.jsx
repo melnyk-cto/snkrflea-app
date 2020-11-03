@@ -10,10 +10,10 @@ import { Footer, Header, Login, PremiumPayment, Register, Plans } from "../../co
 
 
 export const Layout = ({children}) => {
-    const [showRegister, setShowRegister] = useState(false);
+    const [showRegister, setShowRegister] = useState(true);
     const [showLogin, setShowLogin] = useState(false);
     const [showPremiumPlan, setShowPremiumPlan] = useState(false);
-    const [showPlans, setShowPlans] = useState(true);
+    const [showPlans, setShowPlans] = useState(false);
 
     return (
         <>
