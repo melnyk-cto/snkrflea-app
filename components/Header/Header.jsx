@@ -33,11 +33,11 @@ export const Header = () => {
                         </div>
                     </div>
                     <div className={styles.navItems}>
-                        <Link href={routes.account}>
-                            <a className={styles.menuItem}>
-                                Account
-                            </a>
-                        </Link>
+                        {/*<Link href={routes.account}>*/}
+                        {/*    <a className={styles.menuItem}>*/}
+                        {/*        Account*/}
+                        {/*    </a>*/}
+                        {/*</Link>*/}
                         <Link href={routes.account}>
                             <a
                                 onClick={(e) => {
@@ -47,9 +47,14 @@ export const Header = () => {
                                 Login
                             </a>
                         </Link>
-                        <Link href={routes.join}>
+                        <Link href={routes.home}>
                             <a className={styles.menuItem}>
                                 Join
+                            </a>
+                        </Link>
+                        <Link href={routes.buy}>
+                            <a className={styles.menuItem}>
+                                Buy
                             </a>
                         </Link>
                         <Link href={routes.home}>

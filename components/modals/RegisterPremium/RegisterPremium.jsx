@@ -60,12 +60,12 @@ export const RegisterPremium = () => {
                             <label>
                                 <span>Password</span>
                                 <Field type="email" name="email" placeholder='Enter Email' />
-                                <ErrorMessage className={styles.error} name="email" component="div" />
+                                <ErrorMessage className='error' name="email" component="div" />
                             </label>
                             <label>
                                 <span>Password</span>
                                 <Field type="password" name="password" placeholder='Password' />
-                                <ErrorMessage className={styles.error} name="password" component="div" />
+                                <ErrorMessage className='error' name="password" component="div" />
                             </label>
                             <label className="checkbox">
                                 <Field type="checkbox" name="privacy" />

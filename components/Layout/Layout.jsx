@@ -11,7 +11,7 @@ import { Footer, Header, Login, PremiumPayment, Register, Plans, RegisterPremium
 import {
     showRegisterModal,
     showLoginModal,
-    showPremiumPlanModal,
+    showPremiumPaymentModal,
     showPlansModal,
     showRegisterPremiumModal
 } from "../../redux/auth/selectors";
@@ -20,7 +20,7 @@ import {
 export const Layout = ({children}) => {
     const showRegister = useSelector(showRegisterModal);
     const showLogin = useSelector(showLoginModal);
-    const showPremiumPlan = useSelector(showPremiumPlanModal);
+    const showPremiumPayment = useSelector(showPremiumPaymentModal);
     const showPlans = useSelector(showPlansModal);
     const showRegisterPremium = useSelector(showRegisterPremiumModal);
     return (
@@ -33,7 +33,7 @@ export const Layout = ({children}) => {
             {showRegister && <Register />}
             {showRegisterPremium && <RegisterPremium />}
             {showLogin && <Login />}
-            {showPremiumPlan && <PremiumPayment />}
+            {showPremiumPayment && <PremiumPayment />}
             {showPlans && <Plans />}
             {children}
             <Footer />

@@ -23,7 +23,7 @@ export const Footer = () => {
                 <div className="container">
                     <div className={styles.footerTop}>
                         <ul className={styles.account}>
-                            <li><Link href={routes.join}><a>Join</a></Link></li>
+                            <li><Link href={routes.home}><a>Join</a></Link></li>
                             <li>
                                 <Link href={routes.home}>
                                     <a onClick={(e) => {

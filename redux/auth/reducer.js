@@ -2,9 +2,9 @@ import { handleActions } from 'redux-actions';
 import { authActions } from './actions';
 
 const initialState = {
-    registerModalShowing: false,
+    registerModalShowing: true,
     loginModalShowing: false,
-    premiumPlanModalShowing: false,
+    premiumPaymentModalShowing: false,
     plansModalShowing: false,
     registerPremiumModalShowing: false,
 };
@@ -18,9 +18,9 @@ export const authReducer = handleActions({
             ...state,
             loginModalShowing: payload,
         }),
-        [authActions.showPremiumPlanModal]: (state, {payload}) => ({
+        [authActions.showPremiumPayment]: (state, {payload}) => ({
             ...state,
-            premiumPlanModalShowing: payload,
+            premiumPaymentModalShowing: payload,
         }),
         [authActions.showPlansModal]: (state, {payload}) => ({
             ...state,
