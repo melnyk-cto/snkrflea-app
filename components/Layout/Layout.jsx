@@ -34,7 +34,7 @@ export const Layout = ({children}) => {
             {showRegisterPremium && <RegisterPremium classname='premium' />}
             {showLogin && <Login />}
             {showPremiumPayment && <PremiumPayment />}
-            {showPlans && <Plans />}
+            {showPlans && <Plans classname='plans'/>}
             {children}
             <Footer />
         </>

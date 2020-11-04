@@ -3,3 +3,42 @@
 .title {
   width: 100%;
 }
+
+.tabs {
+  width:        100%;
+  border-right: 5px;
+  .tabsInner {
+    display:       inline-flex;
+    align-items:   center;
+    border-radius: 8px;
+    border:        1px solid $mainColor;
+    overflow:      hidden;
+  }
+  span {
+    font-size:        14px;
+    font-weight:      bold;
+    padding:          0.875rem;
+    background-color: transparent;
+    color:            $mainColor;
+    min-width:        150px;
+    text-align:       center;
+    cursor:           pointer;
+    transition:       .3s linear;
+    &.active, &:active, &:hover {
+      background-color: $mainColor;
+      color:            $whiteColor;
+    }
+    &:active {
+      opacity: .7;
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .title {
+    text-align: center;
+  }
+  .tabs {
+    text-align: center;
+  }
+}

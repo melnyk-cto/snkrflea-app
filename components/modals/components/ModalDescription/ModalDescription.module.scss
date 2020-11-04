@@ -16,21 +16,32 @@
     }
   }
   .list {
+    height:         100%;
+    display:        flex;
+    flex-direction: column;
     li {
-      display:         inline-block;
+      display:         flex;
+      flex-direction:  column;
       font-size:       20px;
       font-weight:     bold;
       line-height:     1.2;
       text-decoration: none;
       padding:         17px 10px;
       width:           100%;
-      border-bottom:   2px solid rgba(0, 0, 0, 0.1);
+      &:not(:last-child) {
+        border-bottom: 2px solid $whiteColor;
+      }
+      &.button {
+        border-bottom: none;
+        margin-top:    auto;
+        border-bottom: none;
+      }
     }
   }
   &.black {
     width:            54%;
     background-color: $blackColor;
-    padding:          2rem 3rem 12px 2rem;
+    padding:          2rem 3rem 1.5rem 2rem;
     .title {
       color:         $whiteColor;
       margin-bottom: 1.5rem;
@@ -40,10 +51,9 @@
     }
     .list {
       li {
-        padding:      15px 10px;
-        padding-left: 40px;
-        position:     relative;
-        color:        $whiteColor;
+        padding:  15px 10px 15px 40px;
+        position: relative;
+        color:    $whiteColor;
         &:not(:last-child) {
           border-bottom: 2px solid $mainColor;
         }
@@ -59,12 +69,19 @@
           top:             50%;
           transform:       translate(0, -50%);
         }
+        &.button:before {
+          display: none;
+        }
       }
     }
   }
   button {
     width:      100%;
     margin-top: auto;
+  }
+  &.plans {
+    width:   41%;
+    padding: 2rem 0 1.5rem 0;
   }
 }
 
@@ -108,7 +125,7 @@
       }
     }
     .list {
-      margin-bottom: 2rem;
+      margin-bottom: 0;
       padding:       0 1.75rem;
       li {
         font-size:   1rem;
@@ -131,6 +148,13 @@
       }
       .list {
         padding: 0;
+      }
+    }
+    &.plans {
+      width:   100%;
+      padding: 2rem 0 1.5rem 0;
+      .title {
+        margin-bottom: 0;
       }
     }
   }
