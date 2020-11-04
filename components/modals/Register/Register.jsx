@@ -67,7 +67,8 @@ export const Register = ({classname}) => {
                         setTimeout(() => {
                             alert(JSON.stringify(values, null, 2));
                             setSubmitting(false);
-                        }, 4000);
+                            setSuccess(true)
+                        }, 2000);
                     }}
                 >
                     {({isSubmitting}) => (
@@ -121,6 +122,7 @@ export const Register = ({classname}) => {
                 </Formik>
                 </div>
                 : <div className={styles.success}>
+                    <img src='/icons/boots.svg' alt='' />
                     <h3>Your account was <br /> successfully created!</h3>
                     <button type='button' className='btn-second'>Create my store</button>
                 </div>}

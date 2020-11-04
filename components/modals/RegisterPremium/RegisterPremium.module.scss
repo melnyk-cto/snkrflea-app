@@ -58,9 +58,16 @@
 .success {
   display:         flex;
   flex-direction:  column;
-  width:           44%;
   justify-content: center;
   text-align:      center;
+  padding-right:   0;
+  width:           41.5%;
+  img {
+    max-width: 200px;
+    width:     50%;
+    margin:    4rem auto 1.75rem auto;
+    display:   none;
+  }
   button {
     width: 100%;
   }
@@ -91,7 +98,13 @@
     }
   }
   .success {
-    padding: 2rem 0;
-    width:   100%;
+    width:         100%;
+    padding-right: 0;
+    h3 {
+      font-size: 1.75rem;
+    }
+    img {
+      display: flex;
+    }
   }
 }

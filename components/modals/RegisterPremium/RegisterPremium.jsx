@@ -53,7 +53,8 @@ export const RegisterPremium = ({classname}) => {
                         setTimeout(() => {
                             alert(JSON.stringify(values, null, 2));
                             setSubmitting(false);
-                        }, 4000);
+                            setSuccess(true)
+                        }, 2000);
                     }}
                 >
                     {({isSubmitting}) => (
@@ -107,6 +108,7 @@ export const RegisterPremium = ({classname}) => {
                 </Formik>
                 </div>
                 : <div className={styles.success}>
+                    <img src='/icons/boots.svg' alt='' />
                     <h3>Your payment was successful</h3>
                     <button type='button' className='btn-primary'>View my premium links</button>
                 </div>}

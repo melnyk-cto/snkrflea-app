@@ -94,16 +94,23 @@
 .success {
   display:         flex;
   flex-direction:  column;
-  width:           44%;
   justify-content: center;
   text-align:      center;
+  padding-right:   9%;
+  width:           48.5%;
+  img {
+    max-width: 200px;
+    width:     50%;
+    margin:    4rem auto 1.75rem auto;
+    display:   none;
+  }
   button {
     width: 100%;
   }
 }
 
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 900px) {
   .back {
     display: none;
   }
@@ -111,7 +118,7 @@
     display: block;
   }
   .popupRight {
-    width: 100%;
+    width:   100%;
     padding: 0 1rem;
     .buttons {
       .google, .facebook {
@@ -131,6 +138,17 @@
       .facebook {
         margin-right: 1rem;
       }
+    }
+  }
+
+  .success {
+    width:         100%;
+    padding-right: 0;
+    h3 {
+      font-size: 1.75rem;
+    }
+    img {
+      display: flex;
     }
   }
 }
