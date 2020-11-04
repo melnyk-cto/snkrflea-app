@@ -20,61 +20,59 @@ export const Header = () => {
 
     return (
         <header className={styles.header}>
-            <div className="container">
-                <div className={styles.navWrapper}>
-                    <div className={styles.navTop}>
-                        <Link href={routes.home}>
-                            <a className={styles.navLogo}>
-                                <img src='/icons/logo.svg' alt='' />
-                            </a>
-                        </Link>
-                        <div className={styles.search}>
-                            <img src='/icons/search.svg' alt='' />
-                        </div>
+            <div className={styles.navWrapper}>
+                <div className={styles.navTop}>
+                    <Link href={routes.home}>
+                        <a className={styles.navLogo}>
+                            <img src='/icons/logo.svg' alt='' />
+                        </a>
+                    </Link>
+                    <div className={styles.search}>
+                        <img src='/icons/search.svg' alt='' />
                     </div>
-                    <div className={styles.navItems}>
-                        {/*<Link href={routes.account}>*/}
-                        {/*    <a className={styles.menuItem}>*/}
-                        {/*        Account*/}
-                        {/*    </a>*/}
-                        {/*</Link>*/}
-                        <Link href={routes.account}>
-                            <a onClick={(e) => {
-                                setShowLogin(true);
+                </div>
+                <div className={styles.navItems}>
+                    {/*<Link href={routes.account}>*/}
+                    {/*    <a className={styles.menuItem}>*/}
+                    {/*        Account*/}
+                    {/*    </a>*/}
+                    {/*</Link>*/}
+                    <Link href={routes.account}>
+                        <a onClick={(e) => {
+                            setShowLogin(true);
+                            e.preventDefault()
+                        }}
+                           className={styles.menuItem}
+                        >
+                            Login
+                        </a>
+                    </Link>
+                    <Link href={routes.home}>
+                        <a
+                            onClick={(e) => {
+                                setShowPlans(true);
                                 e.preventDefault()
                             }}
-                               className={styles.menuItem}
-                            >
-                                Login
-                            </a>
-                        </Link>
-                        <Link href={routes.home}>
-                            <a
-                                onClick={(e) => {
-                                    setShowPlans(true);
-                                    e.preventDefault()
-                                }}
-                                className={styles.menuItem}
-                            >
-                                Join
-                            </a>
-                        </Link>
-                        <Link href={routes.buy}>
-                            <a className={styles.menuItem}>
-                                Buy
-                            </a>
-                        </Link>
-                        <Link href={routes.home}>
-                            <a className={styles.menuItem}>
-                                Premium
-                            </a>
-                        </Link>
-                        <Link href={routes.sell}>
-                            <a className={styles.menuItem}>
-                                Sell
-                            </a>
-                        </Link>
-                    </div>
+                            className={styles.menuItem}
+                        >
+                            Join
+                        </a>
+                    </Link>
+                    <Link href={routes.buy}>
+                        <a className={styles.menuItem}>
+                            Buy
+                        </a>
+                    </Link>
+                    <Link href={routes.home}>
+                        <a className={styles.menuItem}>
+                            Premium
+                        </a>
+                    </Link>
+                    <Link href={routes.sell}>
+                        <a className={styles.menuItem}>
+                            Sell
+                        </a>
+                    </Link>
                 </div>
             </div>
         </header>

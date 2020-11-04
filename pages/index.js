@@ -18,44 +18,44 @@ const Home = () => {
     return (
         <Layout>
             <section className={styles.home}>
+                <div className={styles.slider}>
+                    <Swiper
+                        autoplay={{delay: 2000}}
+                        speed={1000}
+                        spaceBetween={20}
+                        loopedSlides={4}
+                        slidesPerView={1}
+                        loop={true}
+                        clickable='true'
+                        breakpoints={{
+                            567: {
+                                slidesPerView: 3,
+                            },
+                        }}
+                    >
+                        <SwiperSlide>
+                            <div className={styles.slideImage}>
+                                <img src='/images/home/slider/jacket.png' alt='' />
+                            </div>
+                        </SwiperSlide>
+                        <SwiperSlide>
+                            <div className={styles.slideImage}>
+                                <img src='/images/home/slider/boots.png' alt='' />
+                            </div>
+                        </SwiperSlide>
+                        <SwiperSlide>
+                            <div className={styles.slideImage}>
+                                <img src='/images/home/slider/jacket.png' alt='' />
+                            </div>
+                        </SwiperSlide>
+                        <SwiperSlide>
+                            <div className={styles.slideImage}>
+                                <img src='/images/home/slider/boots.png' alt='' />
+                            </div>
+                        </SwiperSlide>
+                    </Swiper>
+                </div>
                 <div className="container">
-                    <div className={styles.slider}>
-                        <Swiper
-                            autoplay={{delay: 2000}}
-                            speed={1000}
-                            spaceBetween={20}
-                            loopedSlides={4}
-                            slidesPerView={1}
-                            loop={true}
-                            clickable='true'
-                            breakpoints={{
-                                567: {
-                                    slidesPerView: 3,
-                                },
-                            }}
-                        >
-                            <SwiperSlide>
-                                <div className={styles.slideImage}>
-                                    <img src='/images/home/slider/jacket.png' alt='' />
-                                </div>
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <div className={styles.slideImage}>
-                                    <img src='/images/home/slider/boots.png' alt='' />
-                                </div>
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <div className={styles.slideImage}>
-                                    <img src='/images/home/slider/jacket.png' alt='' />
-                                </div>
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <div className={styles.slideImage}>
-                                    <img src='/images/home/slider/boots.png' alt='' />
-                                </div>
-                            </SwiperSlide>
-                        </Swiper>
-                    </div>
                     <div className={styles.homeInner}>
                         <h1>Buy and sell all your items <span>100% FREE</span></h1>
                         <ul className={styles.list}>

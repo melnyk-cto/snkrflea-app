@@ -1,5 +1,5 @@
 // core
-import React from 'react'
+import React, { useState } from 'react'
 
 // components
 import { CustomSelect, DropZone, Layout } from "../components";
@@ -27,52 +27,62 @@ const conditionValues = [
     {value: 'torn_down', label: 'Torn down'},
 ];
 const Home = () => {
+    const [success, setSuccess] = useState(false);
+
     return (
         <Layout>
             <section className={styles.product}>
                 <div className="container">
-                    <div className={styles.productInner}>
-                        <h1>List your product</h1>
-                        <ul className={styles.productList}>
-                            <li>
-                                <h6>Listing title</h6>
-                                <CustomSelect options={optionsValue} placeholder='Enter a title' />
-                            </li>
-                            <li>
-                                <h6>Category</h6>
-                                <CustomSelect options={optionsValue} placeholder='Choose a category' />
-                            </li>
-                            <li>
-                                <h6>Main Brand</h6>
-                                <CustomSelect options={optionsValue} placeholder='Choose a brand' />
-                            </li>
-                            <li>
-                                <h6>Sub Brand</h6>
-                                <CustomSelect options={optionsValue} placeholder='Choose a brand' />
-                            </li>
-                            <li>
-                                <h6>Size</h6>
-                                <CustomSelect options={sizesValue} placeholder='Choose Size' />
-                            </li>
-                            <li>
-                                <h6>Condition</h6>
-                                <CustomSelect options={conditionValues} placeholder='Choose an option' />
-                            </li>
-                            <li>
-                                <h6>Price</h6>
-                                <CustomSelect options={conditionValues} placeholder='Enter a price' />
-                            </li>
-                            <li>
-                                <h6>Available for</h6>
-                                <CustomSelect options={conditionValues} placeholder='Choose an option' />
-                            </li>
-                            <li>
-                                <h6>Photos</h6>
-                                <DropZone />
-                            </li>
-                        </ul>
-                        <button type='button' className='btn-second'>Continue</button>
-                    </div>
+                    {!success ? <div className={styles.productInner}>
+                            <h1>List your product</h1>
+                            <ul className={styles.productList}>
+                                <li>
+                                    <h6>Listing title</h6>
+                                    <CustomSelect options={optionsValue} placeholder='Enter a title' />
+                                </li>
+                                <li>
+                                    <h6>Category</h6>
+                                    <CustomSelect options={optionsValue} placeholder='Choose a category' />
+                                </li>
+                                <li>
+                                    <h6>Main Brand</h6>
+                                    <CustomSelect options={optionsValue} placeholder='Choose a brand' />
+                                </li>
+                                <li>
+                                    <h6>Sub Brand</h6>
+                                    <CustomSelect options={optionsValue} placeholder='Choose a brand' />
+                                </li>
+                                <li>
+                                    <h6>Size</h6>
+                                    <CustomSelect options={sizesValue} placeholder='Choose Size' />
+                                </li>
+                                <li>
+                                    <h6>Condition</h6>
+                                    <CustomSelect options={conditionValues} placeholder='Choose an option' />
+                                </li>
+                                <li>
+                                    <h6>Price</h6>
+                                    <CustomSelect options={conditionValues} placeholder='Enter a price' />
+                                </li>
+                                <li>
+                                    <h6>Available for</h6>
+                                    <CustomSelect options={conditionValues} placeholder='Choose an option' />
+                                </li>
+                                <li>
+                                    <h6>Photos</h6>
+                                    <DropZone />
+                                </li>
+                            </ul>
+                            <button type='button' className='btn-second'>Continue</button>
+                        </div>
+                        : <div className={styles.success}>
+                            <h1>Congratulations on creating your listing!</h1>
+                            <h3 className={styles.subTitle}>Now share your product to start getting purchases</h3>
+                            <img src='/images/home/slider/boots.png' alt='' />
+                            <h3>Dunk High SP Retro 'Michigan' 2020</h3>
+                            <button type='button' className='btn-primary'>List another product</button>
+                            <button type='button' className='btn-second'>View product on the marketplace</button>
+                        </div>}
                 </div>
             </section>
         </Layout>

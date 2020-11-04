@@ -229,12 +229,18 @@ input[disabled] {
   display: flex !important;
 }
 
-//.container {
-//  width:     100%;
-//  max-width: 1920px;
-//  margin:    0 auto;
-//  padding:   0 2rem;
-//}
+.container {
+  width:     100%;
+  max-width: 1920px;
+  margin:    0 auto;
+  padding:   0 1rem;
+}
+
+#__next {
+  display:        flex;
+  flex-direction: column;
+  height:         100%;
+}
 
 #__next-prerender-indicator {
   display: none;
