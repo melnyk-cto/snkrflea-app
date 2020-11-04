@@ -17,6 +17,8 @@ export const ModalLayout = ({children, maxWidth, showPopup, classname}) => {
             setStyle(styles.premium)
         } else if (classname === 'plans') {
             setStyle(styles.plans)
+        } else if (classname === 'payment') {
+            setStyle(styles.payment)
         }
     }, [classname]);
 

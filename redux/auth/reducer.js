@@ -18,7 +18,7 @@ export const authReducer = handleActions({
             ...state,
             loginModalShowing: payload,
         }),
-        [authActions.showPremiumPayment]: (state, {payload}) => ({
+        [authActions.showPremiumPaymentModal]: (state, {payload}) => ({
             ...state,
             premiumPaymentModalShowing: payload,
         }),

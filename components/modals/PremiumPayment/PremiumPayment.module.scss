@@ -4,7 +4,7 @@
   width:      38%;
   text-align: center;
   min-width:  390px;
-  padding:    56px 5% 0 1rem;
+  padding:    56px 8% 0 1rem;
   .plans {
     li {
       display:         flex;
@@ -13,13 +13,15 @@
       font-size:       18px;
       font-weight:     bold;
       line-height:     1.38;
-      padding:         1rem 0;
+      padding:         0.5rem 0;
       text-align:      left;
       &.free, &.total {
         font-weight: normal;
       }
       &.total {
         border-top: 1px solid $blackColor;
+        margin-top: 1rem;
+        padding:    1rem 0;
       }
       span {
         margin-left: 0.5rem;
@@ -28,12 +30,12 @@
   }
   .renews {
     font-size: 13px;
-    padding:   1.5rem 0;
+    padding:   1rem 0 1rem 0;
   }
   button {
     width:         100%;
-    margin-bottom: 2rem;
     min-width:     100%;
+    margin-bottom: 1.25rem;
     &.stripe {
       background-color: transparent;
       border:           1px solid #635bff;
@@ -43,6 +45,7 @@
       min-width:        auto;
       padding:          8px 14px;
       font-size:        14px;
+      border-radius: 6px;
       span {
         color:       #635bff;
         font-weight: bold;
@@ -59,10 +62,14 @@
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 900px) {
   .popupRight {
     width:     100%;
-    padding:   32px 0;
+    padding: 18px 0;
     min-width: 100%;
+    .renews {
+      padding: 0 0 1rem 0;
+      text-align: left;
+    }
   }
 }

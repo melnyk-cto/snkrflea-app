@@ -33,7 +33,7 @@ export const Layout = ({children}) => {
             {showRegister && <Register classname='register' />}
             {showRegisterPremium && <RegisterPremium classname='premium' />}
             {showLogin && <Login />}
-            {showPremiumPayment && <PremiumPayment />}
+            {showPremiumPayment && <PremiumPayment classname='payment'/>}
             {showPlans && <Plans classname='plans'/>}
             {children}
             <Footer />

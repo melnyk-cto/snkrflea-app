@@ -11,15 +11,16 @@ import { authActions } from "../../../redux/auth/actions";
 // assets
 import styles from './PremiumPayment.module.scss'
 
-export const PremiumPayment = () => {
+export const PremiumPayment = ({classname}) => {
     const dispatch = useDispatch();
 
-    const setShowRegisterPremium = (state) => dispatch(authActions.showRegisterPremiumModal(state));
+    const showPremiumPayment = (state) => dispatch(authActions.showPremiumPaymentModal(state));
 
     return (
         <ModalLayout
+            classname={classname}
             maxWidth='1301px'
-            showPopup={setShowRegisterPremium}>
+            showPopup={showPremiumPayment}>
             <ModalDescription
                 premium={true}
                 title='Premium'

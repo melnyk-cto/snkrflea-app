@@ -79,6 +79,18 @@
       padding: 28px 3% 6.5% 7.5%;
     }
   }
+  &.payment {
+    h1 {
+      margin-bottom: 28px;
+    }
+    .close {
+      right: 3rem;
+      top:   4rem;
+    }
+    .popupInner {
+      padding: 146px 3% 6.5% 3%;
+    }
+  }
 }
 
 @media screen and (max-width: 567px) {
@@ -113,6 +125,15 @@
       }
       .popupInner {
         padding: 74px 6% 8.5% 6%;
+      }
+    }
+    &.payment {
+      .close {
+        right: 1rem;
+        top:   1rem;
+      }
+      .popupInner {
+        padding: 80px 6% 8.5% 6%;
       }
     }
   }

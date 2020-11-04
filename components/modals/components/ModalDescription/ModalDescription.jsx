@@ -38,7 +38,11 @@ export const ModalDescription = ({title, subTitle, premium, showButton, classnam
 
     return (
         <div className={classNames(styles.listWrapper, {[styles.black]: premium}, style)}>
-            <h3 onClick={() => setShowDescription(!showDescription)}
+            <h3 onClick={() => {
+                if (window.innerWidth < 900) {
+                    setShowDescription(!showDescription)
+                }
+            }}
                 className={classNames(styles.title, {[styles.show]: showDescription})}>
                 {title} <span>{subTitle}</span>
             </h3>
