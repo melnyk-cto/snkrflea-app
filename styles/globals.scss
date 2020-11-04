@@ -156,8 +156,8 @@ input, textarea, select {
 }
 
 .error {
-  color:     red;
-  font-size: 0.75rem;
+  color:        red;
+  font-size:    0.75rem;
   padding-left: 1rem;
 }
 
@@ -338,6 +338,7 @@ input[disabled] {
     font-size: 0.875rem;
   }
   label {
+    margin-bottom: 0.5rem;
     span {
       display: none;
     }
@@ -346,6 +347,12 @@ input[disabled] {
     }
     input {
       padding: 0.75rem 0.875rem;
+    }
+    &.checkbox {
+      margin: 1.75rem 1rem 3rem 1rem;
+      p {
+        line-height: 1.52;
+      }
     }
   }
   .btn-primary, .btn-second {

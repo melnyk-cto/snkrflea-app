@@ -1,5 +1,5 @@
 // core
-import React, { useState } from 'react'
+import React from 'react'
 
 // library
 import Head from 'next/head'
@@ -30,7 +30,7 @@ export const Layout = ({children}) => {
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
             </Head>
             <Header />
-            {showRegister && <Register />}
+            {showRegister && <Register classname='register' />}
             {showRegisterPremium && <RegisterPremium />}
             {showLogin && <Login />}
             {showPremiumPayment && <PremiumPayment />}

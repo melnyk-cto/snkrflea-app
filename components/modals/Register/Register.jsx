@@ -19,7 +19,7 @@ import { authActions } from "../../../redux/auth/actions";
 // assets
 import styles from './Register.module.scss'
 
-export const Register = () => {
+export const Register = ({classname}) => {
     const dispatch = useDispatch();
 
     const [success, setSuccess] = useState(false);
@@ -39,7 +39,8 @@ export const Register = () => {
     return (
         <ModalLayout
             maxWidth='1301px'
-            showPopup={setShowRegister}>
+            showPopup={setShowRegister}
+            classname={classname}>
             <span className={styles.back} onClick={() => {
                 setShowPlans(true);
                 setShowRegister(false)
@@ -72,7 +73,7 @@ export const Register = () => {
                     {({isSubmitting}) => (
                         <Form>
                             <label>
-                                <span>Password</span>
+                                <span>Email</span>
                                 <Field type="email" name="email" placeholder='Enter Email' />
                                 <ErrorMessage className='error' name="email" component="div" />
                             </label>

@@ -37,7 +37,7 @@
     }
   }
   .popupInner {
-    padding:         120px 2.5% 6.5% 2.5%;
+    padding:         54px 6.5% 6.5% 5.5%;
     margin:          7.75% auto 1rem auto;
     display:         flex;
     flex-wrap:       wrap;
@@ -49,6 +49,15 @@
     box-shadow:      0 4px 20px 0 rgba(0, 0, 0, 0.2);
     background:      #f2f1ed;
   }
+  &.register {
+    .close {
+      right: 4rem;
+      top:   4rem;
+    }
+    .popupInner {
+      padding: 86px 3% 8.5% 3%;
+    }
+  }
 }
 
 @media screen and (max-width: 567px) {
@@ -58,8 +67,14 @@
         width: 65%;
       }
     }
-    .popupInner {
-      padding: 60px 1rem 2rem 1rem;
+    &.register {
+      .close {
+        right: 1rem;
+        top:   1rem;
+      }
+      .popupInner {
+        padding: 67px 3% 8.5% 3%;
+      }
     }
   }
 }
