@@ -13,8 +13,8 @@ export const ModalLayout = ({children, maxWidth, showPopup, classname}) => {
     useEffect(() => {
         if (classname === 'register') {
             setStyle(styles.register)
-        } else {
-
+        } else if (classname === 'premium') {
+            setStyle(styles.premium)
         }
     }, [classname]);
 

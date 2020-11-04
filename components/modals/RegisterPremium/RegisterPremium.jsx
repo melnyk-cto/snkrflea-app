@@ -19,7 +19,7 @@ import styles from './RegisterPremium.module.scss'
 import { useDispatch } from "react-redux";
 import { authActions } from "../../../redux/auth/actions";
 
-export const RegisterPremium = () => {
+export const RegisterPremium = ({classname}) => {
     const dispatch = useDispatch();
 
     const [success, setSuccess] = useState(false);
@@ -37,7 +37,8 @@ export const RegisterPremium = () => {
     return (
         <ModalLayout
             maxWidth='1301px'
-            showPopup={setShowRegisterPremium}>
+            showPopup={setShowRegisterPremium}
+            classname={classname}>
             <ModalDescription
                 premium={true}
                 title='Premium'

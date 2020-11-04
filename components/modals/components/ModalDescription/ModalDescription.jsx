@@ -11,7 +11,7 @@ import { authActions } from "../../../../redux/auth/actions";
 // assets
 import styles from './ModalDescription.module.scss'
 
-const premiumArray = ['Open your own store', 'Never pay a commission or seller fee', 'Link your paypal', 'Get a custom link for your store', 'Get access to hundreds of discount links', 'Discount links from sites like Kith, Walmart, target, Amazon, Fargetch, Bestbuy and more!', 'Up to 50 new discount links per day', 'Monthly giveaways. Up to 10 rare sneakers per month', 'Exclusive monthly hype drops. (i.e. box logos for $99.99)'];
+const premiumArray = ['Open your own store', 'Upload unlimited items for sale', 'Never pay a commission or seller fee', 'Link your paypal', 'Get a custom link for your store', 'Get access to hundreds of discount links', 'Discount links from sites like Kith, Walmart, target, Amazon, Fargetch, Bestbuy and more!', 'Up to 50 new discount links per day', 'Monthly giveaways. Up to 10 rare sneakers per month', 'Exclusive monthly hype drops. (i.e. box logos for $99.99)'];
 const starterArray = ['Open your own store', 'Upload unlimited items for sale', 'Never pay a commission or seller fee', 'Link your paypal', 'Get a custom link for your store'];
 let listArray = [];
 export const ModalDescription = ({title, subTitle, premium, showButton}) => {

@@ -1,10 +1,10 @@
 @import "../../../styles/variables";
 
 .popupRight {
-  width:       49%;
-  padding-top: 5%;
+  width:       42%;
+  padding-top: 3%;
   h1 {
-    margin-bottom:   0.875rem;
+    margin-bottom:   1.875rem;
     line-height:     1.1;
     display:         flex;
     align-items:     center;
@@ -67,7 +67,7 @@
 }
 
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 900px) {
   .popupRight {
     width: 100%;
     .buttons {
@@ -92,6 +92,6 @@
   }
   .success {
     padding: 2rem 0;
-    width:       100%;
+    width:   100%;
   }
 }

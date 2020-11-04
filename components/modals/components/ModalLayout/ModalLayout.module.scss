@@ -58,6 +58,15 @@
       padding: 86px 3% 8.5% 3%;
     }
   }
+  &.premium {
+    .close {
+      right: 3rem;
+      top: 2.5rem;
+    }
+    .popupInner {
+      padding: 121px 6% 8.5% 4%;
+    }
+  }
 }
 
 @media screen and (max-width: 567px) {
@@ -74,6 +83,15 @@
       }
       .popupInner {
         padding: 67px 3% 8.5% 3%;
+      }
+    }
+    &.premium {
+      .close {
+        right: 1rem;
+        top:   1rem;
+      }
+      .popupInner {
+        padding: 80px 6% 8.5% 6%;
       }
     }
   }
