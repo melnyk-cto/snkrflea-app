@@ -47,7 +47,6 @@ export const Login = () => {
             showPopup={setShowLogin}>
             <div className={styles.popupRight}>
                 <h1>Login
-                   <pre>{JSON.stringify(user)}</pre> 
                     <p onClick={() => {
                         setShowLogin(false);
                         setShowPlans(true);

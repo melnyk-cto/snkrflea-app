@@ -6,7 +6,7 @@ const initialState = {
     unauthorizedError: false,
     registerModalShowing: false,
     loginModalShowing: false,
-    premiumPaymentModalShowing: false,
+    premiumPaymentModalShowing: true,
     plansModalShowing: false,
     registerPremiumModalShowing: false,
 };
