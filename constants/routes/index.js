@@ -9,4 +9,5 @@ export const routes = {
     privacy: '/privacy',
     terms: '/terms',
     faqs: '/faqs',
+    marketplace: '/marketplace',
 };
