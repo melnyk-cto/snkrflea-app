@@ -16,3 +16,4 @@ const composeEnchancers = devtools || compose;
 const enhancedStore = composeEnchancers(applyMiddleware(loggerMiddleware));
 
 export { enhancedStore };
+

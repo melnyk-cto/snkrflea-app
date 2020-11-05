@@ -17,6 +17,9 @@ export const authActions = createActions(
         SHOW_PLANS_MODAL_ASYNC: void 0,
         SHOW_REGISTER_PREMIUM_MODAL_ASYNC: void 0,
 
+        // Auth
+        USER_SIGN_IN_SUCCEDED: user => user,
+        USER_UNAUTHORIZED_ERROR: status => status
     },
     {
         prefix: 'Auth',

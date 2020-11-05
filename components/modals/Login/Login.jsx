@@ -5,7 +5,7 @@ import React from 'react'
 import classNames from "classnames";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 // components
 import { loginSchema } from '../../../schemas/index';
@@ -13,14 +13,22 @@ import { SocialButton } from '../../SocialButton/SocialButton'
 import { ModalLayout } from "../../../components";
 import { authActions } from "../../../redux/auth/actions";
 
+import {
+    getUserState,
+    getAuthorizedErrorState
+} from "../../../redux/auth/selectors";
+
 // assets
 import styles from './Login.module.scss'
 
 export const Login = () => {
     const dispatch = useDispatch();
+    const user = useSelector(getUserState);
+    const showUnathorizedError = useSelector(getAuthorizedErrorState);
     const setShowPlans = (state) => dispatch(authActions.showPlansModal(state));
     const setShowLogin = (state) => dispatch(authActions.showLoginModal(state));
 
+    
     const responseFacebook = (response) => {
         console.log(response);
     };
@@ -35,6 +43,7 @@ export const Login = () => {
             showPopup={setShowLogin}>
             <div className={styles.popupRight}>
                 <h1>Login
+                   <pre>{JSON.stringify(user)}</pre> 
                     <p onClick={() => {
                         setShowLogin(false);
                         setShowPlans(true);
@@ -43,14 +52,17 @@ export const Login = () => {
                         Create an account
                     </p>
                 </h1>
+                { showUnathorizedError ? <p>Error</p> : null }
                 <Formik
                     initialValues={{email: '', password: ''}}
                     validationSchema={loginSchema}
                     onSubmit={(values, {setSubmitting}) => {
-                        setTimeout(() => {
-                            alert(JSON.stringify(values, null, 2));
-                            setSubmitting(false);
-                        }, 4000);
+                        dispatch({ type: 'USER_SIGN_IN_BY_EMAIL_REQUEST', payload: values})
+                          setSubmitting(false);
+                          // setTimeout(() => {
+                        //     alert(JSON.stringify(values, null, 2));
+                        //   
+                        // }, 4000);GNB
                     }}
                 >
                     {({isSubmitting}) => (
