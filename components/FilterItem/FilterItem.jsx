@@ -16,7 +16,7 @@ export const FilterItem = ({filter}) => {
     const [currentFilter, setCurrentFilter] = useState(0);
 
     return (
-        <div key={filter} className={styles.filterItem}>
+        <div className={styles.filterItem}>
             <h6>{filter.title}</h6>
             <ul>
                 {filter.items.map((item, index) => (
