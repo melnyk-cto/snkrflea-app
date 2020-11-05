@@ -18,6 +18,10 @@ import {
     getAuthorizedErrorState
 } from "../../../redux/auth/selectors";
 
+import {
+    USER_SIGN_IN_BY_EMAIL_REQUEST
+} from "../../../redux/auth/sagas";
+
 // assets
 import styles from './Login.module.scss'
 
@@ -57,7 +61,7 @@ export const Login = () => {
                     initialValues={{email: '', password: ''}}
                     validationSchema={loginSchema}
                     onSubmit={(values, {setSubmitting}) => {
-                        dispatch({ type: 'USER_SIGN_IN_BY_EMAIL_REQUEST', payload: values})
+                        dispatch({ type: USER_SIGN_IN_BY_EMAIL_REQUEST, payload: values})
                           setSubmitting(false);
                           // setTimeout(() => {
                         //     alert(JSON.stringify(values, null, 2));

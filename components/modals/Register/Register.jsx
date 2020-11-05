@@ -7,7 +7,7 @@ import classNames from "classnames";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 import Link from 'next/link'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 
 // components
 import { registerSchema } from '../../../schemas/index';
@@ -16,13 +16,24 @@ import { ModalDescription, ModalLayout } from "../../../components";
 import { routes } from "../../../constants/routes";
 import { authActions } from "../../../redux/auth/actions";
 
+import { signUpByEmail } from '../../../api/actions.js'
+
+import {
+    getUserState
+} from "../../../redux/auth/selectors";
+
+import {
+    USER_SIGN_IN_BY_EMAIL_REQUEST
+} from "../../../redux/auth/sagas";
+
 // assets
 import styles from './Register.module.scss'
 
 export const Register = ({classname}) => {
     const dispatch = useDispatch();
-
+    const user = useSelector(getUserState);
     const [success, setSuccess] = useState(false);
+    const [signUpError, setSignUpError] = useState(false);
 
     const setShowRegister = (state) => dispatch(authActions.showRegisterModal(state));
     const setShowLogin = (state) => dispatch(authActions.showLoginModal(state));
@@ -35,6 +46,15 @@ export const Register = ({classname}) => {
     const responseGoogle = (response) => {
         console.log(response);
     };
+
+    function handleErrors(response) {
+        if (!response.ok) {
+            setSignUpError(true)
+            throw Error(response.statusText);
+        }
+        return response;
+    }
+
 
     return (
         <ModalLayout
@@ -50,7 +70,7 @@ export const Register = ({classname}) => {
             <ModalDescription
                 title='Starter'
                 subTitle='Free' />
-            {!success ?
+            {!user ?
                 <div className={styles.popupRight}>
                     <h1>
                         Create your account
@@ -60,15 +80,21 @@ export const Register = ({classname}) => {
                         }}>
                     Login
                 </span>
-                    </h1> <Formik
+                    </h1> 
+                    { signUpError ? <p>Error</p> : null }
+                    <Formik
                     initialValues={{email: '', password: ''}}
                     validationSchema={registerSchema}
-                    onSubmit={(values, {setSubmitting}) => {
-                        setTimeout(() => {
-                            alert(JSON.stringify(values, null, 2));
-                            setSubmitting(false);
-                            setSuccess(true)
-                        }, 2000);
+                    onSubmit={async (values, {setSubmitting}) => {
+                      
+                        setSubmitting(false)
+                    await signUpByEmail({ ...values, productId: 'price_1HiLerDRG7cpN5KtDWBJXisO'})
+                    .then(handleErrors)
+                    .then(d => d.json())
+                    .then(() => {
+                        dispatch({ type: USER_SIGN_IN_BY_EMAIL_REQUEST, payload: values});
+                    })
+                    
                     }}
                 >
                     {({isSubmitting}) => (
