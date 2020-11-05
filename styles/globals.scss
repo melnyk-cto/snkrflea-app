@@ -209,6 +209,7 @@ input[disabled] {
   text-align:      center;
   padding:         12px;
   min-width:       354px;
+  text-decoration: none;
   &:active, &:hover {
     opacity: .7;
   }

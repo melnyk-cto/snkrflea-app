@@ -2,11 +2,12 @@
 import React from 'react'
 
 // Library
-// import Link from 'next/link'
+import Link from 'next/link'
+import classNames from "classnames";
 
 // components
 import { FilterItem, Layout } from "../components";
-// import { routes } from "../constants/routes";
+import { routes } from "../constants/routes";
 
 // assets
 import styles from '../styles/Product.module.scss'
@@ -20,6 +21,16 @@ const filters = [
     {title: 'Condition', items: ['New', 'Used']},
     {title: 'Available for', items: ['Sale', 'Trade']},
 ];
+
+const products = [
+    {title: 'Off-White X Air Rubber', name: '@stansstore', price: '$1240.29', image: '/images/boots.png'},
+    {title: 'Off-White X Air Rubber', name: '@stansstore', price: '$1240.29', image: '/images/boots.png'},
+    {title: 'Off-White X Air Rubber', name: '@stansstore', price: '$1240.29', image: '/images/boots.png'},
+    {title: 'Off-White X Air Rubber', name: '@stansstore', price: '$1240.29', image: '/images/boots.png'},
+    {title: 'Off-White X Air Rubber', name: '@stansstore', price: '$1240.29', image: '/images/boots.png'},
+    {title: 'Off-White X Air Rubber', name: '@stansstore', price: '$1240.29', image: '/images/boots.png'},
+];
+
 const Home = () => {
     return (
         <Layout>
@@ -31,6 +42,46 @@ const Home = () => {
                             {filters.map(filter => (
                                 <FilterItem filter={filter} />
                             ))}
+                        </div>
+                        <div className={styles.products}>
+                            {products.map((product, index) => (
+                                <div key={index} className={styles.productItem}>
+                                    <div className={styles.image}>
+                                        <img src={product.image} alt='' />
+                                    </div>
+                                    <div className={styles.description}>
+                                        <h6>{product.title}</h6>
+                                        <p>{product.name}</p>
+                                        <p className={styles.price}>{product.price}</p>
+                                    </div>
+                                </div>
+                            ))}
+                            <div className={styles.addMobile}>
+                                <h1>AD</h1>
+                            </div>
+                            <h3>View premium links</h3>
+                            <p className={styles.links}>
+                                Get access to hundreds of discount links, monthly giveaways, and exclusive monthly hype
+                                drops.
+                            </p>
+                            <Link href={routes.marketplace}><a className='btn-second'>Get Premium</a></Link>
+                            <div className={classNames(styles.products, styles.premium)}>
+                                {products.map((product, index) => (
+                                    <div key={index} className={styles.productItem}>
+                                        <div className={styles.image}>
+                                            <img src={product.image} alt='' />
+                                        </div>
+                                        <div className={styles.description}>
+                                            <h6>{product.title}</h6>
+                                            <p>{product.name}</p>
+                                            <p className={styles.price}>{product.price}</p>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                        <div className={styles.addDesktop}>
+                            <h1>AD</h1>
                         </div>
                     </div>
                 </div>
