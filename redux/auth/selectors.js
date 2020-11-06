@@ -5,3 +5,5 @@ export const showPlansModal = state => state.auth.plansModalShowing;
 export const showRegisterPremiumModal = state => state.auth.registerPremiumModalShowing;
 export const showContactModal = state => state.auth.contactModalShowing;
 export const showReportModal = state => state.auth.reportModalShowing;
+export const getUserState = state => state.auth.user;
+export const getAuthorizedErrorState = state => state.auth.unauthorizedError;
