@@ -6,7 +6,7 @@ import Link from 'next/link'
 import classNames from "classnames";
 
 // components
-import { FilterItem, Layout } from "../components";
+import { FilterItem, Layout, ProductItem } from "../components";
 import { routes } from "../constants/routes";
 
 // assets
@@ -47,16 +47,7 @@ const Home = () => {
                         <div className={styles.products}>
                             <div className={styles.productsItems}>
                                 {products.map((product, index) => (
-                                    <div key={index} className={styles.productItem}>
-                                        <div className={styles.image}>
-                                            <img src={product.image} alt='' />
-                                        </div>
-                                        <div className={styles.description}>
-                                            <h6>{product.title}</h6>
-                                            <p>{product.name}</p>
-                                            <p className={styles.price}>{product.price}</p>
-                                        </div>
-                                    </div>
+                                    <ProductItem key={index} product={product} />
                                 ))}
                             </div>
                             <div className={styles.addMobile}>
@@ -74,16 +65,7 @@ const Home = () => {
                                 <div className={classNames(styles.products, styles.premium)}>
                                     <Link href={routes.marketplace}><a className='btn-second'>Get Premium</a></Link>
                                     {products.map((product, index) => (
-                                        <div key={index} className={styles.productItem}>
-                                            <div className={styles.image}>
-                                                <img src={product.image} alt='' />
-                                            </div>
-                                            <div className={styles.description}>
-                                                <h6>{product.title}</h6>
-                                                <p>{product.name}</p>
-                                                <p className={styles.price}>{product.price}</p>
-                                            </div>
-                                        </div>
+                                        <ProductItem key={index} product={product} />
                                     ))}
                                 </div>
                             </div>
