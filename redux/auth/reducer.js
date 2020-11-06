@@ -7,6 +7,7 @@ const initialState = {
     premiumPaymentModalShowing: false,
     plansModalShowing: false,
     registerPremiumModalShowing: false,
+    contactModalShowing: false,
 };
 
 export const authReducer = handleActions({
@@ -29,6 +30,10 @@ export const authReducer = handleActions({
         [authActions.showRegisterPremiumModal]: (state, {payload}) => ({
             ...state,
             registerPremiumModalShowing: payload,
+        }),
+        [authActions.showContactModal]: (state, {payload}) => ({
+            ...state,
+            contactModalShowing: payload,
         }),
     },
     initialState,
