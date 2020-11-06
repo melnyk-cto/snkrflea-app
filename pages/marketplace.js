@@ -10,7 +10,7 @@ import { FilterItem, Layout } from "../components";
 import { routes } from "../constants/routes";
 
 // assets
-import styles from '../styles/Product.module.scss'
+import styles from '../styles/Marketplace.module.scss'
 
 const filters = [
     {title: 'Brand', items: ['Nike', 'Adidas', 'Asics'], link: true},

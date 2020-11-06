@@ -10,4 +10,5 @@ export const routes = {
     terms: '/terms',
     faqs: '/faqs',
     marketplace: '/marketplace',
+    marketplaceStore: '/marketplace-store',
 };
