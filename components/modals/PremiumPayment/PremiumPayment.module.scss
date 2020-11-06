@@ -35,7 +35,8 @@
   button {
     width:         100%;
     min-width:     100%;
-    margin-bottom: 1.25rem;
+    margin-top:    1.25rem;
+    margin-bottom: 1rem;
     &.stripe {
       background-color: transparent;
       border:           1px solid #635bff;
@@ -45,7 +46,7 @@
       min-width:        auto;
       padding:          8px 14px;
       font-size:        14px;
-      border-radius: 6px;
+      border-radius:    6px;
       span {
         color:       #635bff;
         font-weight: bold;
@@ -65,10 +66,10 @@
 @media screen and (max-width: 900px) {
   .popupRight {
     width:     100%;
-    padding: 18px 0;
+    padding:   18px 0;
     min-width: 100%;
     .renews {
-      padding: 0 0 1rem 0;
+      padding:    0 0 1rem 0;
       text-align: left;
     }
   }

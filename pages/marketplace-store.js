@@ -49,10 +49,10 @@ const Home = () => {
                                        </div>
                                    </div>
                                </div>
-                               <div className={styles.tabs}>
-                                   <span className={styles.active}>Selling</span>
-                                   <span>Sold</span>
-                               </div>
+                               {/*<div className={styles.tabs}>*/}
+                               {/*    <span className={styles.active}>Selling</span>*/}
+                               {/*    <span>Sold</span>*/}
+                               {/*</div>*/}
                                <div className={styles.products}>
                                    <div className={styles.productsItems}>
                                        {products.map((product, index) => (

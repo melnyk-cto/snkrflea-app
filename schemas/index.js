@@ -22,3 +22,7 @@ export const contactSchema = object({
     email: string().required().email(),
     help: string().required()
 });
+export const reportSchema = object({
+    reason: string().required(),
+    comments: string().required()
+});

@@ -7,7 +7,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useDispatch } from "react-redux";
 
 // components
-import { contactSchema } from '../../../schemas/index';
+import { reportSchema } from '../../../schemas/index';
 import { ModalLayout } from "../../../components";
 import { authActions } from "../../../redux/auth/actions";
 
@@ -25,8 +25,8 @@ export const Report = () => {
             <div className={styles.popupRight}>
                 <h1>Report this post</h1>
                 <Formik
-                    initialValues={{name: '', email: '', help: ''}}
-                    validationSchema={contactSchema}
+                    initialValues={{reason: '', comments: ''}}
+                    validationSchema={reportSchema}
                     onSubmit={(values, {setSubmitting}) => {
                         setTimeout(() => {
                             alert(JSON.stringify(values, null, 2));
@@ -37,29 +37,25 @@ export const Report = () => {
                     {({isSubmitting}) => (
                         <Form>
                             <label>
-                                <span>Name</span>
-                                <Field type="text" name="name" placeholder='Enter Name' />
-                                <ErrorMessage className='error' name="name" component="div" />
-                            </label>
-                            <label>
-                                <span>Email</span>
-                                <Field type="email" name="email" placeholder='Enter Email' />
-                                <ErrorMessage className='error' name="email" component="div" />
-                            </label>
-                            <label>
-                                <span>Reason for contact</span>
-                                <Field as="select" name="help">
-                                    <option disabled>Need help</option>
-                                    <option value="Option 1">Option 1</option>
-                                    <option value="Option 2">Option 2</option>
-                                    <option value="Option 3">Option 3</option>
+                                <span>Select reason</span>
+                                <Field as="select" name="reason">
+                                    <option selected disabled>Select option*</option>
+                                    <option value="Fake listing">Fake listing</option>
+                                    <option value="Controversial">Controversial</option>
+                                    <option value="Scam">Scam</option>
                                 </Field>
                                 <ErrorMessage className='error' name="help" component="div" />
+                            </label>
+                            <label>
+                                <span>Additional comments</span>
+                                <Field type='text' name="comments"
+                                       placeholder='This post is trying to sell a shoe that doesn’t even exist' />
+                                <ErrorMessage className='error' name="comments" component="div" />
                             </label>
                             <button type="submit"
                                     className={classNames('btn-second', styles.continue)}
                                     disabled={isSubmitting}>
-                                Continue
+                                Submit report
                             </button>
                         </Form>
                     )}

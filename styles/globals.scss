@@ -94,7 +94,7 @@ ul {
 }
 
 label {
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.5rem;
   font-size:     1rem;
   font-weight:   bold;
   line-height:   1.55;
@@ -333,6 +333,12 @@ input[disabled] {
   }
 }
 
+// Stripe
+.StripeElement {
+  background:    white;
+  padding:       0.75rem 1rem;
+  border-radius: 8px;
+}
 
 @media screen and (max-width: 768px) {
   h1 {
