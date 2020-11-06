@@ -7,14 +7,25 @@ import PropTypes from 'prop-types'
 import { useSelector } from "react-redux";
 
 // components
-import { Footer, Header, Login, PremiumPayment, Register, Plans, RegisterPremium, Contact } from "../../components";
+import {
+    Footer,
+    Header,
+    Login,
+    PremiumPayment,
+    Register,
+    Plans,
+    RegisterPremium,
+    Contact,
+    Report
+} from "../../components";
 import {
     showRegisterModal,
     showLoginModal,
     showPremiumPaymentModal,
     showPlansModal,
     showRegisterPremiumModal,
-    showContactModal
+    showContactModal,
+    showReportModal
 } from "../../redux/auth/selectors";
 
 
@@ -25,6 +36,8 @@ export const Layout = ({children}) => {
     const showPlans = useSelector(showPlansModal);
     const showRegisterPremium = useSelector(showRegisterPremiumModal);
     const showContact = useSelector(showContactModal);
+    const showReport = useSelector(showReportModal);
+
     return (
         <>
             <Head>
@@ -38,6 +51,7 @@ export const Layout = ({children}) => {
             {showPremiumPayment && <PremiumPayment classname='payment' />}
             {showPlans && <Plans classname='plans' />}
             {showContact && <Contact />}
+            {showReport && <Report />}
             {children}
             <Footer />
         </>

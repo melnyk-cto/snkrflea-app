@@ -10,6 +10,7 @@ export const authActions = createActions(
         SHOW_PLANS_MODAL: status => status,
         SHOW_REGISTER_PREMIUM_MODAL: status => status,
         SHOW_CONTACT_MODAL: status => status,
+        SHOW_REPORT_MODAL: status => status,
 
         // Async
         SHOW_REGISTER_MODAL_ASYNC: void 0,
@@ -18,6 +19,7 @@ export const authActions = createActions(
         SHOW_PLANS_MODAL_ASYNC: void 0,
         SHOW_REGISTER_PREMIUM_MODAL_ASYNC: void 0,
         SHOW_CONTACT_MODAL_ASYNC: void 0,
+        SHOW_REPORT_MODAL_ASYNC: void 0,
 
     },
     {

@@ -4,3 +4,4 @@ export const showPremiumPaymentModal = state => state.auth.premiumPaymentModalSh
 export const showPlansModal = state => state.auth.plansModalShowing;
 export const showRegisterPremiumModal = state => state.auth.registerPremiumModalShowing;
 export const showContactModal = state => state.auth.contactModalShowing;
+export const showReportModal = state => state.auth.reportModalShowing;
