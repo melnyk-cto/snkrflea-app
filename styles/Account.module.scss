@@ -1,7 +1,8 @@
 @import "./variables";
 
 .account {
-  padding: 71px 86px 0;
+  padding: 71px 86px 40px 86px;
+  flex:    1 0 auto;
   .container {
     padding: 0 15px;
   }
@@ -16,38 +17,47 @@
         color:       #000;
       }
     }
-    .menu {
-      .list {
-        display: flex;
-        .item {
-          margin: 0 15px 0 0;
-          a {
-            font-size:       20px;
-            font-weight:     bold;
-            line-height:     1.6;
-            text-decoration: none;
-          }
-          .active {
-            color:           #ff9200;
-            text-decoration: underline;
-          }
-        }
+  }
+  .products {
+    max-width: 726px;
+  }
+  .infoSelling {
+    max-width: 619px;
+    margin:    0 auto;
+    height:    100%;
+    h3, a {
+      font-size:   30px;
+      line-height: 1.55;
+      text-align:  center;
+      color:       #000000;
+      font-weight: 400;
+      a {
+        color:           #ff9200;
+        font-weight:     bold;
+        text-decoration: underline;
       }
     }
-    .info {
-      max-width: 619px;
-      margin:    0 auto;
-      padding:   229px 0 316px;
-      h3, a {
-        font-size:   30px;
-        line-height: 1.55;
-        text-align:  center;
-        color:       #000000;
-        a {
-          color:           #ff9200;
-          font-weight:     bold;
-          text-decoration: underline;
-        }
+  }
+  .listSelling {
+    max-width: 354px;
+    .listItem {
+      border-radius:   9px;
+      border:          solid 2px rgba(0, 0, 0, 0.2);
+      display:         flex;
+      align-items:     center;
+      justify-content: space-between;
+      padding:         1rem;
+      margin-bottom:   11px;
+      .image {
+        width: 30%;
+      }
+      .description {
+        width: 65%;
+      }
+      .itemInfo {
+        display:         flex;
+        align-items:     center;
+        justify-content: space-between;
       }
     }
   }
@@ -56,15 +66,14 @@
 @media screen and (max-width: 768px) {
   .account {
     padding: 71px 0;
-    .content {
-      .info {
-        max-width: 560px;
-        h3, a {
-          font-size: 26px;
-        }
+    .infoSelling {
+      max-width: 560px;
+      h3, a {
+        font-size: 26px;
       }
     }
   }
+
 }
 
 @media screen and (max-width: 567px) {
@@ -73,21 +82,12 @@
       .title {
         text-align: center;
       }
-      .menu {
-        .list {
-          flex-direction: column;
-          align-items:    center;
-          .item {
-            margin: 0 0 10px;
-          }
-        }
-      }
-      .info {
-        max-width: 400px;
-        padding:   70px 0 0;
-        h3, a {
-          font-size: 20px;
-        }
+    }
+    .infoSelling {
+      max-width: 400px;
+      padding:   70px 0 0;
+      h3, a {
+        font-size: 20px;
       }
     }
   }

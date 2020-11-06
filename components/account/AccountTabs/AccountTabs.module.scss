@@ -1,0 +1,39 @@
+@import "../../../styles/variables";
+
+.menu {
+  margin-bottom: 3rem;
+  .list {
+    display: flex;
+    .item {
+      a {
+        margin:          0 15px 0 0;
+        font-size:       20px;
+        font-weight:     normal;
+        line-height:     1.6;
+        text-decoration: none;
+        cursor:          pointer;
+        &.active {
+          font-weight:     bold;
+          color:           $mainColor;
+          text-decoration: underline;
+        }
+        &:active, &:hover {
+          color:           $mainColor;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 567px) {
+  .menu {
+    .list {
+      flex-direction: column;
+      align-items:    center;
+      .item {
+        margin: 0 0 10px;
+      }
+    }
+  }
+}

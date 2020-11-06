@@ -32,12 +32,12 @@ export const Header = () => {
                     </div>
                 </div>
                 <div className={styles.navItems}>
-                    {/*<Link href={routes.account}>*/}
-                    {/*    <a className={styles.menuItem}>*/}
-                    {/*        Account*/}
-                    {/*    </a>*/}
-                    {/*</Link>*/}
                     <Link href={routes.account}>
+                        <a className={styles.menuItem}>
+                            Account
+                        </a>
+                    </Link>
+                    <Link href={routes.home}>
                         <a onClick={(e) => {
                             setShowLogin(true);
                             e.preventDefault()
@@ -63,7 +63,7 @@ export const Header = () => {
                             Buy
                         </a>
                     </Link>
-                    <Link href={routes.home}>
+                    <Link href={routes.premium}>
                         <a className={styles.menuItem}>
                             Premium
                         </a>
