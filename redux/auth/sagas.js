@@ -20,11 +20,11 @@ function* authByEmail(action) {
   Starts fetchUser on each dispatched `USER_FETCH_REQUESTED` action.
   Allows concurrent fetches of user.
 */
-function* mySaga() {
+function* authSaga() {
   yield takeEvery(USER_SIGN_IN_BY_EMAIL_REQUEST, authByEmail);
 }
 
 
 
 
-export default mySaga;
+export default authSaga;

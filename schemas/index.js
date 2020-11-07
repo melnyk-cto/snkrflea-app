@@ -1,4 +1,4 @@
-import { object, string, bool } from 'yup';
+import { object, string, bool, number } from 'yup';
 
 export const loginSchema = object({
     email: string()
@@ -37,4 +37,10 @@ export const storeSchema = object({
     twitter: string(),
     address: string(),
     apt: string(),
+});
+
+export const productSchema = object({
+  title: string().required(),
+  description: string().required(),
+  price: number().required()
 });

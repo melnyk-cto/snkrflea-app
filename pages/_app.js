@@ -7,6 +7,7 @@ import { Provider } from 'react-redux'
 // components
 import { store } from '../redux';
 
+
 // assets
 import '../styles/globals.scss'
 // Import Swiper styles
