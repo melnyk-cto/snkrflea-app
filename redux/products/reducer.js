@@ -2,7 +2,8 @@ import { handleActions } from 'redux-actions';
 import { productsActions } from './actions';
 
 const initialState = {
-    items: []
+    items: [],
+    product: {}
 };
 
 export const productsReducer = handleActions({
@@ -13,6 +14,10 @@ export const productsReducer = handleActions({
         [productsActions.setAllProducts]: (state, {payload}) => ({
             ...state,
             items: [...payload],
+        }),
+        [productsActions.setSelectedProduct]: (state, {payload}) => ({
+            ...state,
+            product: {...payload},
         }),
     },
     initialState,

@@ -3,7 +3,7 @@ export const routes = {
     shop: '/shop',
     buy: '/buy',
     sell: '/sell',
-    product: '/product',
+    product: '/product/:id',
     productList: '/product-list',
     premium: '/premium',
     selling: '/account/selling',

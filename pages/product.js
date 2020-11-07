@@ -1,5 +1,6 @@
 // core
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+
 
 // components
 import { Layout } from "../components";
@@ -7,31 +8,61 @@ import { Layout } from "../components";
 // assets
 import styles from '../styles/Product.module.scss'
 
-
+import { Swiper, SwiperSlide } from 'swiper/react';
 import Link from "next/link";
 
+import { useDispatch, useSelector } from "react-redux";
+
+import {
+    getSelectedItem
+} from "../redux/products/selectors";
+
+import {
+    GET_PRODUCT_ITEM_REQUEST
+} from "../redux/products/sagas";
+
 const Product = () => {
+    const dispatch = useDispatch();
+    const product = useSelector(getSelectedItem)
+
+    useEffect(() => {
+        dispatch({ type: GET_PRODUCT_ITEM_REQUEST, payload: 1})
+     }, []);
+     
     return (
         <Layout>
             <section className={styles.product}>
                 <div className="container">
                     <div className={styles.productInner}>
                         <div className={styles.productLeft}>
-                            <div className={styles.add}>
-                                <h1>AD</h1>
-                            </div>
+                        <Swiper
+                        autoplay={{delay: 2000}}
+                        speed={1000}
+                        spaceBetween={20}
+                        loopedSlides={4}
+                        slidesPerView={1}
+                        loop={true}
+                        clickable='true'
+                        breakpoints={{
+                            567: {
+                                slidesPerView: 3,
+                            },
+                        }}
+                    >
+                      {product.images
+                      .map((img) => 
+                      (<SwiperSlide>
+                          <div className={styles.slideImage}>
+                             <img src={img.url} alt='' />
+                        </div>
+                        </SwiperSlide>))}  
+                      </Swiper>
                         </div>
                         <div className={styles.productRight}>
-                            <h1>Yeezy Boost 350 V2 'Carbon'</h1>
-                            <p>
-                                The adidas Yeezy Boost 350 V2 ‘Carbon’ features a breathable Primeknit upper in a
-                                neutral black and grey finish. The sneaker’s lateral side features a streak of black via
-                                the post-dyed monofilament side stripe, separating a light grey weave up top with mostly
-                                black construction on the lower half. No-tie bungee laces deliver a secure fit. The
-                                sneaker rides on a full-length Boost midsole, surrounded by a yellow-tinged rubber cage.
-                            </p>
+                            <h1>{product.title}</h1>
+                            <p>{product.description}</p>
                             <div className={styles.buttons}>
-                                <h3>$150</h3>
+                              <h3>${product.price}</h3>
                                 <button type='button' className='btn-second'>Buy Now</button>
                             </div>
                             <div className={styles.seller}>
@@ -40,7 +71,7 @@ const Product = () => {
                                     <img src='/images/user.png' alt='' />
                                 </div>
                                 <div className={styles.info}>
-                                    <h6>Seb’s Store</h6>
+                                    <h6>{product?.vendor?.store?.name}</h6>
                                     <Link href=''><a><a>24 items for sale</a></a></Link>
                                 </div>
                                 <div className={styles.links}>

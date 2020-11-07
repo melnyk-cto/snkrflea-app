@@ -83,45 +83,7 @@ const ProductList = () => {
                       </Form>
                     )}
                 </Formik>
-                            {/* <ul className={styles.productList}>
-                                <li>
-                                    <h6>Listing title</h6>
-                                    <CustomSelect options={optionsValue} placeholder='Enter a title' />
-                                </li>
-                                <li>
-                                    <h6>Category</h6>
-                                    <CustomSelect options={optionsValue} placeholder='Choose a category' />
-                                </li>
-                                <li>
-                                    <h6>Main Brand</h6>
-                                    <CustomSelect options={optionsValue} placeholder='Choose a brand' />
-                                </li>
-                                <li>
-                                    <h6>Sub Brand</h6>
-                                    <CustomSelect options={optionsValue} placeholder='Choose a brand' />
-                                </li>
-                                <li>
-                                    <h6>Size</h6>
-                                    <CustomSelect options={sizesValue} placeholder='Choose Size' />
-                                </li>
-                                <li>
-                                    <h6>Condition</h6>
-                                    <CustomSelect options={conditionValues} placeholder='Choose an option' />
-                                </li>
-                                <li>
-                                    <h6>Price</h6>
-                                    <CustomSelect options={conditionValues} placeholder='Enter a price' />
-                                </li>
-                                <li>
-                                    <h6>Available for</h6>
-                                    <CustomSelect options={conditionValues} placeholder='Choose an option' />
-                                </li>
-                                <li>
-                                    <h6>Photos</h6>
-                                    <DropZone />
-                                </li>
-                            </ul> */}
-                          
+                         
                         </div>
                         : <div className={styles.success}>
                             <h1>Congratulations on creating your listing!</h1>
