@@ -17,7 +17,7 @@ import {
     RegisterPremium,
     Contact,
     Report,
-    CreateStore
+    CreateStore, Loading
 } from "../../components";
 import {
     showRegisterModal,
@@ -29,6 +29,7 @@ import {
     showReportModal,
     showCreateStoreModal
 } from "../../redux/auth/selectors";
+import { getIsLoading } from "../../redux/general/selectors";
 
 
 export const Layout = ({children}) => {
@@ -40,6 +41,7 @@ export const Layout = ({children}) => {
     const showContact = useSelector(showContactModal);
     const showReport = useSelector(showReportModal);
     const showCreateStore = useSelector(showCreateStoreModal);
+    const isLoading = useSelector(getIsLoading);
 
     return (
         <>
@@ -48,6 +50,7 @@ export const Layout = ({children}) => {
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
             </Head>
             <Header />
+            {isLoading && <Loading />}
             {showRegister && <Register classname='register' />}
             {showRegisterPremium && <RegisterPremium classname='premium' />}
             {showLogin && <Login />}
