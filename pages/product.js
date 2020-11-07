@@ -32,7 +32,7 @@ const Product = () => {
     return (
         <Layout>
             <section className={styles.product}>
-                <div className="container">
+           {product ? <div className="container">
                     <div className={styles.productInner}>
                         <div className={styles.productLeft}>
                         <Swiper
@@ -81,7 +81,7 @@ const Product = () => {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> : null}     
             </section>
         </Layout>
     )

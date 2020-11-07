@@ -3,7 +3,7 @@ import { productsActions } from './actions';
 
 const initialState = {
     items: [],
-    product: {}
+    product: null
 };
 
 export const productsReducer = handleActions({

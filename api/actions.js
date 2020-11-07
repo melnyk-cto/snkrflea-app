@@ -1,6 +1,6 @@
 
 
-
+const URL = 'https://snkrfleaapi.herokuapp.com/'
 // import fetchIntercept from 'fetch-intercept';
 
 
@@ -30,7 +30,7 @@
 
 
 export const requestAuthInterceptor = (data) => (
-    fetch("api/auth/sign-in", {
+    fetch(`${URL}api/auth/sign-in`, {
         method: 'POST', // *GET, POST, PUT, DELETE, etc.
         mode: 'cors', // no-cors, *cors, same-origin
         cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
@@ -45,7 +45,7 @@ export const requestAuthInterceptor = (data) => (
 ));
 
 export const signInByEmail = (data) => (
-  fetch("api/auth/email/sign-in", {
+  fetch(`${URL}api/auth/email/sign-in`, {
     method: 'POST', // *GET, POST, PUT, DELETE, etc.
     mode: 'cors', // no-cors, *cors, same-origin
     cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
@@ -60,7 +60,7 @@ export const signInByEmail = (data) => (
 ));
 
 export const signUpByEmail = (data) => (
-  fetch("api/auth/email/sign-up", {
+  fetch(`${URL}api/auth/email/sign-up`, {
     method: 'POST', // *GET, POST, PUT, DELETE, etc.
     mode: 'cors', // no-cors, *cors, same-origin
     cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
@@ -75,7 +75,7 @@ export const signUpByEmail = (data) => (
 ));
 
 export const signInByGoogle = (data) => (
-    fetch("api/auth/google", {
+    fetch(`${URL}api/auth/google`, {
         method: 'GET',
         mode: 'cors', // no-cors, *cors, same-origin
         cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
@@ -90,7 +90,7 @@ export const signInByGoogle = (data) => (
 ));
 
 export const signInByFacebook = ({ access_token }) => (
-    fetch("api/auth/facebook", {
+    fetch(`${URL}api/auth/facebook`, {
         method: 'GET',
         mode: 'cors', // no-cors, *cors, same-origin
         cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
@@ -105,12 +105,12 @@ export const signInByFacebook = ({ access_token }) => (
 ));
 
 export const addNewProduct = (formData) => (
-  fetch("http://localhost:4000/api/products", {
+  fetch(`${URL}api/products`, {
     method: 'POST', // *GET, POST, PUT, DELETE, etc.
   //  mode: '*cors', // no-cors, *cors, same-origin
     cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
     headers: {
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhbnRvbm5ldHJlYmVua290NDE5QGdtYWlsLmNvbSIsIm5hbWUiOm51bGwsImN1c3RvbWVySWQiOiJjdXNfSUtXVWJaZ3Y0ZjFIbEkiLCJmYWNlYm9va0lkIjpudWxsLCJlbWFpbFRva2VuIjpudWxsLCJ2ZXJpZmllZCI6ZmFsc2UsImNyZWF0ZWRBdCI6IjIwMjAtMTEtMDVUMDM6MTQ6MzguNjg1WiIsInRpbWVzdGFtcCI6bnVsbCwiaWF0IjoxNjA0NTE3Mjg2fQ.1sOgjqFVQhZufYUKsKLJ_bQ82zqj-RAStpcFE6lxGDE'
+      Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJ0ZXN0NTQ1NDVzZHNAZ21haWwuY29tIiwibmFtZSI6bnVsbCwiaWF0IjoxNjA0Nzg5NzQyfQ.-QEO_t5Ydlj5ktzF4VhfC9nts4zayLv6NGuAMv14xg8'
     },
     credentials: 'same-origin', // include, *same-origin, omit
     redirect: 'follow', // manual, *follow, error
@@ -121,10 +121,13 @@ export const addNewProduct = (formData) => (
 
 
 export const getSellingList = () => (
-  fetch("http://localhost:4000/api/products", {
+  fetch(`${URL}api/products`, {
     method: 'GET', // *GET, POST, PUT, DELETE, etc.
   //  mode: '*cors', // no-cors, *cors, same-origin
     cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+    headers: {
+      Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJ0ZXN0NTQ1NDVzZHNAZ21haWwuY29tIiwibmFtZSI6bnVsbCwiaWF0IjoxNjA0Nzg5NzQyfQ.-QEO_t5Ydlj5ktzF4VhfC9nts4zayLv6NGuAMv14xg8'
+    },
     credentials: 'same-origin', // include, *same-origin, omit
     redirect: 'follow', // manual, *follow, error
     referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
@@ -132,9 +135,12 @@ export const getSellingList = () => (
 ));
 
 export const getProductById = (id) => (
-  fetch(`http://localhost:4000/api/products/${id}`, {
+  fetch(`${URL}api/products/${id}`, {
     method: 'GET', // *GET, POST, PUT, DELETE, etc.
   //  mode: '*cors', // no-cors, *cors, same-origin
+    headers: {
+      Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJ0ZXN0NTQ1NDVzZHNAZ21haWwuY29tIiwibmFtZSI6bnVsbCwiaWF0IjoxNjA0Nzg5NzQyfQ.-QEO_t5Ydlj5ktzF4VhfC9nts4zayLv6NGuAMv14xg8'
+    },
     cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
     credentials: 'same-origin', // include, *same-origin, omit
     redirect: 'follow', // manual, *follow, error
