@@ -1,5 +1,6 @@
 // core
 import React, { useEffect } from 'react'
+import { useRouter } from 'next/router'
 
 // library
 import { useDispatch, useSelector } from "react-redux";
@@ -21,9 +22,12 @@ import styles from '../../styles/Product.module.scss'
 const Product = () => {
     const dispatch = useDispatch();
     const product = useSelector(getSelectedItem);
+    const router = useRouter()
+    const { product_id } = router.query
+
 
     useEffect(() => {
-        dispatch({type: GET_PRODUCT_ITEM_REQUEST, payload: 1})
+        dispatch({type: GET_PRODUCT_ITEM_REQUEST, payload: product_id})
     }, []);
 
     return (
