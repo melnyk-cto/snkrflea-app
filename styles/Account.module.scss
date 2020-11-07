@@ -18,10 +18,10 @@
       }
     }
   }
-  .products {
+  .purchasesProducts {
     max-width: 726px;
   }
-  .infoSelling {
+  .sellingInfo {
     max-width: 619px;
     margin:    0 auto;
     height:    100%;
@@ -38,7 +38,7 @@
       }
     }
   }
-  .listSelling {
+  .sellingList {
     max-width: 354px;
     .listItem {
       border-radius:   9px;
@@ -61,12 +61,51 @@
       }
     }
   }
+  .membershipStarter {
+    margin-top: 14%;
+  }
+  .membershipPremium {
+    margin-top: 1rem;
+    a {
+      font-weight: bold;
+    }
+  }
+  .membershipTitle {
+    h3 {
+      span {
+        font-weight: 700;
+        color:       $mainColor;
+      }
+    }
+  }
+  .membershipHistory {
+    margin-top:    3.5rem;
+    padding:       2rem;
+    border-radius: 9px;
+    border:        solid 2px rgba(0, 0, 0, 0.2);
+    max-width:     425px;
+    h5 {
+      font-weight:   bold;
+      margin-bottom: 2rem;
+    }
+    .list {
+      li {
+        display:         flex;
+        align-items:     center;
+        justify-content: space-between;
+        padding:         0.75rem 0;
+        .price {
+          font-weight: bold;
+        }
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 768px) {
   .account {
     padding: 71px 0;
-    .infoSelling {
+    .sellingInfo {
       max-width: 560px;
       h3, a {
         font-size: 26px;
@@ -83,7 +122,7 @@
         text-align: center;
       }
     }
-    .infoSelling {
+    .sellingInfo {
       max-width: 400px;
       padding:   70px 0 0;
       h3, a {

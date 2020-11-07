@@ -25,7 +25,7 @@ const Account = () => {
                             <h1>My Account</h1>
                         </div>
                         <AccountTabs activeMenu='Purchases' />
-                        <div className={styles.products}>
+                        <div className={styles.purchasesProducts}>
                             {products.map((product, index) => (<ProductItem key={index} product={product} />))}
                         </div>
                     </div>

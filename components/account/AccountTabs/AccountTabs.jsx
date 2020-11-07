@@ -12,13 +12,12 @@ export const AccountTabs = ({activeMenu}) => {
         <div className={styles.menu}>
             <ul className={styles.list}>
                 {menu.map((item) => (
-                    <li className={styles.item}>
+                    <li key={item} className={styles.item}>
                         <Link href={`/account/${item.toLowerCase()}`}><a
                             className={activeMenu === item ? styles.active : ''}>{item}</a></Link>
                     </li>
                 ))}
             </ul>
         </div>
-
     )
 };

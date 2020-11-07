@@ -32,7 +32,7 @@ export const Header = () => {
                     </div>
                 </div>
                 <div className={styles.navItems}>
-                    <Link href={routes.account}>
+                    <Link href={routes.selling}>
                         <a className={styles.menuItem}>
                             Account
                         </a>

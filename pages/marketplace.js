@@ -6,7 +6,7 @@ import Link from 'next/link'
 import classNames from "classnames";
 
 // components
-import { FilterItem, Layout, ProductItem } from "../components";
+import { FilterItem, Layout, ProductItem, PremiumLinks } from "../components";
 import { routes } from "../constants/routes";
 
 // assets
@@ -53,14 +53,7 @@ const Home = () => {
                             <div className={styles.addMobile}>
                                 <h1>AD</h1>
                             </div>
-                            <div className={styles.premiumLinks}>
-                                <h3>View premium links</h3>
-                                <p>
-                                    Get access to hundreds of discount links, monthly giveaways, and exclusive monthly
-                                    hype drops.
-                                </p>
-                                <Link href={routes.marketplace}><a className='btn-second'>Get Premium</a></Link>
-                            </div>
+                            <PremiumLinks />
                             <div className={styles.productsItems}>
                                 <div className={classNames(styles.products, styles.premium)}>
                                     <Link href={routes.marketplace}><a className='btn-second'>Get Premium</a></Link>

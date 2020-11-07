@@ -25,13 +25,13 @@ const Account = () => {
                             <h1>My Account</h1>
                         </div>
                         <AccountTabs activeMenu='Selling' />
-                        {showProducts ? <div className={styles.infoSelling}>
+                        {showProducts ? <div className={styles.sellingInfo}>
                                 <h3>
                                     You aren’t selling anything yet. You can list an item for sale <Link
-                                    href={routes.account}><a>here</a></Link>
+                                    href={routes.selling}><a>here</a></Link>
                                 </h3>
                             </div>
-                            : <div className={styles.listSelling}>
+                            : <div className={styles.sellingList}>
                                 {products.map(product => (
                                     <div key={product.title} className={styles.listItem}>
                                         <div className={styles.image}><img src={product.image} alt='' /></div>
