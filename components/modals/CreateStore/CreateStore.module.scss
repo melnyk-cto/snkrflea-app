@@ -1,17 +1,67 @@
 @import "../../../styles/variables";
 
+.title {
+  width:           100%;
+  margin-bottom:   1.5rem;
+  line-height:     1.1;
+  display:         flex;
+  align-items:     center;
+  justify-content: space-between;
+}
+
 .popupRight {
-  width:         49%;
-  padding-right: 9%;
-  h1 {
-    margin-bottom:   1.5rem;
-    line-height:     1.1;
+  width:        50%;
+  padding-left: 2.5%;
+  .avatar {
+    width:           102px;
+    height:          102px;
+    background:      rgba(0, 0, 0, 0.2);
+    border-radius:   50%;
+    overflow:        hidden;
     display:         flex;
     align-items:     center;
-    justify-content: space-between;
+    justify-content: center;
+    margin:          0 auto;
+    img {
+      object-fit: contain;
+      width:      30%;
+      height:     30%;
+    }
+  }
+  .payPal {
+    background-color: #0092d9;
+    border:           2px solid #0092d9;
+    width:            100%;
+    margin:           6px 0 11px 0;
+  }
+  .noPayPal {
+    margin-bottom: 2rem;
+    padding-left:  1rem;
+  }
+  h6 {
+    padding-left: 1rem;
   }
   .continue {
     width: 100%;
+  }
+}
+
+.popupLeft {
+  width:       50%;
+  max-width:   360px;
+  padding-top: 13%;
+  ul {
+    li {
+      display:       flex;
+      align-items:   center;
+      margin-bottom: 2.5rem;
+      img {
+        margin-right: 3.75rem;
+        max-width:    43px;
+        max-height:   25px;
+        object-fit:   contain;
+      }
+    }
   }
 }
 
@@ -20,13 +70,12 @@
   flex-direction:  column;
   justify-content: center;
   text-align:      center;
-  padding-right:   9%;
-  width:           48.5%;
+  width:           100%;
+  padding-bottom: 15%;
   img {
-    max-width: 200px;
+    max-width: 288px;
     width:     50%;
     margin:    4rem auto 1.75rem auto;
-    display:   none;
   }
   button {
     width: 100%;
@@ -38,16 +87,36 @@
   .popupRight {
     width:   100%;
     padding: 0 1rem;
+    .avatar {
+      width:         127px;
+      height:        127px;
+      margin-bottom: 3.75rem;
+    }
+    label {
+      span {
+        display: block;
+      }
+    }
   }
 
   .success {
-    width:         100%;
-    padding-right: 0;
+    width:          100%;
+    padding-right:  0;
     h3 {
       font-size: 1.75rem;
     }
     img {
       display: flex;
+    }
+  }
+
+  .popupLeft {
+    width: 100%;
+    ul {
+      margin-bottom: 1.5rem;
+      img {
+        margin-right: 1.75rem;
+      }
     }
   }
 }

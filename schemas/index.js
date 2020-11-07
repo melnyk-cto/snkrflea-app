@@ -22,7 +22,19 @@ export const contactSchema = object({
     email: string().required().email(),
     help: string().required()
 });
+
 export const reportSchema = object({
     reason: string().required(),
     comments: string().required()
+});
+
+export const storeSchema = object({
+    name: string().required(),
+    email: string().required().email(),
+    comments: string(),
+    tikTok: string(),
+    instagram: string(),
+    twitter: string(),
+    address: string(),
+    apt: string(),
 });

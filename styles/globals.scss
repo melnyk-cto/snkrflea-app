@@ -41,6 +41,12 @@ h1 {
   }
 }
 
+h2 {
+  font-family: ITCAvantGardeGothicPro, sans-serif;
+  font-size:   40px;
+  font-weight: bold;
+}
+
 h3 {
   font-family:   ITCAvantGardeGothicPro, sans-serif;
   font-size:     30px;
@@ -145,7 +151,7 @@ label {
 input, textarea, select {
   width:            100%;
   border:           0.0625rem solid #E4E8EB;
-  padding:          1.15rem 1rem;
+  padding:          0.9rem 1rem;
   font-size:        0.875rem;
   line-height:      1.36;
   color:            $blackColor;
@@ -350,6 +356,9 @@ input[disabled] {
   h1 {
     font-size: 1.875rem;
   }
+  h2 {
+    font-size: 1.875rem;
+  }
   h3 {
     font-size: 1.25rem;
   }
@@ -368,7 +377,7 @@ input[disabled] {
       display: block;
     }
     input {
-      padding: 0.75rem 0.875rem;
+      padding: 0.9rem 0.875rem;
     }
     &.checkbox {
       margin: 1.75rem 1rem 3rem 1rem;
