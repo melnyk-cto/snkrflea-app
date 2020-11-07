@@ -19,29 +19,18 @@ import Link from "next/link";
 export const CreateStore = ({classname}) => {
     const dispatch = useDispatch();
     const [success, setSuccess] = useState(false);
-    const [signUpError, setSignUpError] = useState(false);
 
-    const setShowRegister = (state) => dispatch(authActions.showRegisterModal(state));
-
-    function handleErrors(response) {
-        if (!response.ok) {
-            setSignUpError(true);
-            throw Error(response.statusText);
-        }
-        return response;
-    }
-
+    const setShowCreateStore = (state) => dispatch(authActions.showCreateStoreModal(state));
 
     return (
         <ModalLayout
             maxWidth='1301px'
-            showPopup={setShowRegister}
+            showPopup={setShowCreateStore}
             classname={classname}>
             <h1 className={styles.title}>Create your store</h1>
             {!success ?
                 <>
                     <div className={styles.popupRight}>
-                        {signUpError ? <p>Error</p> : null}
                         <Formik
                             initialValues={{
                                 name: '',

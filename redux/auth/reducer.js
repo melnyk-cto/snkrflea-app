@@ -11,7 +11,7 @@ const initialState = {
     registerPremiumModalShowing: false,
     contactModalShowing: false,
     reportModalShowing: false,
-    createStoreModalShowing: true,
+    createStoreModalShowing: false,
 };
 
 export const authReducer = handleActions({

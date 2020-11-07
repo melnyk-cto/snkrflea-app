@@ -37,8 +37,8 @@ const Account = () => {
                                 <div className={styles.membershipHistory}>
                                     <h5>Billing History</h5>
                                     <ul className={styles.list}>
-                                        {billingItems.map(item => (
-                                            <li>
+                                        {billingItems.map((item, index) => (
+                                            <li key={index}>
                                                 <span>{item.date}</span>
                                                 <span className={styles.price}>{item.price}</span>
                                             </li>
