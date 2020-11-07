@@ -20,7 +20,7 @@ const products = [
     {title: 'Opi Watihana', name: '@sneakerisland', price: '$1240.29', image: '/images/boots.png'},
 ];
 
-const Home = () => {
+const MarketplaceStore = () => {
     return (
         <Layout>
             <section className={styles.marketplace}>
@@ -75,4 +75,4 @@ const Home = () => {
     )
 };
 
-export default Home
+export default MarketplaceStore

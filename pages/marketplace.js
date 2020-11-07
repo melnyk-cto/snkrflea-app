@@ -29,7 +29,7 @@ const products = [
     {title: 'Opi Watihana', name: '@sneakerisland', price: '$1240.29', image: '/images/boots.png'},
 ];
 
-const Home = () => {
+const Marketplace = () => {
     const [showFilters, setShowFilters] = useState(true);
     return (
         <Layout>
@@ -73,4 +73,4 @@ const Home = () => {
     )
 };
 
-export default Home
+export default Marketplace

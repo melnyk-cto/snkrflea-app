@@ -8,47 +8,72 @@
     padding-left:  0.75rem;
   }
   .productInner {
-    padding:   3.75% 1rem 1rem 6.5%;
-    max-width: 594px;
+    padding:         3.75% 1rem 1rem 6.5%;
+    width:           100%;
+    display:         flex;
+    align-items:     center;
+    justify-content: space-between;
     button {
       width: 100%;
     }
   }
-  .productList {
-    margin-bottom: 0.75rem;
-    li {
-      margin-bottom: 0.75rem;
-    }
-    h6 {
-      padding-left: 1.25rem;
-    }
+  .productLeft {
+    width: 44%;
   }
-  .success {
-    text-align:     center;
-    display:        flex;
-    align-items:    center;
-    flex-direction: column;
-    padding:        6rem 0 2rem 0;
-    h1 {
-      color: $mainColor;
-    }
-    img {
-      width:         100%;
-      max-width:     386px;
-      margin-bottom: 3rem;
-    }
-    h3 {
-      margin-bottom: 3.5rem;
-      &.subTitle {
-        font-family:   Apercu, sans-serif;
-        font-weight:   500;
-        margin-bottom: 1.25rem;
-      }
+  .productRight {
+    width: 44%;
+  }
+  .add {
+    margin:           1rem 0;
+    width:            100%;
+    height:           283px;
+    background-color: rgba(0, 0, 0, 0.2);
+    display:          flex;
+    align-items:      center;
+    justify-content:  center;
+  }
+  .buttons {
+    display:         flex;
+    align-items:     center;
+    justify-content: space-between;
+    margin-top:      1rem;
+    margin-bottom:   3rem;
+    button, h3 {
+      margin-bottom: 0;
     }
     button {
-      margin-bottom: 1rem;
-      min-width:     532px;
-      max-width:     532px;
+      max-width: 195px;
+      min-width: auto;
+      padding:   6px 12px;
+    }
+  }
+  .seller {
+    display:     flex;
+    flex-wrap:   wrap;
+    align-items: flex-end;
+    > h6 {
+      width:     100%;
+      font-size: 1.125rem;
+    }
+    .image {
+      width:        46px;
+      margin-right: 0.5rem;
+      display:      flex;
+    }
+    .info {
+      margin-right: 0.8rem;
+      a {
+        font-size: 0.75rem;
+      }
+    }
+    .links {
+      a {
+        font-weight: bold;
+      }
+      img {
+        width:       17px;
+        margin-left: 0.5rem;
+      }
     }
   }
 }
@@ -59,15 +84,6 @@
     .productInner {
       padding: 3.75% 1rem 1rem 6.5%;
 
-    }
-    .success {
-      img {
-        width: 60%;
-      }
-      button {
-        min-width: 240px;
-        width:     100%;
-      }
     }
   }
 }

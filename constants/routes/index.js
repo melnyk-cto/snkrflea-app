@@ -4,6 +4,7 @@ export const routes = {
     buy: '/buy',
     sell: '/sell',
     product: '/product',
+    productList: '/product-list',
     premium: '/premium',
     selling: '/account/selling',
     purchases: '/account/purchases',
