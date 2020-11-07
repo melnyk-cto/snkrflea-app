@@ -1,68 +1,57 @@
 // core
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 
-
-// components
-import { Layout } from "../components";
-
-// assets
-import styles from '../styles/Product.module.scss'
-
+// library
+import { useDispatch, useSelector } from "react-redux";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Link from "next/link";
 
-import { useDispatch, useSelector } from "react-redux";
-
+// components
+import { Layout } from "../../components";
 import {
     getSelectedItem
-} from "../redux/products/selectors";
-
+} from "../../redux/products/selectors";
 import {
     GET_PRODUCT_ITEM_REQUEST
-} from "../redux/products/sagas";
+} from "../../redux/products/sagas";
+
+// assets
+import styles from '../../styles/Product.module.scss'
 
 const Product = () => {
     const dispatch = useDispatch();
-    const product = useSelector(getSelectedItem)
+    const product = useSelector(getSelectedItem);
 
     useEffect(() => {
-        dispatch({ type: GET_PRODUCT_ITEM_REQUEST, payload: 1})
-     }, []);
-     
+        dispatch({type: GET_PRODUCT_ITEM_REQUEST, payload: 1})
+    }, []);
+
     return (
         <Layout>
             <section className={styles.product}>
-           {product ? <div className="container">
+                {product ? <div className="container">
                     <div className={styles.productInner}>
                         <div className={styles.productLeft}>
-                        <Swiper
-                        autoplay={{delay: 2000}}
-                        speed={1000}
-                        spaceBetween={20}
-                        loopedSlides={4}
-                        slidesPerView={1}
-                        loop={true}
-                        clickable='true'
-                        breakpoints={{
-                            567: {
-                                slidesPerView: 3,
-                            },
-                        }}
-                    >
-                      {product.images
-                      .map((img) => 
-                      (<SwiperSlide>
-                          <div className={styles.slideImage}>
-                             <img src={img.url} alt='' />
-                        </div>
-                        </SwiperSlide>))}  
-                      </Swiper>
+                            <Swiper
+                                spaceBetween={10}
+                                slidesPerView={1}
+                                loop={true}
+                                clickable='true'
+                            >
+                                {product.images
+                                    .map((img, index) =>
+                                        (<SwiperSlide key={index}>
+                                            <div className={styles.slideImage}>
+                                                <img src={img.url} alt='' />
+                                            </div>
+                                        </SwiperSlide>))}
+                            </Swiper>
                         </div>
                         <div className={styles.productRight}>
                             <h1>{product.title}</h1>
                             <p>{product.description}</p>
                             <div className={styles.buttons}>
-                              <h3>${product.price}</h3>
+                                <h3>${product.price}</h3>
                                 <button type='button' className='btn-second'>Buy Now</button>
                             </div>
                             <div className={styles.seller}>
@@ -72,7 +61,7 @@ const Product = () => {
                                 </div>
                                 <div className={styles.info}>
                                     <h6>{product?.vendor?.store?.name}</h6>
-                                    <Link href=''><a><a>24 items for sale</a></a></Link>
+                                    <Link href=''><a>24 items for sale</a></Link>
                                 </div>
                                 <div className={styles.links}>
                                     <Link href=''><a>Contact seller</a></Link>
@@ -81,7 +70,7 @@ const Product = () => {
                             </div>
                         </div>
                     </div>
-                </div> : null}     
+                </div> : null}
             </section>
         </Layout>
     )

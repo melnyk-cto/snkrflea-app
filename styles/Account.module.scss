@@ -43,12 +43,15 @@
       border-radius:   9px;
       border:          solid 2px rgba(0, 0, 0, 0.2);
       display:         flex;
-      align-items:     center;
       justify-content: space-between;
       padding:         1rem 10% 1rem 1rem;
       margin-bottom:   11px;
       .image {
         width: 40%;
+        img {
+          height:     100%;
+          object-fit: cover;
+        }
       }
       .description {
         width: 56%;
@@ -133,7 +136,7 @@
         font-size: 20px;
       }
     }
-      .membershipTitle {
+    .membershipTitle {
       margin-top: 2rem;
     }
     .membershipStarter {

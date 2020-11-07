@@ -12,13 +12,14 @@ import { Layout } from "../components";
 
 // assets
 import styles from '../styles/Home.module.scss'
+import classNames  from "classnames";
 
 const Home = () => {
     SwiperCore.use([Autoplay]);
     return (
         <Layout>
             <section className={styles.home}>
-                <div className={styles.slider}>
+                <div className={classNames(styles.slider, 'home-slider')}>
                     <Swiper
                         autoplay={{delay: 2000}}
                         speed={1000}

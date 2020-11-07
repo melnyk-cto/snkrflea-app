@@ -42,7 +42,9 @@ const Account = () => {
                             : <div className={styles.sellingList}>
                                 {list.map(product => (
                                     <div key={product.title} className={styles.listItem}>
-                                        <div className={styles.image}><img src={product?.images.length !== 0 ? product?.images[0].url : ''} alt='' /></div>
+                                        <div className={styles.image}>
+                                            <img src={product?.images.length !== 0 ? product?.images[0].url : '/images/placeholder-image.png'} alt='' />
+                                        </div>
                                         <div className={styles.description}>
                                             <h6>{product.title}</h6>
                                             <div className={styles.itemInfo}>
