@@ -15,15 +15,13 @@ const products = [
     {title: 'Yeezys 240 Sneakers Limited 2', image: '/images/boots.png', price: '$79.99', edit: ''},
 ];
 const Account = () => {
-    const [showProducts, setShowProducts] = useState(false);
+    const [showProducts, setShowProducts] = useState(true);
     return (
         <Layout>
             <section className={styles.account}>
                 <div className="container">
                     <div className={styles.content}>
-                        <div className={styles.title}>
-                            <h1>My Account</h1>
-                        </div>
+                        <h1>My Account</h1>
                         <AccountTabs activeMenu='Selling' />
                         {showProducts ? <div className={styles.sellingInfo}>
                                 <h3>

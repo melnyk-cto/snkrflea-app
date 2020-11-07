@@ -1,36 +1,34 @@
 @import "./variables";
 
 .account {
-  padding: 71px 86px 40px 86px;
+  padding: 55px 86px 40px 86px;
   flex:    1 0 auto;
   .container {
     padding: 0 15px;
   }
   .content {
     margin: 0 auto;
-    .title {
+    h1 {
       margin-bottom: 11px;
-      h1 {
-        font-size:   50px;
-        font-weight: bold;
-        line-height: 1.21;
-        color:       #000;
-      }
     }
   }
   .purchasesProducts {
-    max-width: 726px;
+    margin-top: 2.75rem;
+    max-width:  726px;
   }
   .sellingInfo {
-    max-width: 619px;
+    max-width: 550px;
     margin:    0 auto;
     height:    100%;
+    padding:   18% 0 10% 0;
     h3, a {
-      font-size:   30px;
-      line-height: 1.55;
-      text-align:  center;
-      color:       #000000;
-      font-weight: 400;
+      font-size:      30px;
+      line-height:    1.55;
+      text-align:     center;
+      color:          #000000;
+      font-weight:    400;
+      letter-spacing: -0.15px;
+      margin-bottom:  0;
       a {
         color:           #ff9200;
         font-weight:     bold;
@@ -39,20 +37,24 @@
     }
   }
   .sellingList {
-    max-width: 354px;
+    max-width:  354px;
+    margin-top: 2.75rem;
     .listItem {
       border-radius:   9px;
       border:          solid 2px rgba(0, 0, 0, 0.2);
       display:         flex;
       align-items:     center;
       justify-content: space-between;
-      padding:         1rem;
+      padding:         1rem 10% 1rem 1rem;
       margin-bottom:   11px;
       .image {
-        width: 30%;
+        width: 40%;
       }
       .description {
-        width: 65%;
+        width: 56%;
+        h6 {
+          line-height: 1.38;
+        }
       }
       .itemInfo {
         display:         flex;
@@ -62,7 +64,7 @@
     }
   }
   .membershipStarter {
-    margin-top: 14%;
+    margin-top: 15.5%;
   }
   .membershipPremium {
     margin-top: 1rem;
@@ -71,6 +73,7 @@
     }
   }
   .membershipTitle {
+    margin-top: 4.25rem;
     h3 {
       span {
         font-weight: 700;
@@ -117,6 +120,7 @@
 
 @media screen and (max-width: 567px) {
   .account {
+    padding: 30px 0;
     .content {
       .title {
         text-align: center;
@@ -124,10 +128,19 @@
     }
     .sellingInfo {
       max-width: 400px;
-      padding:   70px 0 0;
+      padding:   12% 0 6% 0;
       h3, a {
         font-size: 20px;
       }
+    }
+      .membershipTitle {
+      margin-top: 2rem;
+    }
+    .membershipStarter {
+      margin-top: 0;
+    }
+    .membershipHistory {
+      margin-top: 1.5rem;
     }
   }
 }

@@ -21,9 +21,7 @@ const Account = () => {
             <section className={styles.account}>
                 <div className="container">
                     <div className={styles.content}>
-                        <div className={styles.title}>
-                            <h1>My Account</h1>
-                        </div>
+                        <h1>My Account</h1>
                         <AccountTabs activeMenu='Membership' />
                         <div className={styles.membershipTitle}>
                             {isStarter ? <h3>You are on the <span>Starter Membership</span></h3>
