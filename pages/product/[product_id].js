@@ -22,13 +22,14 @@ import styles from '../../styles/Product.module.scss'
 const Product = () => {
     const dispatch = useDispatch();
     const product = useSelector(getSelectedItem);
-    const router = useRouter()
-    const { product_id } = router.query
-
+    const router = useRouter();
+    const {product_id} = router.query;
 
     useEffect(() => {
-        dispatch({type: GET_PRODUCT_ITEM_REQUEST, payload: product_id})
-    }, []);
+        if (product_id !== undefined) {
+            dispatch({type: GET_PRODUCT_ITEM_REQUEST, payload: product_id})
+        }
+    }, [product_id]);
 
     return (
         <Layout>
