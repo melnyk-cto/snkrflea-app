@@ -11,6 +11,7 @@ const initialState = {
     registerPremiumModalShowing: false,
     contactModalShowing: false,
     reportModalShowing: false,
+    createStoreModalShowing: false,
 };
 
 export const authReducer = handleActions({
@@ -49,6 +50,10 @@ export const authReducer = handleActions({
         [authActions.showReportModal]: (state, {payload}) => ({
             ...state,
             reportModalShowing: payload,
+        }),
+        [authActions.showCreateStoreModal]: (state, {payload}) => ({
+            ...state,
+            createStoreModalShowing: payload,
         }),
     },
     initialState,

@@ -16,7 +16,8 @@ import {
     Plans,
     RegisterPremium,
     Contact,
-    Report
+    Report,
+    CreateStore
 } from "../../components";
 import {
     showRegisterModal,
@@ -25,7 +26,8 @@ import {
     showPlansModal,
     showRegisterPremiumModal,
     showContactModal,
-    showReportModal
+    showReportModal,
+    showCreateStoreModal
 } from "../../redux/auth/selectors";
 
 
@@ -37,6 +39,7 @@ export const Layout = ({children}) => {
     const showRegisterPremium = useSelector(showRegisterPremiumModal);
     const showContact = useSelector(showContactModal);
     const showReport = useSelector(showReportModal);
+    const showCreateStore = useSelector(showCreateStoreModal);
 
     return (
         <>
@@ -52,6 +55,7 @@ export const Layout = ({children}) => {
             {showPlans && <Plans classname='plans' />}
             {showContact && <Contact />}
             {showReport && <Report />}
+            {showCreateStore && <CreateStore />}
             {children}
             <Footer />
         </>

@@ -11,6 +11,7 @@ export const authActions = createActions(
         SHOW_REGISTER_PREMIUM_MODAL: status => status,
         SHOW_CONTACT_MODAL: status => status,
         SHOW_REPORT_MODAL: status => status,
+        SHOW_CREATE_STORE_MODAL: status => status,
 
         // Async
         SHOW_REGISTER_MODAL_ASYNC: void 0,
@@ -20,6 +21,7 @@ export const authActions = createActions(
         SHOW_REGISTER_PREMIUM_MODAL_ASYNC: void 0,
         SHOW_CONTACT_MODAL_ASYNC: void 0,
         SHOW_REPORT_MODAL_ASYNC: void 0,
+        SHOW_CREATE_STORE_MODAL_ASYNC: void 0,
 
         // Auth
         USER_SIGN_IN_SUCCEDED: user => user,
