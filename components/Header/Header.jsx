@@ -36,11 +36,11 @@ export const Header = ({user = null}) => {
                     </div>
                 </div>
                 <div className={styles.navItems}>
-                    {/*<Link href={routes.selling}>*/}
-                    {/*    <a className={styles.menuItem}>*/}
-                    {/*        Account*/}
-                    {/*    </a>*/}
-                    {/*</Link>*/}
+                { user ?  <Link href={routes.selling}>
+                       <a className={styles.menuItem}>
+                           Account
+                        </a>
+                    </Link> : null }
                     { user ? <Link href={routes.home}>
                         <a onClick={(e) => {
                            dispatch({ type: USER_LOG_OUT_REQUEST})
