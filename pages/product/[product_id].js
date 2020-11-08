@@ -4,8 +4,10 @@ import { useRouter } from 'next/router'
 
 // library
 import { useDispatch, useSelector } from "react-redux";
-import { Swiper, SwiperSlide } from 'swiper/react';
 import Link from "next/link";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import SwiperCore, { Pagination, Navigation } from 'swiper';
+import classNames from "classnames";
 
 // components
 import { Layout } from "../../components";
@@ -25,6 +27,8 @@ const Product = () => {
     const router = useRouter();
     const {product_id} = router.query;
 
+    SwiperCore.use([Pagination, Navigation]);
+
     useEffect(() => {
         if (product_id !== undefined) {
             dispatch({type: GET_PRODUCT_ITEM_REQUEST, payload: product_id})
@@ -36,21 +40,20 @@ const Product = () => {
             <section className={styles.product}>
                 {product ? <div className="container">
                     <div className={styles.productInner}>
-                        <div className={styles.productLeft}>
+                        <div className={classNames(styles.productLeft, 'product-slider')}>
                             <Swiper
-                                spaceBetween={10}
+                                navigation={{clickable: true}}
+                                pagination={{clickable: true}}
                                 slidesPerView={1}
                                 loop={true}
-                                clickable='true'
-                            >
-                                {product.images
-                                    .map((img, index) =>
-                                        (<SwiperSlide key={index}>
-                                            <div className={styles.slideImage}>
-                                                <img src={img.url} alt='' />
-                                            </div>
-                                        </SwiperSlide>))}
+                                clickable='true'>
+                                {product.images.map((img, index) => (
+                                    <SwiperSlide key={index}><img src={img.url} alt='' /></SwiperSlide>
+                                ))}
                             </Swiper>
+                            <div className={styles.add}>
+                                <h1>AD</h1>
+                            </div>
                         </div>
                         <div className={styles.productRight}>
                             <h1>{product.title}</h1>
@@ -73,6 +76,18 @@ const Product = () => {
                                     <img src='/icons/instagram.svg' alt='' />
                                 </div>
                             </div>
+                            <div className={styles.payPal}>
+                                <img src='/images/home/paypal.jpg' alt='' />
+                                <div className={styles.info}>
+                                    <h6>100% Purchase protected with Paypal</h6>
+                                    <p>
+                                        Orders that never arrive, inauthentic items, and items not described will be
+                                        refunded - your satisfaction guaranteed
+                                    </p>
+                                    <Link href=''><a>Learn more</a></Link>
+                                </div>
+                            </div>
+                            <Link href=''><a>Report this post</a></Link>
                         </div>
                     </div>
                 </div> : null}
