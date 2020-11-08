@@ -8,6 +8,8 @@ export const productsActions = createActions(
         SET_ALL_PRODUCTS: products => products,
         SET_SELECTED_PRODUCT: product => product,
 
+        SET_MARKET_PLACE: list => list,
+
         ADD_NEW_PRODUCT_REQUEST: body => body
     },
     {
