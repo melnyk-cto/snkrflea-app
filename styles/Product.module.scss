@@ -119,6 +119,43 @@
       }
     }
   }
+  &.checkout {
+    .productInner {
+      padding: 6.25% 1rem 2rem 1rem;
+    }
+    .productLeft {
+      width:        39.75%;
+      padding-left: 6%;
+      h3 {
+        margin-top: 3rem;
+      }
+    }
+    .productRight {
+      width:         46.5%;
+      padding-right: 6%;
+      .checkout {
+        border-radius: 9px;
+        border:        solid 1.9px rgba(0, 0, 0, 0.2);
+        padding:       5% 6%;
+      }
+      h3 {
+        padding-left: 1rem;
+      }
+    }
+    .buttons {
+      margin-bottom: 1rem;
+      h3 {
+        margin-top: 0;
+      }
+    }
+    .continue {
+      padding:      0.5rem;
+      background:   #0092d9;
+      border-color: #0092d9;
+      color:        $whiteColor;
+      min-width:    100%;
+    }
+  }
 }
 
 
@@ -165,6 +202,16 @@
     }
     .addDesktop {
       display: none;
+    }
+    &.checkout {
+      .productLeft {
+        width:        100%;
+        padding-left: 0;
+      }
+      .productRight {
+        width:         100%;
+        padding-right: 0;
+      }
     }
   }
 }

@@ -2,20 +2,20 @@ import { object, string, bool, number } from 'yup';
 
 export const loginSchema = object({
     email: string()
-      .required()
-      .email(),
+        .required()
+        .email(),
     password: string().required().min(5, 'Must be exactly 5 digits')
-    .max(5, 'Must be exactly 5 digits')
-  });
+        .max(5, 'Must be exactly 5 digits')
+});
 
-  export const registerSchema = object({
+export const registerSchema = object({
     email: string()
-      .required()
-      .email(),
+        .required()
+        .email(),
     password: string().required().min(5, 'Must be exactly 5 digits')
-    .max(5, 'Must be exactly 5 digits'),
+        .max(5, 'Must be exactly 5 digits'),
     privacy: bool().oneOf([true], 'Field must be checked').required()
-  });
+});
 
 export const contactSchema = object({
     name: string().required(),
@@ -40,7 +40,15 @@ export const storeSchema = object({
 });
 
 export const productSchema = object({
-  title: string().required(),
-  description: string().required(),
-  price: number().required()
+    title: string().required(),
+    description: string().required(),
+    price: number().required()
+});
+
+export const checkoutSchema = object({
+    name: string().required(),
+    address: string().required(),
+    city: string().required(),
+    state: string().required(),
+    zip: number().required()
 });

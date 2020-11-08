@@ -62,10 +62,6 @@ export const Login = () => {
                     onSubmit={(values, {setSubmitting}) => {
                         dispatch({ type: USER_SIGN_IN_BY_EMAIL_REQUEST, payload: values})
                           setSubmitting(false);
-                          // setTimeout(() => {
-                        //     alert(JSON.stringify(values, null, 2));
-                        //   
-                        // }, 4000);GNB
                     }}
                 >
                     {({isSubmitting}) => (

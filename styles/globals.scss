@@ -244,7 +244,7 @@ input[disabled] {
 
 .container {
   width:     100%;
-  max-width: 1920px;
+  max-width: 1600px;
   margin:    0 auto;
   padding:   0 1rem;
 }
@@ -308,6 +308,13 @@ input[disabled] {
       height:     100%;
       object-fit: cover;
     }
+  }
+}
+
+// Checkout Swiper Slider
+.checkout-slider {
+  .swiper-slide {
+    max-height: 224px;
   }
 }
 

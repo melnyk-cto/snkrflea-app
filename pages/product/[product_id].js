@@ -59,10 +59,10 @@ const Product = () => {
                             </div>
                         </div>
                         <div className={styles.productRight}>
-                            <h1>Yeezy Boost 350 V2 'Carbon'</h1>
-                            <p>The adidas Yeezy Boost 350 V2 ‘Carbon’ features a breathable Primeknit upper in a neutral black and grey finish. The sneaker’s lateral side features a streak of black via the post-dyed monofilament side stripe, separating a light grey weave up top with mostly black construction on the lower half. No-tie bungee laces deliver a secure fit. The sneaker rides on a full-length Boost midsole, surrounded by a yellow-tinged rubber cage.</p>
+                            <h1>{product.title}</h1>
+                            <p>{product.description}</p>
                             <div className={styles.buttons}>
-                                <h3>$150</h3>
+                                <h3>${product.price}</h3>
                                 <button type='button' className='btn-second'>Buy Now</button>
                             </div>
                             <div className={styles.seller}>
