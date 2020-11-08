@@ -27,9 +27,6 @@ const MarketplaceStore = () => {
                 <div className="container">
                     <div className={styles.marketplaceInner}>
                         <div className={styles.marketplaceLeft}>
-                            <Link href={routes.marketplace}>
-                                <a className={styles.breadCrumbs}>Marketplace</a>
-                            </Link>
                            <div className={styles.userWrapper}>
                                <div className={styles.user}>
                                    <img src='/images/user.png' alt='' />

@@ -40,6 +40,9 @@ const Product = () => {
             <section className={styles.product}>
                 {product ? <div className="container">
                     <div className={styles.productInner}>
+                        {/*<Link href={routes.marketplace}>*/}
+                        {/*    <a className={styles.breadCrumbs}>Back to marketplace</a>*/}
+                        {/*</Link>*/}
                         <div className={classNames(styles.productLeft, 'product-slider')}>
                             <Swiper
                                 navigation={{clickable: true}}
@@ -51,15 +54,15 @@ const Product = () => {
                                     <SwiperSlide key={index}><img src={img.url} alt='' /></SwiperSlide>
                                 ))}
                             </Swiper>
-                            <div className={styles.add}>
+                            <div className={styles.addDesktop}>
                                 <h1>AD</h1>
                             </div>
                         </div>
                         <div className={styles.productRight}>
-                            <h1>{product.title}</h1>
-                            <p>{product.description}</p>
+                            <h1>Yeezy Boost 350 V2 'Carbon'</h1>
+                            <p>The adidas Yeezy Boost 350 V2 ‘Carbon’ features a breathable Primeknit upper in a neutral black and grey finish. The sneaker’s lateral side features a streak of black via the post-dyed monofilament side stripe, separating a light grey weave up top with mostly black construction on the lower half. No-tie bungee laces deliver a secure fit. The sneaker rides on a full-length Boost midsole, surrounded by a yellow-tinged rubber cage.</p>
                             <div className={styles.buttons}>
-                                <h3>${product.price}</h3>
+                                <h3>$150</h3>
                                 <button type='button' className='btn-second'>Buy Now</button>
                             </div>
                             <div className={styles.seller}>
@@ -87,7 +90,10 @@ const Product = () => {
                                     <Link href=''><a>Learn more</a></Link>
                                 </div>
                             </div>
-                            <Link href=''><a>Report this post</a></Link>
+                            <Link href=''><a className={styles.report}>Report this post</a></Link>
+                        </div>
+                        <div className={styles.addMobile}>
+                            <h1>AD</h1>
                         </div>
                     </div>
                 </div> : null}
