@@ -47,6 +47,7 @@ const Marketplace = () => {
     useEffect(() => {
         dispatch({type: GET_MARKET_PLACE_REQUEST, payload: null})
     }, []);
+    
     return (
         <Layout>
             <section className={styles.marketplace}>

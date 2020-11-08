@@ -1,6 +1,7 @@
 
 
-const URL = 'https://snkrfleaapi.herokuapp.com/';
+const URL = 'http://localhost:4000/';
+const TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTcsImVtYWlsIjoicHVyY2hhc2VzdGVzdEBnbWFpbC5jb20iLCJuYW1lIjpudWxsLCJpYXQiOjE2MDQ4Mjk0MjN9.pNJ4a9qwj9yb3w0AGSnJjcTwcwF2n0ft1uTNO3Rt0mE'
 // import fetchIntercept from 'fetch-intercept';
 
 
@@ -28,6 +29,18 @@ const URL = 'https://snkrfleaapi.herokuapp.com/';
 //   }
 // });
 
+
+// {
+//   "id": 17,
+//   "email": "purchasestest@gmail.com",
+//   "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTcsImVtYWlsIjoicHVyY2hhc2VzdGVzdEBnbWFpbC5jb20iLCJuYW1lIjpudWxsLCJpYXQiOjE2MDQ4Mjk0MjN9.pNJ4a9qwj9yb3w0AGSnJjcTwcwF2n0ft1uTNO3Rt0mE"
+// }
+
+// {
+//   "id": 18,
+//   "email": "purchasestest2@gmail.com",
+//   "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTgsImVtYWlsIjoicHVyY2hhc2VzdGVzdDJAZ21haWwuY29tIiwibmFtZSI6bnVsbCwiaWF0IjoxNjA0ODI5NDUzfQ.kaAYO6RSIzsq1ZoF4azAVyTo3r7wDAYjGA_N7GiHgqw"
+// }
 
 export const requestAuthInterceptor = (data) => (
     fetch(`${URL}api/auth/sign-in`, {
@@ -110,7 +123,7 @@ export const addNewProduct = (formData) => (
   //  mode: '*cors', // no-cors, *cors, same-origin
     cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
     headers: {
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJ0ZXN0NTQ1NDVzZHNAZ21haWwuY29tIiwibmFtZSI6bnVsbCwiaWF0IjoxNjA0Nzg5NzQyfQ.-QEO_t5Ydlj5ktzF4VhfC9nts4zayLv6NGuAMv14xg8'
+      Authorization: `Bearer ${TOKEN}`
     },
     credentials: 'same-origin', // include, *same-origin, omit
     redirect: 'follow', // manual, *follow, error
@@ -126,7 +139,7 @@ export const getMarketplaceList = () => (
   //  mode: '*cors', // no-cors, *cors, same-origin
     cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
     headers: {
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJ0ZXN0NTQ1NDVzZHNAZ21haWwuY29tIiwibmFtZSI6bnVsbCwiaWF0IjoxNjA0Nzg5NzQyfQ.-QEO_t5Ydlj5ktzF4VhfC9nts4zayLv6NGuAMv14xg8'
+      Authorization: `Bearer ${TOKEN}`
     },
     credentials: 'same-origin', // include, *same-origin, omit
     redirect: 'follow', // manual, *follow, error
@@ -140,7 +153,21 @@ export const getSellingList = () => (
   //  mode: '*cors', // no-cors, *cors, same-origin
     cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
     headers: {
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJ0ZXN0NTQ1NDVzZHNAZ21haWwuY29tIiwibmFtZSI6bnVsbCwiaWF0IjoxNjA0Nzg5NzQyfQ.-QEO_t5Ydlj5ktzF4VhfC9nts4zayLv6NGuAMv14xg8'
+      Authorization: `Bearer ${TOKEN}`
+    },
+    credentials: 'same-origin', // include, *same-origin, omit
+    redirect: 'follow', // manual, *follow, error
+    referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+  }
+));
+
+export const getPurchasesRequest = () => (
+  fetch(`${URL}api/purchases`, {
+    method: 'GET', // *GET, POST, PUT, DELETE, etc.
+  //  mode: '*cors', // no-cors, *cors, same-origin
+    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+    headers: {
+      Authorization: `Bearer ${TOKEN}`
     },
     credentials: 'same-origin', // include, *same-origin, omit
     redirect: 'follow', // manual, *follow, error
@@ -154,7 +181,7 @@ export const getStoreByIdRequest = (id) => (
   //  mode: '*cors', // no-cors, *cors, same-origin
     cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
     headers: {
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJ0ZXN0NTQ1NDVzZHNAZ21haWwuY29tIiwibmFtZSI6bnVsbCwiaWF0IjoxNjA0Nzg5NzQyfQ.-QEO_t5Ydlj5ktzF4VhfC9nts4zayLv6NGuAMv14xg8'
+      Authorization: `Bearer ${TOKEN}`
     },
     credentials: 'same-origin', // include, *same-origin, omit
     redirect: 'follow', // manual, *follow, error
@@ -167,7 +194,7 @@ export const getProductById = (id) => (
     method: 'GET', // *GET, POST, PUT, DELETE, etc.
   //  mode: '*cors', // no-cors, *cors, same-origin
     headers: {
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJ0ZXN0NTQ1NDVzZHNAZ21haWwuY29tIiwibmFtZSI6bnVsbCwiaWF0IjoxNjA0Nzg5NzQyfQ.-QEO_t5Ydlj5ktzF4VhfC9nts4zayLv6NGuAMv14xg8'
+      Authorization: `Bearer ${TOKEN}`
     },
     cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
     credentials: 'same-origin', // include, *same-origin, omit
