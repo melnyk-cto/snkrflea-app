@@ -25,6 +25,8 @@ export const authActions = createActions(
 
         // Auth
         USER_SIGN_IN_SUCCEDED: user => user,
+        USER_LOG_OUT_START: void 0,
+        USER_LOG_OUT: void 0,
         USER_UNAUTHORIZED_ERROR: status => status,
         USER_ALREADY_ERROR: status => status
     },

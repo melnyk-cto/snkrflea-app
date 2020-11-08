@@ -12,6 +12,10 @@ import { authActions } from "../../redux/auth/actions";
 // assets
 import styles from './Header.module.scss'
 
+import {
+    USER_LOG_OUT_REQUEST
+} from "../../redux/auth/sagas";
+
 export const Header = ({user = null}) => {
     const dispatch = useDispatch();
 
@@ -39,7 +43,7 @@ export const Header = ({user = null}) => {
                     {/*</Link>*/}
                     { user ? <Link href={routes.home}>
                         <a onClick={(e) => {
-                            setShowLogin(true);
+                           dispatch({ type: USER_LOG_OUT_REQUEST})
                             e.preventDefault()
                         }}
                         className={styles.menuItem} >

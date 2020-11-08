@@ -20,6 +20,10 @@ export const authReducer = handleActions({
             ...state,
             user: payload,
         }),
+        [authActions.userLogOut]: (state, {payload}) => ({
+            ...state,
+            user: null,
+        }),
         [authActions.userUnauthorizedError]: (state, {payload}) => ({
             ...state,
             unauthorizedError: payload,
