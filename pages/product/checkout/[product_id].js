@@ -1,5 +1,5 @@
 // core
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 
 // library
@@ -25,8 +25,11 @@ import { checkoutSchema } from "../../../schemas";
 import { routes } from "../../../constants/routes";
 
 const Product = () => {
+    const [success, setSuccess] = useState(true);
+
     const dispatch = useDispatch();
     const product = useSelector(getSelectedItem);
+
     const router = useRouter();
     const {product_id} = router.query;
 
@@ -80,62 +83,82 @@ const Product = () => {
                         </div>
                         <div className={styles.productRight}>
                             <div className={styles.checkout}>
-                                <h3>Checkout</h3>
-                                <Formik
-                                    initialValues={{name: '', address: '', state: '', city: '', zip: ''}}
-                                    validationSchema={checkoutSchema}
-                                    onSubmit={(values, {setSubmitting}) => {
-                                        setTimeout(() => {
-                                            alert(values);
-                                            setSubmitting(false);
-                                        }, 2000);
-                                    }}
-                                >
-                                    {({isSubmitting}) => (
-                                        <Form>
-                                            <label>
-                                                <span>Name</span>
-                                                <Field type="text" name="name" placeholder='Enter Name' />
-                                                <ErrorMessage className='error' name="name" component="div" />
-                                            </label>
-                                            <label>
-                                                <span>Address</span>
-                                                <Field type="text" name="address" placeholder='Enter Address' />
-                                                <ErrorMessage className='error' name="address" component="div" />
-                                            </label>
-                                            <label>
-                                                <span>State</span>
-                                                <Field type="text" name="state" placeholder='Enter State' />
-                                                <ErrorMessage className='error' name="state" component="div" />
-                                            </label>
-                                            <label>
-                                                <span>City</span>
-                                                <Field type="text" name="city" placeholder='Enter City' />
-                                                <ErrorMessage className='error' name="city" component="div" />
-                                            </label>
-                                            <label>
-                                                <span>ZIP Code</span>
-                                                <Field type="number" name="zip" placeholder='Enter ZIP Code' />
-                                                <ErrorMessage className='error' name="zip" component="div" />
-                                            </label>
-                                            <button type="submit"
-                                                    className={classNames('btn-second', styles.continue)}
-                                                    disabled={isSubmitting}>
-                                                PayPal
-                                            </button>
-                                            <label className="checkbox">
-                                                <Field type="checkbox" name="privacy" />
-                                                <ErrorMessage className='error' name="privacy" component="div" />
-                                                <span className="checkmark" />
-                                                <p>
-                                                    Save my information for faster checkout and to view your
-                                                    purchases. <Link href={routes.privacy}><a>Learn more</a></Link>
-                                                </p>
-                                            </label>
-                                        </Form>
-                                    )}
-                                </Formik>
-
+                                {success ? <>
+                                        <h3>Checkout</h3>
+                                        <Formik
+                                            initialValues={{name: '', address: '', state: '', city: '', zip: ''}}
+                                            validationSchema={checkoutSchema}
+                                            onSubmit={(values, {setSubmitting}) => {
+                                                setTimeout(() => {
+                                                    alert(values);
+                                                    setSubmitting(false);
+                                                }, 2000);
+                                            }}
+                                        >
+                                            {({isSubmitting}) => (
+                                                <Form>
+                                                    <label>
+                                                        <span>Name</span>
+                                                        <Field type="text" name="name" placeholder='Enter Name' />
+                                                        <ErrorMessage className='error' name="name" component="div" />
+                                                    </label>
+                                                    <label>
+                                                        <span>Address</span>
+                                                        <Field type="text" name="address" placeholder='Enter Address' />
+                                                        <ErrorMessage className='error' name="address" component="div" />
+                                                    </label>
+                                                    <label>
+                                                        <span>State</span>
+                                                        <Field type="text" name="state" placeholder='Enter State' />
+                                                        <ErrorMessage className='error' name="state" component="div" />
+                                                    </label>
+                                                    <label>
+                                                        <span>City</span>
+                                                        <Field type="text" name="city" placeholder='Enter City' />
+                                                        <ErrorMessage className='error' name="city" component="div" />
+                                                    </label>
+                                                    <label>
+                                                        <span>ZIP Code</span>
+                                                        <Field type="number" name="zip" placeholder='Enter ZIP Code' />
+                                                        <ErrorMessage className='error' name="zip" component="div" />
+                                                    </label>
+                                                    <button type="submit"
+                                                            className={classNames('btn-second', styles.continue)}
+                                                            disabled={isSubmitting}>
+                                                        PayPal
+                                                    </button>
+                                                    <label className="checkbox">
+                                                        <Field type="checkbox" name="privacy" />
+                                                        <ErrorMessage className='error' name="privacy" component="div" />
+                                                        <span className="checkmark" />
+                                                        <p>
+                                                            Save my information for faster checkout and to view your
+                                                            purchases. <Link href={routes.privacy}><a>Learn more</a></Link>
+                                                        </p>
+                                                    </label>
+                                                </Form>
+                                            )}
+                                        </Formik>
+                                    </> :
+                                    <div className={styles.success}>
+                                        <h3>Congrats on your order!</h3>
+                                        <p>
+                                            The seller has received your purchase order and will be contact shortly
+                                        </p>
+                                        <Link href={'/'}><a className={classNames('btn-second', styles.shopping)}>Continue
+                                            shopping</a></Link>
+                                        <p className={styles.save}>
+                                            Save my information for faster checkout and to view your purchases. <Link
+                                            href={'/'}><a>Create an account</a></Link>
+                                        </p>
+                                        <h3>Get more deals</h3>
+                                        <p>
+                                            Get access to hundreds of discount links, monthly giveaways, and exclusive
+                                            monthly hype drops.
+                                        </p>
+                                        <Link href={'/'}><a className={classNames('btn-primary', styles.shopping)}>Continue
+                                            shopping</a></Link>
+                                    </div>}
                             </div>
                         </div>
                     </div>

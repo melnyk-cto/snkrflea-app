@@ -1,6 +1,6 @@
 
 
-const URL = 'http://localhost:4000/'
+const URL = 'https://snkrfleaapi.herokuapp.com/';
 // import fetchIntercept from 'fetch-intercept';
 
 
@@ -74,7 +74,7 @@ export const signUpByEmail = (data) => (
   }
 ));
 
-export const signInByGoogle = (data) => (
+export const signInByGoogle = () => (
     fetch(`${URL}api/auth/google`, {
         method: 'GET',
         mode: 'cors', // no-cors, *cors, same-origin
