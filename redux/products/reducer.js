@@ -3,7 +3,8 @@ import { productsActions } from './actions';
 
 const initialState = {
     items: [],
-    product: null
+    product: null,
+    marketPlace: []
 };
 
 export const productsReducer = handleActions({
@@ -18,6 +19,10 @@ export const productsReducer = handleActions({
         [productsActions.setSelectedProduct]: (state, {payload}) => ({
             ...state,
             product: {...payload},
+        }),
+        [productsActions.setMarketPlace]: (state, {payload}) => ({
+            ...state,
+            marketPlace: [...payload],
         }),
     },
     initialState,

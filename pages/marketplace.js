@@ -1,5 +1,5 @@
 // core
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 // Library
 import Link from 'next/link'
@@ -9,8 +9,18 @@ import classNames from "classnames";
 import { FilterItem, Layout, ProductItem, PremiumLinks } from "../components";
 import { routes } from "../constants/routes";
 
+import { useDispatch, useSelector } from "react-redux";
+
+import {
+    getMarketPlaceState
+} from "../redux/products/selectors";
+
 // assets
 import styles from '../styles/Marketplace.module.scss'
+
+import {
+    GET_MARKET_PLACE_REQUEST
+} from "../redux/products/sagas";
 
 const filters = [
     {title: 'Brand', items: ['Nike', 'Adidas', 'Asics'], link: true},
@@ -30,7 +40,13 @@ const products = [
 ];
 
 const Marketplace = () => {
+    const dispatch = useDispatch();
+    const marketPlaceList = useSelector(getMarketPlaceState);
     const [showFilters, setShowFilters] = useState(true);
+
+    useEffect(() => {
+        dispatch({type: GET_MARKET_PLACE_REQUEST, payload: null})
+    }, []);
     return (
         <Layout>
             <section className={styles.marketplace}>
@@ -46,7 +62,7 @@ const Marketplace = () => {
                         </div>
                         <div className={styles.products}>
                             <div className={styles.productsItems}>
-                                {products.map((product, index) => (
+                                {marketPlaceList.map((product, index) => (
                                     <ProductItem key={index} product={product} />
                                 ))}
                             </div>
