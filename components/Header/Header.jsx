@@ -12,7 +12,7 @@ import { authActions } from "../../redux/auth/actions";
 // assets
 import styles from './Header.module.scss'
 
-export const Header = () => {
+export const Header = ({user = null}) => {
     const dispatch = useDispatch();
 
     const setShowLogin = (state) => dispatch(authActions.showLoginModal(state));
@@ -37,7 +37,15 @@ export const Header = () => {
                     {/*        Account*/}
                     {/*    </a>*/}
                     {/*</Link>*/}
-                    <Link href={routes.home}>
+                    { user ? <Link href={routes.home}>
+                        <a onClick={(e) => {
+                            setShowLogin(true);
+                            e.preventDefault()
+                        }}
+                        className={styles.menuItem} >
+                            Log out
+                        </a>
+                    </Link> : <Link href={routes.home}>
                         <a onClick={(e) => {
                             setShowLogin(true);
                             e.preventDefault()
@@ -46,7 +54,7 @@ export const Header = () => {
                         >
                             Login
                         </a>
-                    </Link>
+                    </Link>}
                     <Link href={routes.home}>
                         <a
                             onClick={(e) => {

@@ -27,7 +27,8 @@ import {
     showRegisterPremiumModal,
     showContactModal,
     showReportModal,
-    showCreateStoreModal
+    showCreateStoreModal,
+    getUserState
 } from "../../redux/auth/selectors";
 import { getIsLoading } from "../../redux/general/selectors";
 
@@ -39,6 +40,7 @@ export const Layout = ({children}) => {
     const showPlans = useSelector(showPlansModal);
     const showRegisterPremium = useSelector(showRegisterPremiumModal);
     const showContact = useSelector(showContactModal);
+    const user = useSelector(getUserState);
     const showReport = useSelector(showReportModal);
     const showCreateStore = useSelector(showCreateStoreModal);
     const isLoading = useSelector(getIsLoading);
@@ -49,7 +51,7 @@ export const Layout = ({children}) => {
                 <title>SNKRFLEA</title>
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
             </Head>
-            <Header />
+            <Header user={user}/>
             {isLoading && <Loading />}
             {showRegister && <Register classname='register' />}
             {showRegisterPremium && <RegisterPremium classname='premium' />}
