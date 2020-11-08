@@ -8,3 +8,4 @@ export const showReportModal = state => state.auth.reportModalShowing;
 export const showCreateStoreModal = state => state.auth.createStoreModalShowing;
 export const getUserState = state => state.auth.user;
 export const getAuthorizedErrorState = state => state.auth.unauthorizedError;
+export const getAuthAlreadyErrorState = state => state.auth.alreadyError;

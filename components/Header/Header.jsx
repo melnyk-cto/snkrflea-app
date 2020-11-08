@@ -32,11 +32,11 @@ export const Header = () => {
                     </div>
                 </div>
                 <div className={styles.navItems}>
-                    <Link href={routes.selling}>
-                        <a className={styles.menuItem}>
-                            Account
-                        </a>
-                    </Link>
+                    {/*<Link href={routes.selling}>*/}
+                    {/*    <a className={styles.menuItem}>*/}
+                    {/*        Account*/}
+                    {/*    </a>*/}
+                    {/*</Link>*/}
                     <Link href={routes.home}>
                         <a onClick={(e) => {
                             setShowLogin(true);
@@ -58,7 +58,7 @@ export const Header = () => {
                             Join
                         </a>
                     </Link>
-                    <Link href={routes.buy}>
+                    <Link href={routes.marketplace}>
                         <a className={styles.menuItem}>
                             Buy
                         </a>
@@ -68,8 +68,13 @@ export const Header = () => {
                             Premium
                         </a>
                     </Link>
-                    <Link href={routes.sell}>
-                        <a className={styles.menuItem}>
+                    <Link href={routes.productList}>
+                        <a
+                            onClick={(e) => {
+                                setShowPlans(true);
+                                e.preventDefault()
+                            }}
+                            className={styles.menuItem}>
                             Sell
                         </a>
                     </Link>

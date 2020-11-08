@@ -1,7 +1,7 @@
 
 
-const URL = 'http://localhost:4000/';
-const TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTcsImVtYWlsIjoicHVyY2hhc2VzdGVzdEBnbWFpbC5jb20iLCJuYW1lIjpudWxsLCJpYXQiOjE2MDQ4Mjk0MjN9.pNJ4a9qwj9yb3w0AGSnJjcTwcwF2n0ft1uTNO3Rt0mE'
+const URL = 'https://snkrfleaapi.herokuapp.com/';
+const TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTcsImVtYWlsIjoicHVyY2hhc2VzdGVzdEBnbWFpbC5jb20iLCJuYW1lIjpudWxsLCJpYXQiOjE2MDQ4Mjk0MjN9.pNJ4a9qwj9yb3w0AGSnJjcTwcwF2n0ft1uTNO3Rt0mE';
 // import fetchIntercept from 'fetch-intercept';
 
 

@@ -8,11 +8,12 @@ export const USER_SIGN_IN_BY_EMAIL_REQUEST = 'USER_SIGN_IN_BY_EMAIL_REQUEST';
 function* authByEmail(action) { 
   const response = yield call(Api.signInByEmail, action.payload);
   if (response.ok) {
-    const data = yield call([response, response.json])
+    const data = yield call([response, response.json]);
     yield put(authActions.userSignInSucceded(data));
     yield put(authActions.showLoginModal(false));
   } else {
       yield put(authActions.userUnauthorizedError(true));
+      yield put(authActions.userAlreadyError(true));
   }
 }
 

@@ -25,7 +25,8 @@ export const authActions = createActions(
 
         // Auth
         USER_SIGN_IN_SUCCEDED: user => user,
-        USER_UNAUTHORIZED_ERROR: status => status
+        USER_UNAUTHORIZED_ERROR: status => status,
+        USER_ALREADY_ERROR: status => status
     },
     {
         prefix: 'Auth',

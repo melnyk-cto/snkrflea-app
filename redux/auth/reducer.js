@@ -3,6 +3,7 @@ import { authActions } from './actions';
 
 const initialState = {
     user: null,
+    alreadyError: false,
     unauthorizedError: false,
     registerModalShowing: false,
     loginModalShowing: false,
@@ -22,6 +23,10 @@ export const authReducer = handleActions({
         [authActions.userUnauthorizedError]: (state, {payload}) => ({
             ...state,
             unauthorizedError: payload,
+        }),
+        [authActions.userAlreadyError]: (state, {payload}) => ({
+            ...state,
+            alreadyError: payload,
         }),
         [authActions.showRegisterModal]: (state, {payload}) => ({
             ...state,

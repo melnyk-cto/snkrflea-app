@@ -14,7 +14,6 @@ import { ModalLayout } from "../../../components";
 import { authActions } from "../../../redux/auth/actions";
 
 import {
-    getUserState,
     getAuthorizedErrorState
 } from "../../../redux/auth/selectors";
 
@@ -27,19 +26,19 @@ import styles from './Login.module.scss'
 
 export const Login = () => {
     const dispatch = useDispatch();
-    const user = useSelector(getUserState);
     const showUnathorizedError = useSelector(getAuthorizedErrorState);
     const setShowPlans = (state) => dispatch(authActions.showPlansModal(state));
     const setShowLogin = (state) => dispatch(authActions.showLoginModal(state));
+    const setUnathorizedError = (state) => dispatch(authActions.userUnauthorizedError(state));
 
-    
+
     const responseFacebook = (response) => {
         console.log(response);
     };
 
-    const responseGoogle = (response) => {
-        console.log(response);
-    };
+    // const responseGoogle = (response) => {
+    //     console.log(response);
+    // };
 
     return (
         <ModalLayout
@@ -55,17 +54,18 @@ export const Login = () => {
                         Create an account
                     </p>
                 </h1>
-                { showUnathorizedError ? <p>Error</p> : null }
+                {showUnathorizedError ? <p className='error ta-c'>User Not Found</p> : null}
                 <Formik
                     initialValues={{email: '', password: ''}}
                     validationSchema={loginSchema}
                     onSubmit={(values, {setSubmitting}) => {
-                        dispatch({ type: USER_SIGN_IN_BY_EMAIL_REQUEST, payload: values})
-                          setSubmitting(false);
+                        dispatch({type: USER_SIGN_IN_BY_EMAIL_REQUEST, payload: values});
+                        setSubmitting(false);
                     }}
                 >
                     {({isSubmitting}) => (
-                        <Form>
+                        <Form onChange={() => setUnathorizedError(false)}
+                        >
                             <label>
                                 <span>Password</span>
                                 <Field type="email" name="email" placeholder='Enter Email' />

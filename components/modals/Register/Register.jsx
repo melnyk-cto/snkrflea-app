@@ -1,5 +1,5 @@
 // core
-import React, { useState } from 'react'
+import React  from 'react'
 
 // library
 // import PropTypes from 'prop-types'
@@ -19,6 +19,7 @@ import { authActions } from "../../../redux/auth/actions";
 import { signUpByEmail } from '../../../api/actions.js'
 
 import {
+    getAuthAlreadyErrorState,
     getUserState
 } from "../../../redux/auth/selectors";
 
@@ -32,24 +33,24 @@ import styles from './Register.module.scss'
 export const Register = ({classname}) => {
     const dispatch = useDispatch();
     const user = useSelector(getUserState);
-    const [success, setSuccess] = useState(false);
-    const [signUpError, setSignUpError] = useState(false);
+    const showUserAlreadyError = useSelector(getAuthAlreadyErrorState);
 
     const setShowRegister = (state) => dispatch(authActions.showRegisterModal(state));
     const setShowLogin = (state) => dispatch(authActions.showLoginModal(state));
     const setShowPlans = (state) => dispatch(authActions.showPlansModal(state));
+    const setUserAlreadyError = (state) => dispatch(authActions.userAlreadyError(state));
 
     const responseFacebook = (response) => {
         console.log(response);
     };
 
-    const responseGoogle = (response) => {
-        console.log(response);
-    };
+    // const responseGoogle = (response) => {
+    //     console.log(response);
+    // };
 
     function handleErrors(response) {
         if (!response.ok) {
-            setSignUpError(true)
+            setUserAlreadyError(true);
             throw Error(response.statusText);
         }
         return response;
@@ -80,72 +81,70 @@ export const Register = ({classname}) => {
                         }}>
                     Login
                 </span>
-                    </h1> 
-                    { signUpError ? <p>Error</p> : null }
+                    </h1>
+                    {showUserAlreadyError ? <p className='error ta-c'>This user is already registered</p> : null}
                     <Formik
-                    initialValues={{email: '', password: ''}}
-                    validationSchema={registerSchema}
-                    onSubmit={async (values, {setSubmitting}) => {
-                      
-                        setSubmitting(false)
-                    await signUpByEmail({ ...values, productId: 'price_1HiLerDRG7cpN5KtDWBJXisO'})
-                    .then(handleErrors)
-                    .then(d => d.json())
-                    .then(() => {
-                        dispatch({ type: USER_SIGN_IN_BY_EMAIL_REQUEST, payload: values});
-                    })
-                    
-                    }}
-                >
-                    {({isSubmitting}) => (
-                        <Form>
-                            <label>
-                                <span>Email</span>
-                                <Field type="email" name="email" placeholder='Enter Email' />
-                                <ErrorMessage className='error' name="email" component="div" />
-                            </label>
-                            <label>
-                                <span>Password</span>
-                                <Field type="password" name="password" placeholder='Password' />
-                                <ErrorMessage className='error' name="password" component="div" />
-                            </label>
-                            <label className="checkbox">
-                                <Field type="checkbox" name="privacy" />
-                                <span className="checkmark" />
-                                <p>
-                                    By creating an account, you agree to the
-                                    <Link href={routes.privacy}><a>Terms and
-                                        Conditions</a></Link> and <Link href={routes.privacy}><a>Privacy
-                                    Policy</a></Link>
-                                </p>
-                            </label>
-                            <button type="submit" className={classNames('btn-second', styles.continue)}
-                                    disabled={isSubmitting}>Continue
-                            </button>
-                            <p className={styles.signUp}>Or continue with</p>
-                            <div className={styles.buttons}>
-                                <FacebookLogin
-                                    appId="799782497476434"
-                                    autoLoad={false}
-                                    callback={responseFacebook}
-                                    render={renderProps => (
-                                        <SocialButton
-                                            onClick={renderProps.onClick}
-                                            styles={styles.facebook}
-                                            iconClasses={"fab fa-facebook-f"}
-                                            buttonText={"Facebook"} />
-                                    )}
-                                />
-                                <SocialButton styles={styles.google}
-                                              iconClasses={"fab fa-facebook-f"}
-                                              buttonText={"Google"}
-                                              onClick={() => {
-                                                  window.location.href = "http://localhost:4000/api/auth/google";
-                                              }} />
-                            </div>
-                        </Form>
-                    )}
-                </Formik>
+                        initialValues={{email: '', password: ''}}
+                        validationSchema={registerSchema}
+                        onSubmit={async (values, {setSubmitting}) => {
+                            setSubmitting(false);
+                            await signUpByEmail({...values, productId: 'price_1HiLerDRG7cpN5KtDWBJXisO'})
+                                .then(handleErrors)
+                                .then(d => d.json())
+                                .then(() => {
+                                    dispatch({type: USER_SIGN_IN_BY_EMAIL_REQUEST, payload: values});
+                                })
+                        }}
+                    >
+                        {({isSubmitting}) => (
+                            <Form onChange={() => setUserAlreadyError(false)}>
+                                <label>
+                                    <span>Email</span>
+                                    <Field type="email" name="email" placeholder='Enter Email' />
+                                    <ErrorMessage className='error' name="email" component="div" />
+                                </label>
+                                <label>
+                                    <span>Password</span>
+                                    <Field type="password" name="password" placeholder='Password' />
+                                    <ErrorMessage className='error' name="password" component="div" />
+                                </label>
+                                <label className="checkbox">
+                                    <Field type="checkbox" name="privacy" />
+                                    <span className="checkmark" />
+                                    <p>
+                                        By creating an account, you agree to the
+                                        <Link href={routes.privacy}><a>Terms and
+                                            Conditions</a></Link> and <Link href={routes.privacy}><a>Privacy
+                                        Policy</a></Link>
+                                    </p>
+                                </label>
+                                <button type="submit" className={classNames('btn-second', styles.continue)}
+                                        disabled={isSubmitting}>Continue
+                                </button>
+                                <p className={styles.signUp}>Or continue with</p>
+                                <div className={styles.buttons}>
+                                    <FacebookLogin
+                                        appId="799782497476434"
+                                        autoLoad={false}
+                                        callback={responseFacebook}
+                                        render={renderProps => (
+                                            <SocialButton
+                                                onClick={renderProps.onClick}
+                                                styles={styles.facebook}
+                                                iconClasses={"fab fa-facebook-f"}
+                                                buttonText={"Facebook"} />
+                                        )}
+                                    />
+                                    <SocialButton styles={styles.google}
+                                                  iconClasses={"fab fa-facebook-f"}
+                                                  buttonText={"Google"}
+                                                  onClick={() => {
+                                                      window.location.href = "http://localhost:4000/api/auth/google";
+                                                  }} />
+                                </div>
+                            </Form>
+                        )}
+                    </Formik>
                 </div>
                 : <div className={styles.success}>
                     <img src='/icons/boots.svg' alt='' />

@@ -1,9 +1,7 @@
 export const routes = {
     home: '/',
     shop: '/shop',
-    buy: '/buy',
-    sell: '/sell',
-    product: '/product/:id',
+    product: '/product',
     productList: '/product-list',
     premium: '/premium',
     selling: '/account/selling',
