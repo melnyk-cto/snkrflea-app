@@ -148,6 +148,20 @@ export const getSellingList = () => (
   }
 ));
 
+export const getStoreByIdRequest = (id) => (
+  fetch(`${URL}api/store/${id}`, {
+    method: 'GET', // *GET, POST, PUT, DELETE, etc.
+  //  mode: '*cors', // no-cors, *cors, same-origin
+    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+    headers: {
+      Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJ0ZXN0NTQ1NDVzZHNAZ21haWwuY29tIiwibmFtZSI6bnVsbCwiaWF0IjoxNjA0Nzg5NzQyfQ.-QEO_t5Ydlj5ktzF4VhfC9nts4zayLv6NGuAMv14xg8'
+    },
+    credentials: 'same-origin', // include, *same-origin, omit
+    redirect: 'follow', // manual, *follow, error
+    referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+  }
+));
+
 export const getProductById = (id) => (
   fetch(`${URL}api/products/${id}`, {
     method: 'GET', // *GET, POST, PUT, DELETE, etc.

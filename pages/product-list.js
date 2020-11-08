@@ -5,7 +5,7 @@ import React, { useState } from 'react'
 import { CustomSelect, DropZone, Layout } from "../components";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { productSchema } from '../schemas/index'
 // assets
 import styles from '../styles/ProductList.module.scss'
@@ -14,7 +14,6 @@ import {
     ADD_NEW_PRODUCT_REQUEST
 } from "../redux/products/sagas";
 
-import { productsActions } from "../redux/products/actions";
 
 const optionsValue = [
     {value: 'title_1', label: 'Title 1'},

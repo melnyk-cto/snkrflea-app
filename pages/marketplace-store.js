@@ -1,26 +1,36 @@
 // core
-import React from 'react'
+import React, { useEffect } from 'react'
 
 // Library
 import Link from 'next/link'
+
+import { useDispatch, useSelector } from "react-redux";
+
+import {
+    getSelectedStoreState
+} from "../redux/store/selectors";
 
 // components
 import { Layout, ProductItem } from "../components";
 import { routes } from "../constants/routes";
 
+import {
+    GET_STORE_BY_ID_REQUEST
+} from "../redux/store/sagas";
+
+
 // assets
 import styles from '../styles/MarketplaceStore.module.scss'
 
-const products = [
-    {title: 'Yeezy 350 V2 ‘Carbon’', name: '@stansstore', price: '$1240.29', image: '/images/boots.png'},
-    {title: 'Off-White X Air Rubber', name: '@stansstore', price: '$1240.29', image: '/images/boots.png'},
-    {title: 'Izabella Tabakova', name: '@supremekciks', price: '$1240.29', image: '/images/boots.png'},
-    {title: 'Opi Watihana', name: '@sneakerisland', price: '$1240.29', image: '/images/boots.png'},
-    {title: 'Opi Watihana', name: '@sneakerisland', price: '$1240.29', image: '/images/boots.png'},
-    {title: 'Opi Watihana', name: '@sneakerisland', price: '$1240.29', image: '/images/boots.png'},
-];
 
 const MarketplaceStore = () => {
+    const dispatch = useDispatch();
+    const store = useSelector(getSelectedStoreState);
+
+    useEffect(() => { 
+       dispatch({ type: GET_STORE_BY_ID_REQUEST, payload: 1});
+    }, []);
+
     return (
         <Layout>
             <section className={styles.marketplace}>
@@ -29,13 +39,13 @@ const MarketplaceStore = () => {
                         <div className={styles.marketplaceLeft}>
                            <div className={styles.userWrapper}>
                                <div className={styles.user}>
-                                   <img src='/images/user.png' alt='' />
+                                   <img src={store.store.img} alt='' />
                                    <div className={styles.description}>
                                        <div className={styles.info}>
-                                           <h3>Seb’s Shoe Store</h3>
+                                           <h3>{store.store.name}</h3>
                                            <img src='/icons/instagram.svg' alt='' />
                                            <Link href={routes.marketplace}>
-                                               <a>https://instagram.com/hello</a>
+                                             <a>https://instagram.com/{store?.store.insragram}</a>
                                            </Link>
                                        </div>
                                        <div className={styles.instagram}>
@@ -52,8 +62,8 @@ const MarketplaceStore = () => {
                                {/*</div>*/}
                                <div className={styles.products}>
                                    <div className={styles.productsItems}>
-                                       {products.map((product, index) => (
-                                           <ProductItem key={index} product={product} />
+                                       {store?.products.map((product, index) => (
+                                           <ProductItem key={index} product={{...product, instagram: store?.store.insragram }} />
                                        ))}
                                    </div>
                                    <div className={styles.addMobile}>

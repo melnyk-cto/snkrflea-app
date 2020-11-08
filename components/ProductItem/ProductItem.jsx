@@ -6,7 +6,6 @@ import styles from "./ProductItem.module.scss";
 
 
 export const ProductItem = ({product}) => {
-
     return (
         <div className={styles.productItem}>
             <div className={styles.image}>
