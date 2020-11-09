@@ -15,10 +15,12 @@ import { authActions } from "../../../redux/auth/actions";
 // assets
 import styles from './CreateStore.module.scss'
 import Link from "next/link";
+import { CREATE_MY_STORE_REQUEST } from "../../../redux/cabinet/sagas";
 
 export const CreateStore = ({classname}) => {
     const dispatch = useDispatch();
     const [success, setSuccess] = useState(false);
+    // const [avatar, setAvatar] = useState({});
 
     const setShowCreateStore = (state) => dispatch(authActions.showCreateStoreModal(state));
 
@@ -34,21 +36,22 @@ export const CreateStore = ({classname}) => {
                         <Formik
                             initialValues={{
                                 name: '',
-                                email: '',
-                                tikTok: '',
-                                instagram: '',
-                                twitter: '',
+                                contactEmail: '',
                                 address: '',
-                                apt: '',
+                                twitter: '',
+                                tiktok: '',
+                                instagram: '',
                             }}
                             validationSchema={storeSchema}
-                            onSubmit={(values, {setSubmitting}) => {
-                                setSubmitting(false);
-                            }}
-                        >
+                            onSubmit={async (values) => {
+                                dispatch({type: CREATE_MY_STORE_REQUEST, payload: {...values}})
+                            }}>
                             {({isSubmitting}) => (
                                 <Form>
                                     <div className={styles.avatar}>
+                                        {/*<input type="file" multiple onChange={(e) => {*/}
+                                        {/*    setAvatar(e.target.files)*/}
+                                        {/*}} />*/}
                                         <img src='/icons/avatar.svg' alt='' />
                                     </div>
                                     <label>
@@ -70,13 +73,13 @@ export const CreateStore = ({classname}) => {
                                     </p>
                                     <label>
                                         <span>Contact email</span>
-                                        <Field type="email" name="email" placeholder='Enter Email' />
-                                        <ErrorMessage className='error' name="email" component="div" />
+                                        <Field type="email" name="contactEmail" placeholder='Enter Email' />
+                                        <ErrorMessage className='error' name="contactEmail" component="div" />
                                     </label>
                                     <label>
                                         <span>TikTok username</span>
-                                        <Field type="text" name="tikTok" placeholder='Enter TikTok' />
-                                        <ErrorMessage className='error' name="tikTok" component="div" />
+                                        <Field type="text" name="tiktok" placeholder='Enter TikTok' />
+                                        <ErrorMessage className='error' name="tiktok" component="div" />
                                     </label>
                                     <label>
                                         <span>Instagram Username</span>

@@ -30,13 +30,11 @@ export const reportSchema = object({
 
 export const storeSchema = object({
     name: string().required(),
-    email: string().required().email(),
-    comments: string(),
-    tikTok: string(),
-    instagram: string(),
-    twitter: string(),
+    contactEmail: string().required().email(),
     address: string(),
-    apt: string(),
+    twitter: string(),
+    tiktok: string(),
+    instagram: string(),
 });
 
 export const productSchema = object({

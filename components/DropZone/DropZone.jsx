@@ -4,8 +4,7 @@ import React, { useState, useEffect } from 'react'
 // library
 import { useDropzone } from 'react-dropzone';
 
-export const DropZone = () => {
-    const [files, setFiles] = useState([]);
+export const DropZone = ({files, setFiles}) => {
 
     const {getRootProps, getInputProps, isDragActive} = useDropzone({
         accept: 'image/*',

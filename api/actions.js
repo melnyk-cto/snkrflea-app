@@ -133,6 +133,34 @@ export const addNewProduct = (formData) => (
   }
 ));
 
+export const createMyStoreRequest = (formData) => (
+    fetch(`${URL}api/store`, {
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            //  mode: '*cors', // no-cors, *cors, same-origin
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            headers: {
+                Authorization: `Bearer ${TOKEN}`
+            },
+            credentials: 'same-origin', // include, *same-origin, omit
+            redirect: 'follow', // manual, *follow, error
+            referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+            body: formData // body data type must match "Content-Type" header
+        }
+    ));
+
+export const getMyStoreRequest = () => (
+    fetch(`${URL}api/store`, {
+            method: 'GET', // *GET, POST, PUT, DELETE, etc.
+            //  mode: '*cors', // no-cors, *cors, same-origin
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            headers: {
+                Authorization: `Bearer ${TOKEN}`
+            },
+            credentials: 'same-origin', // include, *same-origin, omit
+            redirect: 'follow', // manual, *follow, error
+            referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+        }
+));
 
 export const getMarketplaceList = () => (
   fetch(`${URL}api/products`, {

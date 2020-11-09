@@ -35,7 +35,7 @@ const MarketplaceStore = () => {
         <Layout>
             <section className={styles.marketplace}>
                 <div className="container">
-                    <div className={styles.marketplaceInner}>
+                    { store ? <div className={styles.marketplaceInner}>
                         <div className={styles.marketplaceLeft}>
                            <div className={styles.userWrapper}>
                                <div className={styles.user}>
@@ -75,7 +75,7 @@ const MarketplaceStore = () => {
                         <div className={styles.addDesktop}>
                             <h1>AD</h1>
                         </div>
-                    </div>
+                    </div> : null }
                 </div>
             </section>
         </Layout>
