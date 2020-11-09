@@ -5,7 +5,6 @@ import React from 'react'
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 
 // components
-import { signUpByEmail } from '../../api/actions.js'
 
 export const CheckoutForm = ({response}) => {
     const stripe = useStripe();
@@ -35,7 +34,7 @@ export const CheckoutForm = ({response}) => {
         if (error) {
             console.log('[error]', error);
         } else {
-            response(paymentMethod.id)
+            response(paymentMethod.id);
             // await signUpByEmail({
             //     email: 'testemail2@gmail.com',
             //     password: 'testemail@gmail.com',

@@ -7,7 +7,7 @@ const initialState = {
     unauthorizedError: false,
     registerModalShowing: false,
     loginModalShowing: false,
-    premiumPaymentModalShowing: true,
+    premiumPaymentModalShowing: false,
     plansModalShowing: false,
     registerPremiumModalShowing: false,
     contactModalShowing: false,
@@ -21,7 +21,7 @@ export const authReducer = handleActions({
             ...state,
             user: payload,
         }),
-        [authActions.userLogOut]: (state, {payload}) => ({
+        [authActions.userLogOut]: (state) => ({
             ...state,
             user: null,
         }),
