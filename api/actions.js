@@ -1,9 +1,8 @@
 import fetchIntercept from 'fetch-intercept';
 import { getAuthToken } from '../redux/localStorage'
 
-const URL= 'https://snkrfleaapi.herokuapp.com/api/';
-
-// const URL= 'http://localhost:4000/api/';
+//const URL= 'https://snkrfleaapi.herokuapp.com/api/';
+const URL= 'http://localhost:4000/api/';
 
 const paths = {
   'sellings': 'products/vendor',
@@ -17,7 +16,8 @@ const paths = {
   'addProduct': 'products',
   'createStore': 'store',
   'getStore': 'store', 
-  'subscripeToPremium': 'users/subsciption/premium'
+  'subscripeToPremium': 'users/subsciption/premium',
+  'billings': 'users/subscription/billings'
 }
 
 
@@ -88,6 +88,10 @@ export const addNewProduct = (formData) => (
 
 export const subscripeToPremium = (paymentMethodId) => (
   fetch(`${paths.subscripeToPremium}/${paymentMethodId}`, { method: 'POST' }
+));
+
+export const subscriptionBillings = () => (
+  fetch(paths.billings, { method: 'GET' }
 ));
 
 export const createMyStoreRequest = (formData) => (

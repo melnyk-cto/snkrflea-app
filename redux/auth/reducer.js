@@ -7,13 +7,14 @@ const initialState = {
     unauthorizedError: false,
     registerModalShowing: false,
     loginModalShowing: false,
-    premiumPaymentModalShowing: false,
+    premiumPaymentModalShowing: true,
     plansModalShowing: false,
     registerPremiumModalShowing: false,
     contactModalShowing: false,
     reportModalShowing: false,
     createStoreModalShowing: false,
 };
+
 
 export const authReducer = handleActions({
         [authActions.userSignInSucceded]: (state, {payload}) => ({
