@@ -15,12 +15,14 @@ import styles from './Header.module.scss'
 import {
     USER_LOG_OUT_REQUEST
 } from "../../redux/auth/sagas";
+import { generalActions } from "../../redux/general/actions";
 
 export const Header = ({user = null}) => {
     const dispatch = useDispatch();
 
     const setShowLogin = (state) => dispatch(authActions.showLoginModal(state));
     const setShowPlans = (state) => dispatch(authActions.showPlansModal(state));
+    const showLoading = (state) => dispatch(generalActions.showLoading(state));
 
     return (
         <header className={styles.header}>
@@ -36,17 +38,20 @@ export const Header = ({user = null}) => {
                     </div>
                 </div>
                 <div className={styles.navItems}>
-                { user ?  <Link href={routes.selling}>
-                       <a className={styles.menuItem}>
-                           Account
+                    {user ? <Link href={routes.selling}>
+                        <a className={styles.menuItem}>
+                            Account
                         </a>
-                    </Link> : null }
-                    { user ? <Link href={routes.home}>
+                    </Link> : null}
+                    {user ? <Link href={routes.home}>
                         <a onClick={(e) => {
-                           dispatch({ type: USER_LOG_OUT_REQUEST});
-                            e.preventDefault()
+                            e.preventDefault();
+                            showLoading(true);
+                            setTimeout(()=> {
+                                dispatch({type: USER_LOG_OUT_REQUEST});
+                            },1000)
                         }}
-                        className={styles.menuItem} >
+                           className={styles.menuItem}>
                             Log out
                         </a>
                     </Link> : <Link href={routes.home}>

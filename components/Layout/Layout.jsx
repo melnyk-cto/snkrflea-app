@@ -1,10 +1,10 @@
 // core
-import React from 'react'
+import React, { useEffect } from 'react'
 
 // library
 import Head from 'next/head'
 import PropTypes from 'prop-types'
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 // components
 import {
@@ -31,9 +31,12 @@ import {
     getUserState
 } from "../../redux/auth/selectors";
 import { getIsLoading } from "../../redux/general/selectors";
+import { generalActions } from "../../redux/general/actions";
 
 
 export const Layout = ({children}) => {
+    const dispatch = useDispatch();
+
     const showRegister = useSelector(showRegisterModal);
     const showLogin = useSelector(showLoginModal);
     const showPremiumPayment = useSelector(showPremiumPaymentModal);
@@ -44,6 +47,12 @@ export const Layout = ({children}) => {
     const showReport = useSelector(showReportModal);
     const showCreateStore = useSelector(showCreateStoreModal);
     const isLoading = useSelector(getIsLoading);
+
+    const showLoading = (state) => dispatch(generalActions.showLoading(state));
+
+    useEffect(()=> {
+        showLoading(false)
+    },[]);
 
     return (
         <>

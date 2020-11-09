@@ -6,7 +6,7 @@ const initialState = {
 };
 
 export const generalReducer = handleActions({
-        [generalActions.setIsLoading]: (state, {payload}) => ({
+        [generalActions.showLoading]: (state, {payload}) => ({
             ...state,
             isLoading: payload,
         }),

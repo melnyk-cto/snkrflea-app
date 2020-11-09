@@ -24,6 +24,7 @@ import {
 
 // assets
 import styles from './Login.module.scss'
+import { generalActions } from "../../../redux/general/actions";
 
 export const Login = () => {
     const dispatch = useDispatch();
@@ -31,11 +32,12 @@ export const Login = () => {
     const setShowPlans = (state) => dispatch(authActions.showPlansModal(state));
     const setShowLogin = (state) => dispatch(authActions.showLoginModal(state));
     const setUnathorizedError = (state) => dispatch(authActions.userUnauthorizedError(state));
+    const showLoading = (state) => dispatch(generalActions.showLoading(state));
 
 
     const responseFacebook = (response) => {
-        const { accessToken } = response;
-        dispatch({type: USER_SIGN_IN_BY_FACEBOOK_REQUEST, payload: accessToken });
+        const {accessToken} = response;
+        dispatch({type: USER_SIGN_IN_BY_FACEBOOK_REQUEST, payload: accessToken});
     };
 
     // const responseGoogle = (response) => {
@@ -63,6 +65,7 @@ export const Login = () => {
                     onSubmit={(values, {setSubmitting}) => {
                         dispatch({type: USER_SIGN_IN_BY_EMAIL_REQUEST, payload: values});
                         setSubmitting(false);
+                        showLoading(true);
                     }}
                 >
                     {({isSubmitting}) => (

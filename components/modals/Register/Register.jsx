@@ -29,6 +29,7 @@ import {
 
 // assets
 import styles from './Register.module.scss'
+import { generalActions } from "../../../redux/general/actions";
 
 export const Register = ({classname}) => {
     const dispatch = useDispatch();
@@ -36,9 +37,11 @@ export const Register = ({classname}) => {
     const showUserAlreadyError = useSelector(getAuthAlreadyErrorState);
 
     const setShowRegister = (state) => dispatch(authActions.showRegisterModal(state));
+    const setShowCreateStore = (state) => dispatch(authActions.showCreateStoreModal(state));
     const setShowLogin = (state) => dispatch(authActions.showLoginModal(state));
     const setShowPlans = (state) => dispatch(authActions.showPlansModal(state));
     const setUserAlreadyError = (state) => dispatch(authActions.userAlreadyError(state));
+    const showLoading = (state) => dispatch(generalActions.showLoading(state));
 
     const responseFacebook = (response) => {
         console.log(response);
@@ -50,6 +53,7 @@ export const Register = ({classname}) => {
 
     function handleErrors(response) {
         if (!response.ok) {
+            showLoading(false);
             setUserAlreadyError(true);
             throw Error(response.statusText);
         }
@@ -88,6 +92,7 @@ export const Register = ({classname}) => {
                         validationSchema={registerSchema}
                         onSubmit={async (values, {setSubmitting}) => {
                             setSubmitting(false);
+                            showLoading(true);
                             await signUpByEmail({...values})
                                 .then(handleErrors)
                                 .then(d => d.json())
@@ -149,7 +154,10 @@ export const Register = ({classname}) => {
                 : <div className={styles.success}>
                     <img src='/icons/boots.svg' alt='' />
                     <h3>Your account was <br /> successfully created!</h3>
-                    <button type='button' className='btn-second'>Create my store</button>
+                    <button type='button' className='btn-second' onClick={()=> {
+                        setShowRegister(false);
+                        setShowCreateStore(true);
+                    }}>Create my store</button>
                 </div>}
         </ModalLayout>
     )

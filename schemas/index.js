@@ -1,4 +1,4 @@
-import { object, string, bool, number } from 'yup';
+import { object, string, number } from 'yup';
 
 export const loginSchema = object({
     email: string()
@@ -14,7 +14,6 @@ export const registerSchema = object({
         .email(),
     password: string().required().min(5, 'Must be exactly 5 digits')
         .max(5, 'Must be exactly 5 digits'),
-    privacy: bool().oneOf([true], 'Field must be checked').required()
 });
 
 export const contactSchema = object({
