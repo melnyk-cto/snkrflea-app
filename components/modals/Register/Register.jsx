@@ -88,7 +88,7 @@ export const Register = ({classname}) => {
                         validationSchema={registerSchema}
                         onSubmit={async (values, {setSubmitting}) => {
                             setSubmitting(false);
-                            await signUpByEmail({...values, productId: 'price_1HiLerDRG7cpN5KtDWBJXisO'})
+                            await signUpByEmail({...values})
                                 .then(handleErrors)
                                 .then(d => d.json())
                                 .then(() => {
