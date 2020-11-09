@@ -18,7 +18,8 @@ import {
 } from "../../../redux/auth/selectors";
 
 import {
-    USER_SIGN_IN_BY_EMAIL_REQUEST
+    USER_SIGN_IN_BY_EMAIL_REQUEST,
+    USER_SIGN_IN_BY_FACEBOOK_REQUEST
 } from "../../../redux/auth/sagas";
 
 // assets
@@ -33,7 +34,8 @@ export const Login = () => {
 
 
     const responseFacebook = (response) => {
-        console.log(response);
+        const { accessToken } = response;
+        dispatch({type: USER_SIGN_IN_BY_FACEBOOK_REQUEST, payload: accessToken });
     };
 
     // const responseGoogle = (response) => {
@@ -82,7 +84,7 @@ export const Login = () => {
                             <p className={styles.signUp}>Or continue with</p>
                             <div className={styles.buttons}>
                                 <FacebookLogin
-                                    appId="799782497476434"
+                                    appId="365357578072889"
                                     autoLoad={false}
                                     callback={responseFacebook}
                                     render={renderProps => (
