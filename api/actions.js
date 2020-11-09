@@ -1,34 +1,51 @@
+import fetchIntercept from 'fetch-intercept';
 import { getAuthToken } from '../redux/localStorage'
 
-//const URL = 'http://localhost:4000/';
-const URL = 'https://snkrfleaapi.herokuapp.com/';
+const URL= 'https://snkrfleaapi.herokuapp.com/api/';
+
+const paths = {
+  'sellings': 'products/vendor',
+  'purchases': 'purchases',
+  'products': 'products',
+  'sign_in_by_email': 'auth/email/sign-in',
+  'sign_in_by_google': 'auth/google/sign-in',
+  'sign_up_by_google': 'auth/google/sign-up',
+  'sign_in_by_facebook': 'auth/facebook/sign-in',
+  'addProduct': 'products',
+  'createStore': 'store',
+  'getStore': 'store', 
+}
+
 const TOKEN = getAuthToken()
-// import fetchIntercept from 'fetch-intercept';
 
+const unregister = fetchIntercept.register({
+  request: function (url, config) {
+    if (Object.values(paths).includes(url)) {
+        const withDefaults = Object.assign({}, config);
+        withDefaults.headers =  new Headers({
+          'AUTHORIZATION': `Bearer ${TOKEN}`
+        });
+       return [`${URL}${url}`, withDefaults];
+    } else {
+       return [url, config];
+    }
+  },
 
-// const unregister = fetchIntercept.register({
-//   request: function (url, config) {
-//     console.log(config)
+  requestError: function (error) {
+      // Called when an error occured during another 'request' interceptor call
+      return Promise.reject(error);
+  },
 
-//       return [`http://localhost:4000/${url}`, config];
-//   },
+  response: function (response) {
+      // Modify the reponse object
+      return response;
+  },
 
-//   requestError: function (error) {
-//       // Called when an error occured during another 'request' interceptor call
-//       return Promise.reject(error);
-//   },
-
-  
-//   response: function (response) {
-//       // Modify the reponse object
-//       return response;
-//   },
-
-//   responseError: function (error) {
-//       // Handle an fetch error
-//       return Promise.reject(error);
-//   }
-// });
+  responseError: function (error) {
+      // Handle an fetch error
+      return Promise.reject(error);
+  }
+});
 
 
 // {
@@ -43,192 +60,57 @@ const TOKEN = getAuthToken()
 //   "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTgsImVtYWlsIjoicHVyY2hhc2VzdGVzdDJAZ21haWwuY29tIiwibmFtZSI6bnVsbCwiaWF0IjoxNjA0ODI5NDUzfQ.kaAYO6RSIzsq1ZoF4azAVyTo3r7wDAYjGA_N7GiHgqw"
 // }
 
-export const requestAuthInterceptor = (data) => (
-    fetch(`${URL}api/auth/sign-in`, {
-        method: 'POST', // *GET, POST, PUT, DELETE, etc.
-        mode: 'cors', // no-cors, *cors, same-origin
-        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-        credentials: 'same-origin', // include, *same-origin, omit
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        redirect: 'follow', // manual, *follow, error
-        referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-        body: JSON.stringify(data) // body data type must match "Content-Type" header
-    }
-));
-
 export const signInByEmail = (data) => (
-  fetch(`${URL}api/auth/email/sign-in`, {
-    method: 'POST', // *GET, POST, PUT, DELETE, etc.
-    mode: 'cors', // no-cors, *cors, same-origin
-    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-    credentials: 'same-origin', // include, *same-origin, omit
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    redirect: 'follow', // manual, *follow, error
-    referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-    body: JSON.stringify(data) // body data type must match "Content-Type" header
+  fetch(paths.sign_in_by_email, {
+    method: 'POST', 
+    body: JSON.stringify(data) 
   }
 ));
 
 export const signUpByEmail = (data) => (
-  fetch(`${URL}api/auth/email/sign-up`, {
-    method: 'POST', // *GET, POST, PUT, DELETE, etc.
-    mode: 'cors', // no-cors, *cors, same-origin
-    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-    credentials: 'same-origin', // include, *same-origin, omit
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    redirect: 'follow', // manual, *follow, error
-    referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-    body: JSON.stringify(data) // body data type must match "Content-Type" header
+  fetch(paths.sign_up_by_email, {
+    method: 'POST', body: JSON.stringify(data) 
   }
 ));
 
-
 export const signInByGoogle = () => (
-    fetch(`${URL}api/auth/google`, {
-        method: 'GET',
-        mode: 'cors', // no-cors, *cors, same-origin
-        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-        credentials: 'same-origin', // include, *same-origin, omit
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        redirect: 'follow', // manual, *follow, error
-        referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-        query: params,
-    }
+    fetch(paths.sign_in_by_google, { method: 'GET', query: params }
 ));
 
 export const signInByFacebook = (access_token) => (
-    fetch(`${URL}api/auth/facebook/sign-in?access_token=${access_token}`, {
+    fetch(`${paths.sign_in_by_facabook}?access_token=${access_token}`, {
         method: 'GET',
-        mode: 'cors', // no-cors, *cors, same-origin
-        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-        credentials: 'same-origin', // include, *same-origin, omit
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        redirect: 'follow', // manual, *follow, error
-        referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
     }
 ));
 
 export const addNewProduct = (formData) => (
-  fetch(`${URL}api/products`, {
-    method: 'POST', // *GET, POST, PUT, DELETE, etc.
-  //  mode: '*cors', // no-cors, *cors, same-origin
-    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-    headers: {
-      Authorization: `Bearer ${TOKEN}`
-    },
-    credentials: 'same-origin', // include, *same-origin, omit
-    redirect: 'follow', // manual, *follow, error
-    referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-    body: formData // body data type must match "Content-Type" header
-  }
+  fetch(paths.addProduct, { method: 'POST', body: formData }
 ));
 
 export const createMyStoreRequest = (formData) => (
-    fetch(`${URL}api/store`, {
-            method: 'POST', // *GET, POST, PUT, DELETE, etc.
-            //  mode: '*cors', // no-cors, *cors, same-origin
-            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-            headers: {
-                Authorization: `Bearer ${TOKEN}`
-            },
-            credentials: 'same-origin', // include, *same-origin, omit
-            redirect: 'follow', // manual, *follow, error
-            referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-            body: formData // body data type must match "Content-Type" header
-        }
-    ));
+    fetch(paths.createStore, { method: 'POST',  body: formData}
+));
 
 export const getMyStoreRequest = () => (
-    fetch(`${URL}api/store`, {
-            method: 'GET', // *GET, POST, PUT, DELETE, etc.
-            //  mode: '*cors', // no-cors, *cors, same-origin
-            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-            headers: {
-                Authorization: `Bearer ${TOKEN}`
-            },
-            credentials: 'same-origin', // include, *same-origin, omit
-            redirect: 'follow', // manual, *follow, error
-            referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-        }
+    fetch(paths.getStore, { method: 'GET' }
 ));
 
 export const getMarketplaceList = () => (
-  fetch(`${URL}api/products`, {
-    method: 'GET', // *GET, POST, PUT, DELETE, etc.
-  //  mode: '*cors', // no-cors, *cors, same-origin
-    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-    headers: {
-      Authorization: `Bearer ${TOKEN}`
-    },
-    credentials: 'same-origin', // include, *same-origin, omit
-    redirect: 'follow', // manual, *follow, error
-    referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-  }
+  fetch(paths.products, { method: 'GET' }
 ));
 
 export const getSellingList = () => (
-  fetch(`${URL}api/products/vendor`, {
-    method: 'GET', // *GET, POST, PUT, DELETE, etc.
-  //  mode: '*cors', // no-cors, *cors, same-origin
-    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-    headers: {
-      Authorization: `Bearer ${TOKEN}`
-    },
-    credentials: 'same-origin', // include, *same-origin, omit
-    redirect: 'follow', // manual, *follow, error
-    referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-  }
+  fetch(paths.sellings, { method: 'GET' }
 ));
 
 export const getPurchasesRequest = () => (
-  fetch(`${URL}api/purchases`, {
-    method: 'GET', // *GET, POST, PUT, DELETE, etc.
-  //  mode: '*cors', // no-cors, *cors, same-origin
-    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-    headers: {
-      Authorization: `Bearer ${TOKEN}`
-    },
-    credentials: 'same-origin', // include, *same-origin, omit
-    redirect: 'follow', // manual, *follow, error
-    referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-  }
+  fetch(paths.purchases, { method: 'GET' }
 ));
 
 export const getStoreByIdRequest = (id) => (
-  fetch(`${URL}api/store/${id}`, {
-    method: 'GET', // *GET, POST, PUT, DELETE, etc.
-  //  mode: '*cors', // no-cors, *cors, same-origin
-    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-    headers: {
-      Authorization: `Bearer ${TOKEN}`
-    },
-    credentials: 'same-origin', // include, *same-origin, omit
-    redirect: 'follow', // manual, *follow, error
-    referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-  }
+  fetch(`${paths.getStore}/${id}`, { method: 'GET' }
 ));
 
 export const getProductById = (id) => (
-  fetch(`${URL}api/products/${id}`, {
-    method: 'GET', // *GET, POST, PUT, DELETE, etc.
-  //  mode: '*cors', // no-cors, *cors, same-origin
-    headers: {
-      Authorization: `Bearer ${TOKEN}`
-    },
-    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-    credentials: 'same-origin', // include, *same-origin, omit
-    redirect: 'follow', // manual, *follow, error
-    referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-  }
+  fetch(`${paths.products}/${id}`, { method: 'GET' }
 ));
-// unregister();
