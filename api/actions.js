@@ -3,10 +3,13 @@ import { getAuthToken } from '../redux/localStorage'
 
 const URL= 'https://snkrfleaapi.herokuapp.com/api/';
 
+// const URL= 'http://localhost:4000/api/';
+
 const paths = {
   'sellings': 'products/vendor',
   'purchases': 'purchases',
   'products': 'products',
+  'sign_up_by_email': 'auth/email/sign-up',
   'sign_in_by_email': 'auth/email/sign-in',
   'sign_in_by_google': 'auth/google/sign-in',
   'sign_up_by_google': 'auth/google/sign-up',
@@ -21,9 +24,15 @@ const TOKEN = getAuthToken()
 const unregister = fetchIntercept.register({
   request: function (url, config) {
     if (Object.values(paths).includes(url)) {
-        const withDefaults = Object.assign({}, config);
+        const withDefaults = Object.assign({     
+        mode: 'cors', 
+        cache: 'no-cache',
+        credentials: 'same-origin', 
+        redirect: 'follow', 
+        referrerPolicy: 'no-referrer'}, config);
         withDefaults.headers =  new Headers({
-          'AUTHORIZATION': `Bearer ${TOKEN}`
+          'AUTHORIZATION': `Bearer ${TOKEN}`,
+          'Content-Type': 'application/json'
         });
        return [`${URL}${url}`, withDefaults];
     } else {
@@ -47,18 +56,6 @@ const unregister = fetchIntercept.register({
   }
 });
 
-
-// {
-//   "id": 17,
-//   "email": "purchasestest@gmail.com",
-//   "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTcsImVtYWlsIjoicHVyY2hhc2VzdGVzdEBnbWFpbC5jb20iLCJuYW1lIjpudWxsLCJpYXQiOjE2MDQ4Mjk0MjN9.pNJ4a9qwj9yb3w0AGSnJjcTwcwF2n0ft1uTNO3Rt0mE"
-// }
-
-// {
-//   "id": 18,
-//   "email": "purchasestest2@gmail.com",
-//   "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTgsImVtYWlsIjoicHVyY2hhc2VzdGVzdDJAZ21haWwuY29tIiwibmFtZSI6bnVsbCwiaWF0IjoxNjA0ODI5NDUzfQ.kaAYO6RSIzsq1ZoF4azAVyTo3r7wDAYjGA_N7GiHgqw"
-// }
 
 export const signInByEmail = (data) => (
   fetch(paths.sign_in_by_email, {
