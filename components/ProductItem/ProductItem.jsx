@@ -9,7 +9,7 @@ export const ProductItem = ({product}) => {
     return (
         <div className={styles.productItem}>
             <div className={styles.image}>
-                <img src={product.img} alt='' />
+                {product.img ? <img src={product.img} alt='' /> : <img src='/images/placeholder-image.png' alt='' /> }
             </div>
             <div className={styles.description}>
                 <h6>{product.title}</h6>

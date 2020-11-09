@@ -43,7 +43,7 @@ export const Header = ({user = null}) => {
                     </Link> : null }
                     { user ? <Link href={routes.home}>
                         <a onClick={(e) => {
-                           dispatch({ type: USER_LOG_OUT_REQUEST})
+                           dispatch({ type: USER_LOG_OUT_REQUEST});
                             e.preventDefault()
                         }}
                         className={styles.menuItem} >
@@ -83,8 +83,10 @@ export const Header = ({user = null}) => {
                     <Link href={routes.productList}>
                         <a
                             onClick={(e) => {
-                                setShowPlans(true);
-                                e.preventDefault()
+                                if (!user) {
+                                    setShowPlans(true);
+                                    e.preventDefault()
+                                }
                             }}
                             className={styles.menuItem}>
                             Sell
