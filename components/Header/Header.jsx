@@ -1,5 +1,5 @@
 // core
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 // library
 import Link from 'next/link'
@@ -18,11 +18,22 @@ import {
 import { generalActions } from "../../redux/general/actions";
 
 export const Header = ({user = null}) => {
+    const [isLogin, setIsLogin] = useState('Log out');
+
     const dispatch = useDispatch();
 
     const setShowLogin = (state) => dispatch(authActions.showLoginModal(state));
     const setShowPlans = (state) => dispatch(authActions.showPlansModal(state));
     const showLoading = (state) => dispatch(generalActions.showLoading(state));
+
+
+    useEffect(() => {
+        if (user !== null) {
+            setIsLogin('Log out');
+        } else {
+            setIsLogin('Login');
+        }
+    }, [user]);
 
     return (
         <header className={styles.header}>
@@ -38,32 +49,33 @@ export const Header = ({user = null}) => {
                     </div>
                 </div>
                 <div className={styles.navItems}>
-                    {user ? <Link href={routes.selling}>
-                        <a className={styles.menuItem}>
-                            Account
-                        </a>
-                    </Link> : null}
-                    {user ? <Link href={routes.home}>
-                        <a onClick={(e) => {
-                            e.preventDefault();
-                            showLoading(true);
-                            setTimeout(()=> {
-                                dispatch({type: USER_LOG_OUT_REQUEST});
-                            },1000)
-                        }}
-                           className={styles.menuItem}>
-                            Log out
-                        </a>
-                    </Link> : <Link href={routes.home}>
-                        <a onClick={(e) => {
-                            setShowLogin(true);
-                            e.preventDefault()
-                        }}
-                           className={styles.menuItem}
-                        >
-                            Login
-                        </a>
-                    </Link>}
+                    {isLogin === 'Log out' ? <>
+                            <Link href={routes.selling}>
+                                <a className={styles.menuItem}>Account</a>
+                            </Link>
+                            <Link href={routes.home}>
+                                <a onClick={(e) => {
+                                    e.preventDefault();
+                                    showLoading(true);
+                                    setTimeout(() => {
+                                        dispatch({type: USER_LOG_OUT_REQUEST});
+                                    }, 1000)
+                                }}
+                                   className={styles.menuItem}>
+                                    {isLogin}
+                                </a>
+                            </Link>
+                        </>
+                        : <Link href={routes.home}>
+                            <a onClick={(e) => {
+                                setShowLogin(true);
+                                e.preventDefault()
+                            }}
+                               className={styles.menuItem}
+                            >
+                                {isLogin}
+                            </a>
+                        </Link>}
                     <Link href={routes.home}>
                         <a
                             onClick={(e) => {
