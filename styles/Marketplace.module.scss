@@ -1,6 +1,7 @@
 @import "./variables";
 
 .marketplace {
+  flex: 1 0 auto;
   .marketplaceInner {
     display:         flex;
     align-items:     stretch;

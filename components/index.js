@@ -1,6 +1,7 @@
 export * from './Header/Header'
 export * from './Footer/Footer'
 export * from './Layout/Layout'
+export * from './Layout/GuardLayout'
 export * from './modals/components/ModalLayout/ModalLayout'
 export * from './modals/Register/Register'
 export * from './modals/RegisterPremium/RegisterPremium'

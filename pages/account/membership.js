@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 
 // components
-import { AccountTabs, Layout, PremiumLinks } from "../../components";
+import { AccountTabs, GuardLayout, PremiumLinks } from "../../components";
 
 // assets
 import styles from '../../styles/Account.module.scss'
@@ -14,10 +14,10 @@ const billingItems = [
     {date: 'July 15 2020', price: '$99.00'},
     {date: 'July 15 2020', price: '$99.00'},
 ];
-const Account = () => {
+const Membership = () => {
     const [isStarter, setIsStarter] = useState(false);
     return (
-        <Layout>
+        <GuardLayout>
             <section className={styles.account}>
                 <div className="container">
                     <div className={styles.content}>
@@ -50,8 +50,8 @@ const Account = () => {
                     </div>
                 </div>
             </section>
-        </Layout>
+        </GuardLayout>
     )
 };
 
-export default Account
+export default Membership

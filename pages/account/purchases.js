@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 
 // components
-import { AccountTabs, Layout, ProductItem } from "../../components";
+import { AccountTabs, GuardLayout, ProductItem } from "../../components";
 
 // assets
 import styles from '../../styles/Account.module.scss'
@@ -16,15 +16,7 @@ import {
     getPurchasesState
 } from "../../redux/cabinet/selectors";
 
-
-const products = [
-    {title: 'Yeezy 350 V2 ‘Carbon’', name: '@stansstore', price: '$1240.29', image: '/images/boots.png'},
-    {title: 'Off-White X Air Rubber', name: '@stansstore', price: '$1240.29', image: '/images/boots.png'},
-    {title: 'Izabella Tabakova', name: '@supremekciks', price: '$1240.29', image: '/images/boots.png'},
-    {title: 'Opi Watihana', name: '@sneakerisland', price: '$1240.29', image: '/images/boots.png'},
-];
-
-const Account = () => {
+const Purchases = () => {
     const dispatch = useDispatch();
     const purchases = useSelector(getPurchasesState);
 
@@ -34,7 +26,7 @@ const Account = () => {
     }, []);
 
     return (
-        <Layout>
+        <GuardLayout>
             <section className={styles.account}>
                 <div className="container">
                     <div className={styles.content}>
@@ -46,8 +38,8 @@ const Account = () => {
                     </div>
                 </div>
             </section>
-        </Layout>
+        </GuardLayout>
     )
 };
 
-export default Account
+export default Purchases

@@ -1,8 +1,8 @@
 // core
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 
 // components
-import { AccountTabs, Layout } from "../../components";
+import { AccountTabs, GuardLayout } from "../../components";
 
 import { useSelector, useDispatch } from "react-redux";
 
@@ -15,19 +15,19 @@ import styles from '../../styles/Account.module.scss'
 import Link from "next/link";
 import { routes } from "../../constants/routes";
 import {
-  getSellingList
+    getSellingList
 } from "../../redux/products/selectors";
 
-const Account = () => {
+const Selling = () => {
     const dispatch = useDispatch();
-    const list = useSelector(getSellingList)
+    const list = useSelector(getSellingList);
 
-   useEffect(() => {
-     dispatch({ type: GET_SELLING_LIST_REQUEST, payload: { }})
-  }, []);
+    useEffect(() => {
+        dispatch({type: GET_SELLING_LIST_REQUEST, payload: {}})
+    }, []);
 
     return (
-        <Layout>
+        <GuardLayout>
             <section className={styles.account}>
                 <div className="container">
                     <div className={styles.content}>
@@ -59,8 +59,8 @@ const Account = () => {
                     </div>
                 </div>
             </section>
-        </Layout>
+        </GuardLayout>
     )
 };
 
-export default Account
+export default Selling
