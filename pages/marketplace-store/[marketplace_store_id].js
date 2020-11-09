@@ -3,32 +3,35 @@ import React, { useEffect } from 'react'
 
 // Library
 import Link from 'next/link'
-
+import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
     getSelectedStoreState
-} from "../redux/store/selectors";
+} from "../../redux/store/selectors";
 
 // components
-import { Layout, ProductItem } from "../components";
-import { routes } from "../constants/routes";
+import { Layout, ProductItem } from "../../components";
+import { routes } from "../../constants/routes";
 
 import {
     GET_STORE_BY_ID_REQUEST
-} from "../redux/store/sagas";
+} from "../../redux/store/sagas";
 
 
 // assets
-import styles from '../styles/MarketplaceStore.module.scss'
+import styles from '../../styles/MarketplaceStore.module.scss'
 
 
 const MarketplaceStore = () => {
     const dispatch = useDispatch();
     const store = useSelector(getSelectedStoreState);
 
-    useEffect(() => { 
-       dispatch({ type: GET_STORE_BY_ID_REQUEST, payload: 1});
+    const router = useRouter();
+    const {marketplace_store_id} = router.query;
+
+    useEffect(() => {
+       dispatch({ type: GET_STORE_BY_ID_REQUEST, payload: marketplace_store_id});
     }, []);
 
     return (
