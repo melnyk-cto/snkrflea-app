@@ -87,6 +87,7 @@ export const signUpByEmail = (data) => (
   }
 ));
 
+
 export const signInByGoogle = () => (
     fetch(`${URL}api/auth/google`, {
         method: 'GET',
@@ -102,8 +103,8 @@ export const signInByGoogle = () => (
     }
 ));
 
-export const signInByFacebook = ({ access_token }) => (
-    fetch(`${URL}api/auth/facebook`, {
+export const signInByFacebook = (access_token) => (
+    fetch(`${URL}api/auth/facebook/sign-in?access_token=${access_token}`, {
         method: 'GET',
         mode: 'cors', // no-cors, *cors, same-origin
         cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
@@ -113,7 +114,6 @@ export const signInByFacebook = ({ access_token }) => (
         },
         redirect: 'follow', // manual, *follow, error
         referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-        query: { access_token },
     }
 ));
 
