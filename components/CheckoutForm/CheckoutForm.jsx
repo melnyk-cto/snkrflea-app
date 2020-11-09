@@ -7,7 +7,7 @@ import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 // components
 import { signUpByEmail } from '../../api/actions.js'
 
-export const CheckoutForm = () => {
+export const CheckoutForm = ({response}) => {
     const stripe = useStripe();
     const elements = useElements();
 
@@ -35,16 +35,17 @@ export const CheckoutForm = () => {
         if (error) {
             console.log('[error]', error);
         } else {
-            await signUpByEmail({
-                email: 'testemail2@gmail.com',
-                password: 'testemail@gmail.com',
-                payment_method: paymentMethod.id,
-                productId: 'price_1HiLesDRG7cpN5KtZbNE7qKR',
-            })
-                .then(d => d.json())
-                .then(() => {
+            response(paymentMethod.id)
+            // await signUpByEmail({
+            //     email: 'testemail2@gmail.com',
+            //     password: 'testemail@gmail.com',
+            //     payment_method: paymentMethod.id,
+            //     productId: 'price_1HiLesDRG7cpN5KtZbNE7qKR',
+            // })
+            //     .then(d => d.json())
+            //     .then(() => {
 
-                });
+            //     });
 
             console.log('[PaymentMethod]', paymentMethod);
         }
