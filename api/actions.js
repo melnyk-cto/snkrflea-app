@@ -17,7 +17,9 @@ const paths = {
   'addProduct': 'products',
   'createStore': 'store',
   'getStore': 'store', 
+  'subscripeToPremium': 'users/subsciption/premium'
 }
+
 
 const TOKEN = getAuthToken()
 
@@ -82,6 +84,10 @@ export const signInByFacebook = (access_token) => (
 
 export const addNewProduct = (formData) => (
   fetch(paths.addProduct, { method: 'POST', body: formData }
+));
+
+export const subscripeToPremium = (paymentMethodId) => (
+  fetch(`${paths.subscripeToPremium}/${paymentMethodId}`, { method: 'POST' }
 ));
 
 export const createMyStoreRequest = (formData) => (
