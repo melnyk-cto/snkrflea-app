@@ -61,7 +61,7 @@ export const PremiumPayment = ({classname}) => {
                 <h3>Your payment was successful</h3>
                 <Link href={routes.premium}>
                     <a className='btn-primary'
-                       onClick={() => showPremiumPayment(false)}>View my premium links</a>
+                       onClick={() => showPopup(false)}>View my premium links</a>
                 </Link>
             </div>}
         </ModalLayout>
