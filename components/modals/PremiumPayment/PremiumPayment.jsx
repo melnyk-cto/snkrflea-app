@@ -5,39 +5,46 @@ import React from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
+import Link from "next/link";
 
 // components
 import { ModalDescription, ModalLayout, CheckoutForm } from "../../../components";
 import { authActions } from "../../../redux/auth/actions";
+import { routes } from "../../../constants/routes";
+import { showPremiumPaymentSuccessModal } from "../../../redux/auth/selectors";
+import { subscripeToPremium } from '../../../api/actions.js'
 
 // assets
 import styles from './PremiumPayment.module.scss'
-import { subscripeToPremium } from '../../../api/actions.js'
-import { showPremiumPaymentSuccessModal } from "../../../redux/auth/selectors";
 
 const stripePromise = loadStripe('pk_test_51HiLaSDRG7cpN5KtOtem4yGPqXtz6bw28X8wsGPhfvPd6CQG5suB8juNWcET8i45QjsqP9jCzroSA2o3hZtFGG7V00CvGIXQPK');
 export const PremiumPayment = ({classname}) => {
     const dispatch = useDispatch();
-    const showPremiumPaymentSuccess = useSelector(showPremiumPaymentSuccessModal);
+    const getPremiumPaymentSuccess = useSelector(showPremiumPaymentSuccessModal);
 
     const showPremiumPayment = (state) => dispatch(authActions.showPremiumPaymentModal(state));
+    const showPremiumPaymentSuccess = (state) => dispatch(authActions.showPremiumPaymentSuccessModal(state));
 
     const response = async (data) => {
         const resp = await subscripeToPremium(data);
     };
 
+    const showPopup = (state) => {
+        showPremiumPayment(state);
+        showPremiumPaymentSuccess(state);
+    };
 
     return (
         <ModalLayout
             classname={classname}
             maxWidth='1301px'
-            showPopup={showPremiumPayment}>
+            showPopup={showPopup}>
             <ModalDescription
                 premium={true}
                 title='Premium'
                 subTitle='$99/month'
             />
-            {!showPremiumPaymentSuccess ? <div className={styles.popupRight}>
+            {!getPremiumPaymentSuccess ? <div className={styles.popupRight}>
                 <h1>Payment</h1>
                 <ul className={styles.plans}>
                     <li>Premium Membership 1-month <span>$99.00</span></li>
@@ -52,7 +59,10 @@ export const PremiumPayment = ({classname}) => {
             </div> : <div className={styles.success}>
                 <img src='/icons/boots.svg' alt='' />
                 <h3>Your payment was successful</h3>
-                <button type='button' className='btn-primary'>View my premium links</button>
+                <Link href={routes.premium}>
+                    <a className='btn-primary'
+                       onClick={() => showPremiumPayment(false)}>View my premium links</a>
+                </Link>
             </div>}
         </ModalLayout>
     )
