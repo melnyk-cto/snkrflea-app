@@ -17,16 +17,18 @@ const paths = {
     'createStore': 'api/store',
     'getStore': 'api/store',
     'subscripeToPremium': 'api/users/subscription/premium',
-    'billings': 'api/users/subscription/billings'
-}
+    'billings': 'api/users/subscription/billings',
+    'plan': 'api/users/subscription/plan',
+};
+
 const defaultRequestParams = {
     cache: 'no-cache',
     credentials: 'same-origin',
     redirect: 'follow',
     referrerPolicy: 'no-referrer'
-}
+};
 
-const TOKEN = getAuthToken()
+const TOKEN = getAuthToken();
 
 
 const unregister = fetchIntercept.register({
@@ -153,6 +155,12 @@ export const getStoreByIdRequest = (id) => (
 
 export const getProductById = (id) => (
     fetch(`${paths.products}/${id}`, { method: 'GET',  headers: {
+            'Content-Type': 'application/json'
+        }, }
+    ));
+
+export const getSubscriptionPlan = () => (
+    fetch(`${paths.plan}`, { method: 'GET',  headers: {
             'Content-Type': 'application/json'
         }, }
     ));

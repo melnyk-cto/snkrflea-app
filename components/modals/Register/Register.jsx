@@ -1,5 +1,5 @@
 // core
-import React  from 'react'
+import React, { useEffect, useState } from 'react'
 
 // library
 // import PropTypes from 'prop-types'
@@ -20,10 +20,12 @@ import { signUpByEmail } from '../../../api/actions.js'
 
 import {
     getAuthAlreadyErrorState,
+    getPlan,
     getUserState
 } from "../../../redux/auth/selectors";
 
 import {
+    GET_PLAN_REQUEST,
     USER_SIGN_IN_BY_EMAIL_REQUEST
 } from "../../../redux/auth/sagas";
 
@@ -61,6 +63,22 @@ export const Register = ({classname}) => {
     }
 
 
+    const [showUser, setShowUser] = useState();
+    const getPlans = useSelector(getPlan);
+
+    useEffect(() => {
+        if (user !== null) {
+            setShowUser(true);
+        } else {
+            setShowUser(false);
+        }
+    }, [user]);
+
+    useEffect(() => {
+        dispatch({type: GET_PLAN_REQUEST})
+    }, [getPlans]);
+    console.log('getPlans',getPlans);
+
     return (
         <ModalLayout
             maxWidth='1301px'
@@ -75,7 +93,7 @@ export const Register = ({classname}) => {
             <ModalDescription
                 title='Starter'
                 subTitle='Free' />
-            {!user ?
+            {!showUser ?
                 <div className={styles.popupRight}>
                     <h1>
                         Create your account
@@ -154,10 +172,11 @@ export const Register = ({classname}) => {
                 : <div className={styles.success}>
                     <img src='/icons/boots.svg' alt='' />
                     <h3>Your account was <br /> successfully created!</h3>
-                    <button type='button' className='btn-second' onClick={()=> {
+                    <button type='button' className='btn-second' onClick={() => {
                         setShowRegister(false);
                         setShowCreateStore(true);
-                    }}>Create my store</button>
+                    }}>Create my store
+                    </button>
                 </div>}
         </ModalLayout>
     )

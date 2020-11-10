@@ -13,6 +13,7 @@ export const authActions = createActions(
         SHOW_CONTACT_MODAL: status => status,
         SHOW_REPORT_MODAL: status => status,
         SHOW_CREATE_STORE_MODAL: status => status,
+        SET_USER_PLAN: plan => plan,
 
         // Async
         SHOW_REGISTER_MODAL_ASYNC: void 0,
