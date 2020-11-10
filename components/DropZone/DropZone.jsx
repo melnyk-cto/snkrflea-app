@@ -1,5 +1,5 @@
 // core
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 
 // library
 import { useDropzone } from 'react-dropzone';
@@ -27,7 +27,8 @@ export const DropZone = ({files, setFiles}) => {
     }, [files]);
 
     return (
-        <>
+        <div className='dropZoneLabel'>
+            <span>Photos</span>
             {files.length === 0 ? <div className='dropZone' {...getRootProps()}>
                 <input {...getInputProps()} />
                 {
@@ -36,6 +37,6 @@ export const DropZone = ({files, setFiles}) => {
                         <div className='active'>Drag or drop to upload photos</div>
                 }
             </div> : <div>{thumbs}</div>}
-        </>
+        </div>
     )
 };

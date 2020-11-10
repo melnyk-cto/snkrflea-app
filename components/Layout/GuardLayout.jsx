@@ -1,5 +1,5 @@
 // core
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 // library
 import { useSelector } from "react-redux";
@@ -13,17 +13,23 @@ import { Layout } from "../../components";
 export const GuardLayout = ({children}) => {
     const router = useRouter();
 
+    const [showChildren, setShowChildren] = useState(true);
+
     const user = useSelector(getUserState);
 
     useEffect(() => {
         if (!user) {
-            router.push('/')
+            router.push('/');
+            setShowChildren(false);
+        } else {
+            setShowChildren(true);
         }
     }, []);
 
+
     return (
         <Layout>
-            {user ? children : <Loading />}
+            {showChildren ? children : <Loading />}
         </Layout>
     )
 };

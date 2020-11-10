@@ -1,5 +1,5 @@
 // core
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 // components
 import { AccountTabs, GuardLayout } from "../../components";
@@ -22,9 +22,15 @@ const Selling = () => {
     const dispatch = useDispatch();
     const list = useSelector(getSellingList);
 
+    const [listItems, setListItems] = useState([]);
     useEffect(() => {
         dispatch({type: GET_SELLING_LIST_REQUEST, payload: {}})
     }, []);
+
+
+    useEffect(() => {
+        setListItems(list)
+    }, [list]);
 
     return (
         <GuardLayout>
@@ -33,17 +39,17 @@ const Selling = () => {
                     <div className={styles.content}>
                         <h1>My Account</h1>
                         <AccountTabs activeMenu='Selling' />
-                        {list && list.length === 0 ? <div className={styles.sellingInfo}>
+                        {listItems && listItems.length === 0 ? <div className={styles.sellingInfo}>
                                 <h3>
                                     You aren’t selling anything yet. You can list an item for sale <Link
                                     href={routes.product}><a>here</a></Link>
                                 </h3>
                             </div>
                             : <div className={styles.sellingList}>
-                                {list.map(product => (
-                                    <div key={product.title} className={styles.listItem}>
+                                {listItems.map((product, index) => (
+                                    <div key={index} className={styles.listItem}>
                                         <div className={styles.image}>
-                                            <img src={product?.img} alt='' />
+                                            <img src={product.img} alt='' />
                                         </div>
                                         <div className={styles.description}>
                                             <h6>{product.title}</h6>
@@ -54,7 +60,9 @@ const Selling = () => {
                                         </div>
                                     </div>
                                 ))}
-                                <button type='button' className='btn-second'>List an item for sale</button>
+                                <Link href={routes.productList}>
+                                    <a className='btn-second'>List an item for sale</a>
+                                </Link>
                             </div>}
                     </div>
                 </div>

@@ -1,39 +1,54 @@
 // core
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+
+// library
+import { useDispatch, useSelector } from "react-redux";
 
 // components
-import {  Layout } from "../components";
+import { DropZone, GuardLayout } from "../components";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-
-import { useDispatch } from "react-redux";
+import { isEmpty } from "../constants/isEmpty/isEmpty";
+import { getSelectedItem } from "../redux/products/selectors";
+import { generalActions } from "../redux/general/actions";
+import { productsActions } from "../redux/products/actions";
 import { productSchema } from '../schemas/index'
+import { ADD_NEW_PRODUCT_REQUEST } from "../redux/products/sagas";
+
 // assets
 import styles from '../styles/ProductList.module.scss'
 
-import {
-    ADD_NEW_PRODUCT_REQUEST
-} from "../redux/products/sagas";
-
 const ProductList = () => {
     const dispatch = useDispatch();
-    const [success, setSuccess] = useState(false);
 
-   const [images, setImages] = useState({});
+    const [images, setImages] = useState([]);
+    const [showCurrentProduct, setShowCurrentProduct] = useState();
+
+    const showLoading = (state) => dispatch(generalActions.showLoading(state));
+    const selectedProduct = (state) => dispatch(productsActions.setSelectedProduct(state));
+
+    const currentProduct = useSelector(getSelectedItem);
+
+    useEffect(() => {
+        setShowCurrentProduct(currentProduct)
+    }, [currentProduct]);
 
     return (
-        <Layout>
+        <GuardLayout>
             <section className={styles.product}>
                 <div className="container">
-                    {!success ? <div className={styles.productInner}>
+                    {isEmpty(showCurrentProduct) ? <div className={styles.productInner}>
                             <h1>List your product</h1>
                             <Formik
                                 initialValues={{title: '', description: '', price: 0}}
                                 validationSchema={productSchema}
-                                onSubmit={async (values) => {
+                                onSubmit={async (values, {setSubmitting}) => {
+                                    setSubmitting(false);
+                                    showLoading(true);
                                     dispatch({type: ADD_NEW_PRODUCT_REQUEST, payload: {...values, images}})
                                 }}>
                                 {({isSubmitting}) => (
                                     <Form>
+
                                         <label>
                                             <span>Title</span>
                                             <Field type="text" name="title" placeholder='Title' />
@@ -50,29 +65,33 @@ const ProductList = () => {
                                             <Field type="number" name="price" placeholder='Title' />
                                             <ErrorMessage className='error' name="price" component="div" />
                                         </label>
-                                        <label>
-                                            <span>Photos</span>
-                                            <input type="file" multiple onChange={(e) => {
-                                                setImages(e.target.files)
-                                            }} />
-                                        </label>
-                                        <button type="submit" className='btn-second' disabled={isSubmitting}>Continue
+                                        <DropZone files={images} setFiles={setImages} />
+                                        <button type="submit" className='btn-second' disabled={isSubmitting}>
+                                            Continue
                                         </button>
                                     </Form>
                                 )}
                             </Formik>
                         </div>
-                        : <div className={styles.success}>
+                        : (!isEmpty(showCurrentProduct) && <div className={styles.success}>
                             <h1>Congratulations on creating your listing!</h1>
                             <h3 className={styles.subTitle}>Now share your product to start getting purchases</h3>
-                            <img src='/images/home/slider/boots.png' alt='' />
-                            <h3>Dunk High SP Retro 'Michigan' 2020</h3>
-                            <button type='button' className='btn-primary'>List another product</button>
+                            {showCurrentProduct.images.length !== 0 ?
+                                <img src={showCurrentProduct.images[0].url} alt='' /> :
+                                <img src='/images/placeholder-image.png' alt='' />}
+                            <h3>{showCurrentProduct.title}</h3>
+                            <button type='button' className='btn-primary'
+                                    onClick={() => {
+                                        selectedProduct({});
+                                        setImages([])
+                                    }}>List
+                                another product
+                            </button>
                             <button type='button' className='btn-second'>View product on the marketplace</button>
-                        </div>}
+                        </div>)}
                 </div>
             </section>
-        </Layout>
+        </GuardLayout>
     )
 };
 

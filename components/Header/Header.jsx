@@ -59,6 +59,7 @@ export const Header = ({user = null}) => {
                                     showLoading(true);
                                     setTimeout(() => {
                                         dispatch({type: USER_LOG_OUT_REQUEST});
+                                        window.location = routes.home;
                                     }, 1000)
                                 }}
                                    className={styles.menuItem}>
