@@ -2,7 +2,7 @@ import fetchIntercept from 'fetch-intercept';
 import { getAuthToken } from '../redux/localStorage'
 
 const URL= 'https://snkrfleaapi.herokuapp.com/';
-// const URL= 'http://localhost:4000/';
+//const URL= 'http://localhost:4000/';
 
 const paths = {
     'sellings': 'api/products/vendor',
@@ -19,23 +19,28 @@ const paths = {
     'subscripeToPremium': 'api/users/subscription/premium',
     'billings': 'api/users/subscription/billings'
 }
+const defaultRequestParams = {
+    cache: 'no-cache',
+    credentials: 'same-origin',
+    redirect: 'follow',
+    referrerPolicy: 'no-referrer'
+}
 
 const TOKEN = getAuthToken()
+
 
 const unregister = fetchIntercept.register({
     request: function (url, config) {
 
         if (url.includes('api')) {
-
+            // alert('4')
             const withDefaults = Object.assign({
-                mode: 'cors',
-                cache: 'no-cache',
-                credentials: 'same-origin',
-                redirect: 'follow',
-                referrerPolicy: 'no-referrer'}, config);
+                ...defaultRequestParams
+
+            }, config);
             withDefaults.headers =  new Headers({
                 'AUTHORIZATION': `Bearer ${TOKEN}`,
-                'Content-Type': 'application/json'
+                ...config.headers,
             });
             return [`${URL}${url}`, withDefaults];
         } else {
@@ -63,23 +68,34 @@ const unregister = fetchIntercept.register({
 export const signInByEmail = (data) => (
     fetch(paths.sign_in_by_email, {
             method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
             body: JSON.stringify(data)
         }
     ));
 
 export const signUpByEmail = (data) => (
     fetch(paths.sign_up_by_email, {
+            headers: {
+                'Content-Type': 'application/json'
+            },
             method: 'POST', body: JSON.stringify(data)
         }
     ));
 
 export const signInByGoogle = () => (
-    fetch(paths.sign_in_by_google, { method: 'GET', query: params }
+    fetch(paths.sign_in_by_google, { method: 'GET', headers: {
+            'Content-Type': 'application/json'
+        }, query: params }
     ));
 
 export const signInByFacebook = (access_token) => (
     fetch(`${paths.sign_in_by_facabook}?access_token=${access_token}`, {
             method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            },
         }
     ));
 
@@ -88,37 +104,55 @@ export const addNewProduct = (formData) => (
     ));
 
 export const subscripeToPremium = (paymentMethodId) => (
-    fetch(`${paths.subscripeToPremium}/${paymentMethodId}`, { method: 'POST' }
+    fetch(`${paths.subscripeToPremium}/${paymentMethodId}`, { method: 'POST', headers: {
+            'Content-Type': 'application/json'
+        }, }
     ));
 
 export const subscriptionBillings = () => (
-    fetch(paths.billings, { method: 'GET' }
+    fetch(paths.billings, { method: 'GET',  headers: {
+            'Content-Type': 'application/json'
+        }, }
     ));
 
 export const createMyStoreRequest = (formData) => (
-    fetch(paths.createStore, { method: 'POST',  body: formData}
+    fetch(paths.createStore, { method: 'POST',
+        ... defaultRequestParams ,
+        body: formData}
     ));
 
 export const getMyStoreRequest = () => (
-    fetch(paths.getStore, { method: 'GET' }
+    fetch(paths.getStore, { method: 'GET',  headers: {
+            'Content-Type': 'application/json'
+        }, }
     ));
 
 export const getMarketplaceList = () => (
-    fetch(paths.products, { method: 'GET' }
+    fetch(paths.products, { method: 'GET',  headers: {
+            'Content-Type': 'application/json'
+        }, }
     ));
 
 export const getSellingList = () => (
-    fetch(paths.sellings, { method: 'GET' }
+    fetch(paths.sellings, { method: 'GET',  headers: {
+            'Content-Type': 'application/json'
+        }, }
     ));
 
 export const getPurchasesRequest = () => (
-    fetch(paths.purchases, { method: 'GET' }
+    fetch(paths.purchases, { method: 'GET',  headers: {
+            'Content-Type': 'application/json'
+        }, }
     ));
 
 export const getStoreByIdRequest = (id) => (
-    fetch(`${paths.getStore}/${id}`, { method: 'GET' }
+    fetch(`${paths.getStore}/${id}`, { method: 'GET',  headers: {
+            'Content-Type': 'application/json'
+        }, }
     ));
 
 export const getProductById = (id) => (
-    fetch(`${paths.products}/${id}`, { method: 'GET' }
+    fetch(`${paths.products}/${id}`, { method: 'GET',  headers: {
+            'Content-Type': 'application/json'
+        }, }
     ));
