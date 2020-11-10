@@ -32,6 +32,7 @@ function* addNewProduct(action) {
             yield put(productsActions.setSelectedProduct(currentProduct));
         }
     } else if (response.status === 400) {
+        yield put(productsActions.setUserProductError(true));
 
     }
 

@@ -3,14 +3,17 @@ import React, { useEffect, useState } from 'react'
 
 // library
 import { useDispatch, useSelector } from "react-redux";
+import classNames from "classnames";
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import Link from "next/link";
 
 // components
 import { DropZone, GuardLayout } from "../components";
-import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { isEmpty } from "../constants/isEmpty/isEmpty";
-import { getSelectedItem } from "../redux/products/selectors";
+import { getSelectedItem, getUserProductError } from "../redux/products/selectors";
 import { generalActions } from "../redux/general/actions";
 import { productsActions } from "../redux/products/actions";
+import { authActions } from "../redux/auth/actions";
 import { productSchema } from '../schemas/index'
 import { ADD_NEW_PRODUCT_REQUEST } from "../redux/products/sagas";
 
@@ -23,10 +26,13 @@ const ProductList = () => {
     const [images, setImages] = useState([]);
     const [showCurrentProduct, setShowCurrentProduct] = useState();
 
+    const currentProduct = useSelector(getSelectedItem);
+    const getProductError = useSelector(getUserProductError);
     const showLoading = (state) => dispatch(generalActions.showLoading(state));
     const selectedProduct = (state) => dispatch(productsActions.setSelectedProduct(state));
+    const setShowCreateStore = (state) => dispatch(authActions.showCreateStoreModal(state));
+    const setProductError = (state) => dispatch(productsActions.setUserProductError(state));
 
-    const currentProduct = useSelector(getSelectedItem);
 
     useEffect(() => {
         setShowCurrentProduct(currentProduct)
@@ -47,8 +53,7 @@ const ProductList = () => {
                                     dispatch({type: ADD_NEW_PRODUCT_REQUEST, payload: {...values, images}})
                                 }}>
                                 {({isSubmitting}) => (
-                                    <Form>
-
+                                    <Form onClick={() => setProductError(false)}>
                                         <label>
                                             <span>Title</span>
                                             <Field type="text" name="title" placeholder='Title' />
@@ -66,6 +71,12 @@ const ProductList = () => {
                                             <ErrorMessage className='error' name="price" component="div" />
                                         </label>
                                         <DropZone files={images} setFiles={setImages} />
+                                        {getProductError && <div className={classNames('error', styles.error)}>
+                                            *User should <Link href='/'><a onClick={(e) => {
+                                            e.preventDefault();
+                                            setShowCreateStore(true)
+                                        }}>create store</a></Link> in order to list products
+                                        </div>}
                                         <button type="submit" className='btn-second' disabled={isSubmitting}>
                                             Continue
                                         </button>

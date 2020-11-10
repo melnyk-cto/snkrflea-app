@@ -3,6 +3,7 @@ import { productsActions } from './actions';
 
 const initialState = {
     items: [],
+    error: false,
     product: null,
     marketPlace: []
 };
@@ -23,6 +24,10 @@ export const productsReducer = handleActions({
         [productsActions.setMarketPlace]: (state, {payload}) => ({
             ...state,
             marketPlace: [...payload],
+        }),
+        [productsActions.setUserProductError]: (state, {payload}) => ({
+            ...state,
+            error: payload,
         }),
     },
     initialState,
