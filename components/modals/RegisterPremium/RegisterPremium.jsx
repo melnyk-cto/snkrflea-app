@@ -1,5 +1,5 @@
 // core
-import React  from 'react'
+import React from 'react'
 
 // library
 // import PropTypes from 'prop-types'
@@ -65,79 +65,73 @@ export const RegisterPremium = ({classname}) => {
                 title='Premium'
                 subTitle='$99/month'
             />
-            {!user ?
-                <div className={styles.popupRight}>
-                    <h1>Create your account</h1>
-                    {showUserAlreadyError ? <p className='error ta-c'>This user is already registered</p> : null}
-                    <Formik
-                        initialValues={{email: '', password: ''}}
-                        validationSchema={registerSchema}
-                        onSubmit={async (values, {setSubmitting}) => {
-                            setSubmitting(false);
-                            showLoading(true);
-                            await signUpByEmail({...values})
-                                .then(handleErrors)
-                                .then(d => d.json())
-                                .then(() => {
-                                    dispatch({type: USER_SIGN_IN_BY_EMAIL_REQUEST, payload: values});
-                                })
-                        }}
-                    >
-                        {({isSubmitting}) => (
-                            <Form onChange={() => setUserAlreadyError(false)}>
-                                <label>
-                                    <span>Password</span>
-                                    <Field type="email" name="email" placeholder='Enter Email' />
-                                    <ErrorMessage className='error' name="email" component="div" />
-                                </label>
-                                <label>
-                                    <span>Password</span>
-                                    <Field type="password" name="password" placeholder='Password' />
-                                    <ErrorMessage className='error' name="password" component="div" />
-                                </label>
-                                <label className="checkbox">
-                                    <Field type="checkbox" />
-                                    <span className="checkmark" />
-                                    <p>
-                                        By creating an account, you agree to the
-                                        <Link href={routes.privacy}><a>Terms and
-                                            Conditions</a></Link> and <Link href={routes.privacy}><a>Privacy
-                                        Policy</a></Link>
-                                    </p>
-                                </label>
-                                <button type="submit" className={classNames('btn-primary', styles.continue)}
-                                        disabled={isSubmitting}>Continue
-                                </button>
-                                <p className={styles.signUp}>Or continue with</p>
-                                <div className={styles.buttons}>
-                                    <FacebookLogin
-                                        appId="799782497476434"
-                                        autoLoad={false}
-                                        callback={responseFacebook}
-                                        render={renderProps => (
-                                            <SocialButton
-                                                onClick={renderProps.onClick}
-                                                styles={styles.facebook}
-                                                iconClasses={"fab fa-facebook-f"}
-                                                buttonText={"Facebook"} />
-                                        )}
-                                    />
-                                    <SocialButton styles={styles.google}
-                                                  iconClasses={"fab fa-facebook-f"}
-                                                  buttonText={"Google"}
-                                                  onClick={() => {
-                                                      window.location.href = "http://localhost:4000/api/auth/google";
-                                                  }} />
-                                </div>
-                            </Form>
-                        )}
-                    </Formik>
-                </div>
-                : <div className={styles.success}>
-                    <img src='/icons/boots.svg' alt='' />
-                    <h3>Your payment was successful</h3>
-                    <button type='button' className='btn-primary'>View my premium links</button>
-                </div>}
+            <div className={styles.popupRight}>
+                <h1>Create your account</h1>
+                {showUserAlreadyError ? <p className='error ta-c'>This user is already registered</p> : null}
+                <Formik
+                    initialValues={{email: '', password: ''}}
+                    validationSchema={registerSchema}
+                    onSubmit={async (values, {setSubmitting}) => {
+                        setSubmitting(false);
+                        showLoading(true);
+                        await signUpByEmail({...values})
+                            .then(handleErrors)
+                            .then(d => d.json())
+                            .then(() => {
+                                dispatch({type: USER_SIGN_IN_BY_EMAIL_REQUEST, payload: values});
+                            })
+                    }}
+                >
+                    {({isSubmitting}) => (
+                        <Form onChange={() => setUserAlreadyError(false)}>
+                            <label>
+                                <span>Password</span>
+                                <Field type="email" name="email" placeholder='Enter Email' />
+                                <ErrorMessage className='error' name="email" component="div" />
+                            </label>
+                            <label>
+                                <span>Password</span>
+                                <Field type="password" name="password" placeholder='Password' />
+                                <ErrorMessage className='error' name="password" component="div" />
+                            </label>
+                            <label className="checkbox">
+                                <Field type="checkbox" />
+                                <span className="checkmark" />
+                                <p>
+                                    By creating an account, you agree to the
+                                    <Link href={routes.privacy}><a>Terms and
+                                        Conditions</a></Link> and <Link href={routes.privacy}><a>Privacy
+                                    Policy</a></Link>
+                                </p>
+                            </label>
+                            <button type="submit" className={classNames('btn-primary', styles.continue)}
+                                    disabled={isSubmitting}>Continue
+                            </button>
+                            <p className={styles.signUp}>Or continue with</p>
+                            <div className={styles.buttons}>
+                                <FacebookLogin
+                                    appId="799782497476434"
+                                    autoLoad={false}
+                                    callback={responseFacebook}
+                                    render={renderProps => (
+                                        <SocialButton
+                                            onClick={renderProps.onClick}
+                                            styles={styles.facebook}
+                                            iconClasses={"fab fa-facebook-f"}
+                                            buttonText={"Facebook"} />
+                                    )}
+                                />
+                                <SocialButton styles={styles.google}
+                                              iconClasses={"fab fa-facebook-f"}
+                                              buttonText={"Google"}
+                                              onClick={() => {
+                                                  window.location.href = "http://localhost:4000/api/auth/google";
+                                              }} />
+                            </div>
+                        </Form>
+                    )}
+                </Formik>
+            </div>
         </ModalLayout>
     )
 };

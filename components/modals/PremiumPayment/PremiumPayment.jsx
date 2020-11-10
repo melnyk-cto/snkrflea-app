@@ -2,7 +2,7 @@
 import React from 'react'
 
 // library
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 
@@ -13,17 +13,19 @@ import { authActions } from "../../../redux/auth/actions";
 // assets
 import styles from './PremiumPayment.module.scss'
 import { subscripeToPremium } from '../../../api/actions.js'
+import { showPremiumPaymentSuccessModal } from "../../../redux/auth/selectors";
 
 const stripePromise = loadStripe('pk_test_51HiLaSDRG7cpN5KtOtem4yGPqXtz6bw28X8wsGPhfvPd6CQG5suB8juNWcET8i45QjsqP9jCzroSA2o3hZtFGG7V00CvGIXQPK');
 export const PremiumPayment = ({classname}) => {
     const dispatch = useDispatch();
+    const showPremiumPaymentSuccess = useSelector(showPremiumPaymentSuccessModal);
 
     const showPremiumPayment = (state) => dispatch(authActions.showPremiumPaymentModal(state));
 
-    const response = async (data) =>  {
-      const resp =   await subscripeToPremium(data);
+    const response = async (data) => {
+        const resp = await subscripeToPremium(data);
+    };
 
-    }
 
     return (
         <ModalLayout
@@ -35,7 +37,7 @@ export const PremiumPayment = ({classname}) => {
                 title='Premium'
                 subTitle='$99/month'
             />
-            <div className={styles.popupRight}>
+            {!showPremiumPaymentSuccess ? <div className={styles.popupRight}>
                 <h1>Payment</h1>
                 <ul className={styles.plans}>
                     <li>Premium Membership 1-month <span>$99.00</span></li>
@@ -44,10 +46,14 @@ export const PremiumPayment = ({classname}) => {
                 </ul>
                 <p className={styles.renews}>*Renews automatically at end of month unless canceled</p>
                 <Elements stripe={stripePromise}>
-                    <CheckoutForm response={response}/>
+                    <CheckoutForm response={response} />
                 </Elements>
                 <button type='button' className={styles.stripe}>Powered by <span>stripe</span></button>
-            </div>
+            </div> : <div className={styles.success}>
+                <img src='/icons/boots.svg' alt='' />
+                <h3>Your payment was successful</h3>
+                <button type='button' className='btn-primary'>View my premium links</button>
+            </div>}
         </ModalLayout>
     )
 };

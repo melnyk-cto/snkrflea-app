@@ -14,18 +14,11 @@ import {
     ADD_NEW_PRODUCT_REQUEST
 } from "../redux/products/sagas";
 
-
 const ProductList = () => {
     const dispatch = useDispatch();
     const [success, setSuccess] = useState(false);
-    const crop = {
-        unit: '%',
-        aspect: 4 / 3,
-        width: '100'
-      };
 
    const [images, setImages] = useState({});
-
 
     return (
         <Layout>

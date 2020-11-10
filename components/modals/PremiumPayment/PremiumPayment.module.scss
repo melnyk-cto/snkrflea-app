@@ -63,6 +63,23 @@
   }
 }
 
+.success {
+  display:         flex;
+  flex-direction:  column;
+  justify-content: center;
+  text-align:      center;
+  padding-right:   0;
+  width:           41.5%;
+  img {
+    max-width: 200px;
+    width:     50%;
+    margin:    4rem auto 1.75rem auto;
+    display:   none;
+  }
+  button {
+    width: 100%;
+  }
+}
 @media screen and (max-width: 900px) {
   .popupRight {
     width:     100%;
@@ -71,6 +88,17 @@
     .renews {
       padding:    0 0 1rem 0;
       text-align: left;
+    }
+  }
+
+  .success {
+    width:         100%;
+    padding-right: 0;
+    h3 {
+      font-size: 1.75rem;
+    }
+    img {
+      display: flex;
     }
   }
 }

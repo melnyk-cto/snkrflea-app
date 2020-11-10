@@ -15,6 +15,7 @@ function* authByEmail(action) {
     yield put(authActions.userSignInSucceded(data));
     yield put(authActions.showLoginModal(false));
     yield put(authActions.showPremiumPaymentModal(true));
+    yield put(authActions.showRegisterPremiumModal(false));
   } else {
     yield put(authActions.userUnauthorizedError(true));
       yield put(authActions.userAlreadyError(true));

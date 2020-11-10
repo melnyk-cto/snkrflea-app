@@ -2,13 +2,21 @@
 import React from 'react'
 
 // library
+import { useDispatch } from "react-redux";
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 
 // components
+import { generalActions } from "../../redux/general/actions";
+import { authActions } from "../../redux/auth/actions";
+
 
 export const CheckoutForm = ({response}) => {
+    const dispatch = useDispatch();
     const stripe = useStripe();
     const elements = useElements();
+
+    const showLoading = (state) => dispatch(generalActions.showLoading(state));
+    const showPremiumPaymentSuccess = (state) => dispatch(authActions.showPremiumPaymentSuccessModal(state));
 
     const handleSubmit = async (event) => {
         // Block native form submission.
@@ -35,25 +43,16 @@ export const CheckoutForm = ({response}) => {
             console.log('[error]', error);
         } else {
             response(paymentMethod.id);
-            // await signUpByEmail({
-            //     email: 'testemail2@gmail.com',
-            //     password: 'testemail@gmail.com',
-            //     payment_method: paymentMethod.id,
-            //     productId: 'price_1HiLesDRG7cpN5KtZbNE7qKR',
-            // })
-            //     .then(d => d.json())
-            //     .then(() => {
-
-            //     });
-
             console.log('[PaymentMethod]', paymentMethod);
+            showPremiumPaymentSuccess(true);
         }
+        showLoading(false);
     };
 
     return (
         <form onSubmit={handleSubmit}>
             <CardElement />
-            <button type="submit" disabled={!stripe} className='btn-primary'>
+            <button type="submit" disabled={!stripe} className='btn-primary' onClick={() => showLoading(true)}>
                 Pay
             </button>
         </form>
