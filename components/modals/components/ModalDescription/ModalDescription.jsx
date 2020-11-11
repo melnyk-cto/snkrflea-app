@@ -56,7 +56,8 @@ export const ModalDescription = ({title, subTitle, premium, showButton, classnam
                             <button type='button' className='btn-second' onClick={() => {
                                 setShowRegisterPremium(true);
                                 setShowPlans(false);
-                            }}>Get Premium
+                            }}>
+                                Get Premium
                             </button>
                         </li>
                         : <li className={styles.button}>

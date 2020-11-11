@@ -1,10 +1,10 @@
 // core
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 // library
 import classNames from "classnames";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 // components
 import { storeSchema } from '../../../schemas/index';
@@ -15,19 +15,48 @@ import { authActions } from "../../../redux/auth/actions";
 // assets
 import styles from './CreateStore.module.scss'
 import Link from "next/link";
-import { CREATE_MY_STORE_REQUEST } from "../../../redux/cabinet/sagas";
+import {
+    CREATE_MY_STORE_REQUEST,
+    UPDATE_MY_STORE_REQUEST,
+} from "../../../redux/cabinet/sagas";
+import { generalActions } from "../../../redux/general/actions";
+import { cabinetActions } from "../../../redux/cabinet/actions";
+import { getStoreState, getStoreSuccessCreated } from "../../../redux/cabinet/selectors";
 
 export const CreateStore = ({classname}) => {
     const dispatch = useDispatch();
-    const [success, setSuccess] = useState(false);
     // const [avatar, setAvatar] = useState({});
+    const [success, setSuccess] = useState(false);
+
+    const getMyStore = useSelector(getStoreState);
+    const storeSuccessCreated = useSelector(getStoreSuccessCreated);
 
     const setShowCreateStore = (state) => dispatch(authActions.showCreateStoreModal(state));
+    const showLoading = (state) => dispatch(generalActions.showLoading(state));
+    const setMyStoreSuccessCreated = (state) => dispatch(cabinetActions.setMyStoreSuccessCreated(state));
+
+    const [store, setStore] = useState(false);
+
+    useEffect(() => {
+        console.log(getMyStore)
+        if (getMyStore) {
+            setStore(getMyStore);
+        }
+    }, [getMyStore]);
+
+    useEffect(() => {
+        setSuccess(storeSuccessCreated);
+    }, [storeSuccessCreated]);
+
+    const showPopup = (state) => {
+        setShowCreateStore(state);
+        setMyStoreSuccessCreated(false);
+    };
 
     return (
         <ModalLayout
             maxWidth='1301px'
-            showPopup={setShowCreateStore}
+            showPopup={showPopup}
             classname={classname}>
             <h1 className={styles.title}>Create your store</h1>
             {!success ?
@@ -35,18 +64,24 @@ export const CreateStore = ({classname}) => {
                     <div className={styles.popupRight}>
                         <Formik
                             initialValues={{
-                                name: '',
-                                contactEmail: '',
-                                address: '',
-                                twitter: '',
-                                tiktok: '',
-                                instagram: '',
+                                name: getMyStore.name  || '',
+                                contactEmail: getMyStore.contactEmail || '',
+                                address: getMyStore.address  || '',
+                                twitter: getMyStore.twitter || '',
+                                tiktok: getMyStore.tiktok || '',
+                                instagram: getMyStore.instagram || '',
                             }}
                             validationSchema={storeSchema}
-                            onSubmit={async (values) => {
-                                dispatch({type: CREATE_MY_STORE_REQUEST, payload: {...values}})
+                            onSubmit={async (values, {setSubmitting}) => {
+                                if (store.name) {
+                                    dispatch({type: UPDATE_MY_STORE_REQUEST, payload: {...values}});
+                                } else {
+                                    dispatch({type: CREATE_MY_STORE_REQUEST, payload: {...values}});
+                                }
+                                setSubmitting(false);
+                                showLoading(true);
                             }}>
-                            {({isSubmitting}) => (
+                            {({isSubmitting, values = null, handleChange}) => (
                                 <Form>
                                     <div className={styles.avatar}>
                                         {/*<input type="file" multiple onChange={(e) => {*/}
@@ -56,7 +91,8 @@ export const CreateStore = ({classname}) => {
                                     </div>
                                     <label>
                                         <span>Store Name</span>
-                                        <Field type="text" name="name" placeholder='Enter Name' />
+                                        <Field type="text" name="name" value={values.name} onChange={handleChange}
+                                               placeholder='Enter Name' />
                                         <ErrorMessage className='error' name="name" component="div" />
                                     </label>
                                     <h6>
@@ -109,6 +145,7 @@ export const CreateStore = ({classname}) => {
                                 </Form>
                             )}
                         </Formik>
+
                     </div>
                     <div className={styles.popupLeft}>
                         <ul>
@@ -145,7 +182,7 @@ export const CreateStore = ({classname}) => {
                 </>
                 : <div className={styles.success}>
                     <img src='/icons/boots.svg' alt='' />
-                    <h2>Congratulations on creating your store!</h2>
+                    <h2>Congratulations on creating or updating your store!</h2>
                 </div>}
         </ModalLayout>
     )

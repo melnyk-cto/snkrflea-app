@@ -5,6 +5,7 @@ import { authActions } from "./actions";
 import { generalActions } from "../general/actions";
 import * as selectors from './selectors';
 import { cabinetActions } from "../cabinet/actions";
+import { productsActions } from "../products/actions";
 
 export const USER_SIGN_IN_BY_EMAIL_REQUEST = 'USER_SIGN_IN_BY_EMAIL_REQUEST';
 export const USER_SIGN_IN_BY_FACEBOOK_REQUEST = 'USER_SIGN_IN_BY_FACEBOOK_REQUEST';
@@ -49,6 +50,9 @@ function* logOut() {
     yield put(authActions.userLogOut());
     yield put(generalActions.showLoading(false));
     yield put(cabinetActions.setHistoryBilling(false));
+    yield put(cabinetActions.setMyStore(false));
+    yield put(productsActions.setMarketPlace([]));
+    yield put(productsActions.setSelectedProduct([]));
 }
 
 

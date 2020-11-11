@@ -19,6 +19,7 @@ import { ADD_NEW_PRODUCT_REQUEST } from "../redux/products/sagas";
 
 // assets
 import styles from '../styles/ProductList.module.scss'
+import { routes } from "../constants/routes";
 
 const ProductList = () => {
     const dispatch = useDispatch();
@@ -98,7 +99,9 @@ const ProductList = () => {
                                     }}>List
                                 another product
                             </button>
-                            <button type='button' className='btn-second'>View product on the marketplace</button>
+                            <Link href={routes.marketplace}>
+                                <a className='btn-second'>View product on the marketplace</a>
+                            </Link>
                         </div>)}
                 </div>
             </section>
