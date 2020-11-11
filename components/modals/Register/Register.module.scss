@@ -89,6 +89,10 @@
       margin-right: 2rem;
     }
   }
+  .checkbox {
+    position:     relative;
+    transform:    translate(0, -100%);
+  }
 }
 
 .success {

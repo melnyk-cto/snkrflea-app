@@ -20,14 +20,10 @@ import { signUpByEmail } from '../../../api/actions.js'
 
 import {
     getAuthAlreadyErrorState,
-    getPlan,
     getUserState
 } from "../../../redux/auth/selectors";
 
-import {
-    GET_PLAN_REQUEST,
-    USER_SIGN_IN_BY_EMAIL_REQUEST
-} from "../../../redux/auth/sagas";
+import { USER_SIGN_IN_BY_EMAIL_REQUEST } from "../../../redux/auth/sagas";
 
 // assets
 import styles from './Register.module.scss'
@@ -64,7 +60,7 @@ export const Register = ({classname}) => {
 
 
     const [showUser, setShowUser] = useState();
-    const getPlans = useSelector(getPlan);
+    // const getPlans = useSelector(getPlan);
 
     useEffect(() => {
         if (user !== null) {
@@ -74,10 +70,10 @@ export const Register = ({classname}) => {
         }
     }, [user]);
 
-    useEffect(() => {
-        dispatch({type: GET_PLAN_REQUEST})
-    }, [getPlans]);
-    console.log('getPlans',getPlans);
+    // useEffect(() => {
+    //     dispatch({type: GET_PLAN_REQUEST})
+    // }, [getPlans]);
+    // console.log('getPlans',getPlans);
 
     return (
         <ModalLayout
@@ -119,7 +115,7 @@ export const Register = ({classname}) => {
                                 })
                         }}
                     >
-                        {({isSubmitting}) => (
+                        {({isSubmitting, errors}) => (
                             <Form onChange={() => setUserAlreadyError(false)}>
                                 <label>
                                     <span>Email</span>
@@ -141,6 +137,7 @@ export const Register = ({classname}) => {
                                         Policy</a></Link>
                                     </p>
                                 </label>
+                                {errors.privacy ? <p className={classNames('error', styles.checkbox)}>Field must be checked</p> : null}
                                 <button type="submit" className={classNames('btn-second', styles.continue)}
                                         disabled={isSubmitting}>Continue
                                 </button>

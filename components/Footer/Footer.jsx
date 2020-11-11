@@ -1,5 +1,5 @@
 // core
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 // library
 import Link from 'next/link'
@@ -11,34 +11,69 @@ import { authActions } from "../../redux/auth/actions";
 
 // assets
 import styles from './Footer.module.scss'
+import { USER_LOG_OUT_REQUEST } from "../../redux/auth/sagas";
+import { generalActions } from "../../redux/general/actions";
 
-export const Footer = () => {
+export const Footer = ({user = null}) => {
     const dispatch = useDispatch();
+
+    const [isLogin, setIsLogin] = useState('Log out');
 
     const setShowLogin = (state) => dispatch(authActions.showLoginModal(state));
     const setShowPlans = (state) => dispatch(authActions.showPlansModal(state));
+    const showLoading = (state) => dispatch(generalActions.showLoading(state));
+
+    useEffect(() => {
+        if (user !== null) {
+            setIsLogin('Log out');
+        } else {
+            setIsLogin('Login');
+        }
+    }, [user]);
 
     return (
         <>
             <footer className={styles.footer}>
                 <div className={styles.footerTop}>
                     <ul className={styles.account}>
-                        <li>
-                            <Link href={routes.home}>
-                                <a onClick={(e) => {
-                                    setShowPlans(true);
-                                    e.preventDefault()
-                                }}>Join</a>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href={routes.home}>
-                                <a onClick={(e) => {
-                                    setShowLogin(true);
-                                    e.preventDefault()
-                                }}>Login</a>
-                            </Link>
-                        </li>
+                        {isLogin === 'Log out' ?
+                            <>
+                                <li>
+                                    <Link href={routes.selling}><a>Account</a></Link>
+                                </li>
+                                <li>
+                                    <Link href={routes.home}>
+                                        <a onClick={(e) => {
+                                            e.preventDefault();
+                                            showLoading(true);
+                                            setTimeout(() => {
+                                                dispatch({type: USER_LOG_OUT_REQUEST});
+                                                window.location = routes.home;
+                                            }, 1000)
+                                        }}>
+                                            {isLogin}
+                                        </a>
+                                    </Link>
+                                </li>
+                            </>
+                            : <>
+                                <li>
+                                    <Link href={routes.home}>
+                                        <a onClick={(e) => {
+                                            setShowPlans(true);
+                                            e.preventDefault()
+                                        }}>Join</a>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href={routes.home}>
+                                        <a onClick={(e) => {
+                                            setShowLogin(true);
+                                            e.preventDefault()
+                                        }}>Login</a>
+                                    </Link>
+                                </li>
+                            </>}
                     </ul>
                     <ul className={styles.social}>
                         <li>

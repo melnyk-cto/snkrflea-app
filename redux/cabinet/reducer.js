@@ -3,7 +3,8 @@ import { cabinetActions } from './actions';
 
 const initialState = {
     purchases: [],
-    myStore: null
+    myStore: null,
+    billings: []
 };
 
 export const cabinetReducer = handleActions({
@@ -15,7 +16,12 @@ export const cabinetReducer = handleActions({
             ...state,
             myStore: payload,
         }),
-       
+
+        [cabinetActions.setHistoryBilling]: (state, { payload }) => ({
+            ...state,
+            billings: payload,
+        }),
+
     },
     initialState,
 );

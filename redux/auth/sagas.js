@@ -4,6 +4,7 @@ import * as Api from '../../api/actions.js'
 import { authActions } from "./actions";
 import { generalActions } from "../general/actions";
 import * as selectors from './selectors';
+import { cabinetActions } from "../cabinet/actions";
 
 export const USER_SIGN_IN_BY_EMAIL_REQUEST = 'USER_SIGN_IN_BY_EMAIL_REQUEST';
 export const USER_SIGN_IN_BY_FACEBOOK_REQUEST = 'USER_SIGN_IN_BY_FACEBOOK_REQUEST';
@@ -18,6 +19,7 @@ function* authByEmail(action) {
     if (response.ok) {
         const data = yield call([response, response.json]);
         yield put(authActions.userSignInSucceded(data));
+        yield put(authActions.showLoginModal(false));
         if (premiumPaymentModal) {
             yield put(authActions.showPremiumPaymentModal(true));
             yield put(authActions.showRegisterPremiumModal(false));
@@ -27,6 +29,7 @@ function* authByEmail(action) {
         yield put(authActions.userAlreadyError(true));
     }
     yield put(generalActions.showLoading(false));
+    window.location.reload();
 }
 
 function* authByFacebook(action) {
@@ -34,6 +37,7 @@ function* authByFacebook(action) {
     if (response.ok) {
         const data = yield call([response, response.json]);
         yield put(authActions.userSignInSucceded(data));
+        yield put(authActions.showLoginModal(false));
     } else {
         yield put(authActions.userUnauthorizedError(true));
         yield put(authActions.userAlreadyError(true));
@@ -44,12 +48,13 @@ function* authByFacebook(action) {
 function* logOut() {
     yield put(authActions.userLogOut());
     yield put(generalActions.showLoading(false));
+    yield put(cabinetActions.setHistoryBilling(false));
 }
 
 
 function* getPlan() {
     const response = yield call(Api.getSubscriptionPlan);
-    console.log(response, 'plan');
+    // console.log(response, 'plan');
     if (response.ok) {
         const plan = yield call([response, response.json]);
         yield put(authActions.setUserPlan(plan));

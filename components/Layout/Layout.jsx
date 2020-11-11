@@ -50,9 +50,9 @@ export const Layout = ({children}) => {
 
     const showLoading = (state) => dispatch(generalActions.showLoading(state));
 
-    useEffect(()=> {
+    useEffect(() => {
         showLoading(false)
-    },[]);
+    }, []);
 
     return (
         <>
@@ -60,7 +60,7 @@ export const Layout = ({children}) => {
                 <title>SNKRFLEA</title>
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
             </Head>
-            <Header user={user}/>
+            <Header user={user} />
             {isLoading && <Loading />}
             {showRegister && <Register classname='register' />}
             {showRegisterPremium && <RegisterPremium classname='premium' />}
@@ -71,7 +71,7 @@ export const Layout = ({children}) => {
             {showReport && <Report />}
             {showCreateStore && <CreateStore />}
             {children}
-            <Footer />
+            <Footer user={user} />
         </>
     )
 };

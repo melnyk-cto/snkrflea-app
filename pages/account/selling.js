@@ -23,8 +23,9 @@ const Selling = () => {
     const list = useSelector(getSellingList);
 
     const [listItems, setListItems] = useState([]);
+
     useEffect(() => {
-        dispatch({type: GET_SELLING_LIST_REQUEST, payload: {}})
+        dispatch({type: GET_SELLING_LIST_REQUEST})
     }, []);
 
 
@@ -42,7 +43,7 @@ const Selling = () => {
                         {listItems && listItems.length === 0 ? <div className={styles.sellingInfo}>
                                 <h3>
                                     You aren’t selling anything yet. You can list an item for sale <Link
-                                    href={routes.product}><a>here</a></Link>
+                                    href={routes.productList}><a>here</a></Link>
                                 </h3>
                             </div>
                             : <div className={styles.sellingList}>

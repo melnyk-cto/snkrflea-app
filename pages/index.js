@@ -12,10 +12,18 @@ import { Layout } from "../components";
 
 // assets
 import styles from '../styles/Home.module.scss'
-import classNames  from "classnames";
+import classNames from "classnames";
+import { authActions } from "../redux/auth/actions";
+import { useDispatch } from "react-redux";
 
 const Home = () => {
     SwiperCore.use([Autoplay]);
+
+    const dispatch = useDispatch();
+
+    const setShowPlans = (state) => dispatch(authActions.showPlansModal(state));
+    const setShowRegister = (state) => dispatch(authActions.showRegisterModal(state));
+
     return (
         <Layout>
             <section className={styles.home}>
@@ -77,10 +85,14 @@ const Home = () => {
                         </ul>
                         <div className={styles.bottom}>
                             <div className={styles.buttons}>
-                                <button type='button' className='btn-primary'>
+                                <button type='button'
+                                        className='btn-primary'
+                                        onClick={() => setShowRegister(true)}>
                                     Start selling for free
                                 </button>
-                                <button type='button' className='btn-second'>
+                                <button type='button'
+                                        className='btn-second'
+                                        onClick={() => setShowPlans(true)}>
                                     Become a premium member
                                 </button>
                             </div>

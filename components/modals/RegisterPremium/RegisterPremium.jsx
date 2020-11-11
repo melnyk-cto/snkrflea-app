@@ -82,7 +82,7 @@ export const RegisterPremium = ({classname}) => {
                             })
                     }}
                 >
-                    {({isSubmitting}) => (
+                    {({isSubmitting, errors}) => (
                         <Form onChange={() => setUserAlreadyError(false)}>
                             <label>
                                 <span>Password</span>
@@ -95,7 +95,7 @@ export const RegisterPremium = ({classname}) => {
                                 <ErrorMessage className='error' name="password" component="div" />
                             </label>
                             <label className="checkbox">
-                                <Field type="checkbox" />
+                                <Field type="checkbox" name='privacy'/>
                                 <span className="checkmark" />
                                 <p>
                                     By creating an account, you agree to the
@@ -104,6 +104,7 @@ export const RegisterPremium = ({classname}) => {
                                     Policy</a></Link>
                                 </p>
                             </label>
+                            {errors.privacy ? <p className={classNames('error', styles.checkbox)}>Field must be checked</p> : null}
                             <button type="submit" className={classNames('btn-primary', styles.continue)}
                                     disabled={isSubmitting}>Continue
                             </button>
