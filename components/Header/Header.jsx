@@ -12,11 +12,6 @@ import { authActions } from "../../redux/auth/actions";
 // assets
 import styles from './Header.module.scss'
 
-import {
-    USER_LOG_OUT_REQUEST
-} from "../../redux/auth/sagas";
-import { generalActions } from "../../redux/general/actions";
-
 export const Header = ({user = null}) => {
     const [isLogin, setIsLogin] = useState('Log out');
 
@@ -24,7 +19,6 @@ export const Header = ({user = null}) => {
 
     const setShowLogin = (state) => dispatch(authActions.showLoginModal(state));
     const setShowPlans = (state) => dispatch(authActions.showPlansModal(state));
-    const showLoading = (state) => dispatch(generalActions.showLoading(state));
 
 
     useEffect(() => {
@@ -39,7 +33,7 @@ export const Header = ({user = null}) => {
         <header className={styles.header}>
             <div className={styles.navWrapper}>
                 <div className={styles.navTop}>
-                    <Link href={routes.home}>
+                    <Link href={!user ? routes.home : routes.marketplace}>
                         <a className={styles.navLogo}>
                             <img src='/icons/logo.svg' alt='' />
                         </a>
@@ -53,41 +47,30 @@ export const Header = ({user = null}) => {
                             <Link href={routes.selling}>
                                 <a className={styles.menuItem}>Account</a>
                             </Link>
+                        </>
+                        : <>
                             <Link href={routes.home}>
                                 <a onClick={(e) => {
-                                    e.preventDefault();
-                                    showLoading(true);
-                                    setTimeout(() => {
-                                        dispatch({type: USER_LOG_OUT_REQUEST});
-                                        window.location = routes.home;
-                                    }, 1000)
+                                    setShowLogin(true);
+                                    e.preventDefault()
                                 }}
-                                   className={styles.menuItem}>
+                                   className={styles.menuItem}
+                                >
                                     {isLogin}
                                 </a>
                             </Link>
-                        </>
-                        : <Link href={routes.home}>
-                            <a onClick={(e) => {
-                                setShowLogin(true);
-                                e.preventDefault()
-                            }}
-                               className={styles.menuItem}
-                            >
-                                {isLogin}
-                            </a>
-                        </Link>}
-                    <Link href={routes.home}>
-                        <a
-                            onClick={(e) => {
-                                setShowPlans(true);
-                                e.preventDefault()
-                            }}
-                            className={styles.menuItem}
-                        >
-                            Join
-                        </a>
-                    </Link>
+                            <Link href={routes.home}>
+                                <a
+                                    onClick={(e) => {
+                                        setShowPlans(true);
+                                        e.preventDefault()
+                                    }}
+                                    className={styles.menuItem}
+                                >
+                                    Join
+                                </a>
+                            </Link>
+                        </>}
                     <Link href={routes.marketplace}>
                         <a className={styles.menuItem}>
                             Buy

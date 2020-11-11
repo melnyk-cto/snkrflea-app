@@ -3,7 +3,7 @@ import { cabinetActions } from './actions';
 
 const initialState = {
     purchases: [],
-    myStore: null,
+    myStore: [],
     storeCreated: false,
     billings: []
 };

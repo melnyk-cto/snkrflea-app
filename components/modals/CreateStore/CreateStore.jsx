@@ -38,7 +38,6 @@ export const CreateStore = ({classname}) => {
     const [store, setStore] = useState(false);
 
     useEffect(() => {
-        console.log(getMyStore)
         if (getMyStore) {
             setStore(getMyStore);
         }
@@ -59,17 +58,17 @@ export const CreateStore = ({classname}) => {
             showPopup={showPopup}
             classname={classname}>
             <h1 className={styles.title}>Create your store</h1>
-            {!success ?
+            {!success && store ?
                 <>
                     <div className={styles.popupRight}>
                         <Formik
                             initialValues={{
-                                name: getMyStore.name  || '',
-                                contactEmail: getMyStore.contactEmail || '',
-                                address: getMyStore.address  || '',
-                                twitter: getMyStore.twitter || '',
-                                tiktok: getMyStore.tiktok || '',
-                                instagram: getMyStore.instagram || '',
+                                name: store.name,
+                                contactEmail: store.contactEmail,
+                                address: store.address,
+                                twitter: store.twitter,
+                                tiktok: store.tiktok,
+                                instagram: store.instagram,
                             }}
                             validationSchema={storeSchema}
                             onSubmit={async (values, {setSubmitting}) => {

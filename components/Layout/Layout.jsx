@@ -71,7 +71,7 @@ export const Layout = ({children}) => {
             {showReport && <Report />}
             {showCreateStore && <CreateStore />}
             {children}
-            <Footer />
+            <Footer user={user}/>
         </>
     )
 };

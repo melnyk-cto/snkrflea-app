@@ -11,23 +11,21 @@ import { authActions } from "../../redux/auth/actions";
 
 // assets
 import styles from './Footer.module.scss'
-import { USER_LOG_OUT_REQUEST } from "../../redux/auth/sagas";
-import { generalActions } from "../../redux/general/actions";
+
 
 export const Footer = ({user = null}) => {
     const dispatch = useDispatch();
 
-    const [isLogin, setIsLogin] = useState('Log out');
+    const [isLogin, setIsLogin] = useState(false);
 
     const setShowLogin = (state) => dispatch(authActions.showLoginModal(state));
     const setShowPlans = (state) => dispatch(authActions.showPlansModal(state));
-    const showLoading = (state) => dispatch(generalActions.showLoading(state));
 
     useEffect(() => {
-        if (user !== null) {
-            setIsLogin('Log out');
+        if (user) {
+            setIsLogin(true);
         } else {
-            setIsLogin('Login');
+            setIsLogin(false);
         }
     }, [user]);
 
@@ -36,24 +34,9 @@ export const Footer = ({user = null}) => {
             <footer className={styles.footer}>
                 <div className={styles.footerTop}>
                     <ul className={styles.account}>
-                        {isLogin === 'Log out' ?
-                            <>
+                        {isLogin ? <>
                                 <li>
                                     <Link href={routes.selling}><a>Account</a></Link>
-                                </li>
-                                <li>
-                                    <Link href={routes.home}>
-                                        <a onClick={(e) => {
-                                            e.preventDefault();
-                                            showLoading(true);
-                                            setTimeout(() => {
-                                                dispatch({type: USER_LOG_OUT_REQUEST});
-                                                window.location = routes.home;
-                                            }, 1000)
-                                        }}>
-                                            {isLogin}
-                                        </a>
-                                    </Link>
                                 </li>
                             </>
                             : <>

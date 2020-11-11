@@ -1,5 +1,5 @@
 // core
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 // library
 import Link from 'next/link'
@@ -8,25 +8,44 @@ import SwiperCore, { Autoplay } from 'swiper';
 
 // components
 import { routes } from "../constants/routes";
-import { Layout } from "../components";
+import { Layout, Loading } from "../components";
 
 // assets
 import styles from '../styles/Home.module.scss'
 import classNames from "classnames";
 import { authActions } from "../redux/auth/actions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserState } from "../redux/auth/selectors";
+import { useRouter } from "next/router";
 
 const Home = () => {
     SwiperCore.use([Autoplay]);
 
+    const router = useRouter();
+
     const dispatch = useDispatch();
+
+
+    const [redirect, setRedirect] = useState(true);
+
+    const user = useSelector(getUserState);
+
+    useEffect(() => {
+        if (user) {
+            router.push(routes.marketplace);
+            setRedirect(true);
+        } else {
+            setRedirect(false);
+        }
+    }, []);
+
 
     const setShowPlans = (state) => dispatch(authActions.showPlansModal(state));
     const setShowRegister = (state) => dispatch(authActions.showRegisterModal(state));
 
     return (
         <Layout>
-            <section className={styles.home}>
+            {!redirect ? <section className={styles.home}>
                 <div className={classNames(styles.slider, 'home-slider')}>
                     <Swiper
                         autoplay={{delay: 2000}}
@@ -111,7 +130,7 @@ const Home = () => {
 
                     </div>
                 </div>
-            </section>
+            </section> : <Loading />}
         </Layout>
     )
 };

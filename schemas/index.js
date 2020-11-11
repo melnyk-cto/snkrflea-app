@@ -4,16 +4,14 @@ export const loginSchema = object({
     email: string()
         .required()
         .email(),
-    password: string().required().min(4, 'Must be exactly 4 digits')
-        .max(14, 'Must be exactly 14 digits')
+    password: string().required().min(4, 'Must be exactly 4 digits'),
 });
 
 export const registerSchema = object({
     email: string()
         .required()
         .email(),
-    password: string().required().min(4, 'Must be exactly 4 digits')
-        .max(14, 'Must be exactly 14 digits'),
+    password: string().required().min(4, 'Must be exactly 4 digits'),
     privacy: bool().oneOf([true]).required()
 });
 
