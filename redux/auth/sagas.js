@@ -58,12 +58,13 @@ function* logOut() {
 
 function* getPlan() {
     const response = yield call(Api.getSubscriptionPlan);
-    // console.log(response, 'plan');
+    console.log(response, 'response');
     if (response.ok) {
         const plan = yield call([response, response.json]);
-        yield put(authActions.setUserPlan(plan));
+        console.log(plan, 'plan');
+        // yield put(authActions.setUserPlan(plan));
     } else {
-        yield put(authActions.setUserPlan(null));
+        // yield put(authActions.setUserPlan(null));
     }
 }
 

@@ -189,7 +189,7 @@ export const getProductById = (id) => (
     ));
 
 export const getSubscriptionPlan = () => (
-    fetch(`${paths.plan}`, {
+    fetch(paths.plan, {
             method: 'GET', headers: {
                 'Content-Type': 'application/json'
             },
