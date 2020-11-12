@@ -1,8 +1,7 @@
 import fetchIntercept from 'fetch-intercept';
 import { getAuthToken } from '../redux/localStorage'
 
-const URL = 'https://snkrfleaapi.herokuapp.com/';
-//const URL= 'http://localhost:4000/';
+const {NEXT_PUBLIC_API_URL} = process.env;
 
 const paths = {
     'sellings': 'api/products/vendor',
@@ -45,7 +44,7 @@ const unregister = fetchIntercept.register({
                 'AUTHORIZATION': `Bearer ${TOKEN}`,
                 ...config.headers,
             });
-            return [`${URL}${url}`, withDefaults];
+            return [`${NEXT_PUBLIC_API_URL}/${url}`, withDefaults];
         } else {
             return [url, config];
         }

@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next",
-    "build": "next build",
-    "start": "next start -p $PORT"
+      "dev": "next",
+      "build": "next build",
+      "start": "next start -p $PORT"
   },
   "dependencies": {
     "@babel/runtime": "^7.12.5",
