@@ -1,9 +1,11 @@
 // core
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, } from 'react'
 
 // library
 import Link from 'next/link'
 import { useDispatch } from "react-redux";
+import classNames from "classnames";
+import { useRouter } from "next/router";
 
 // components
 import { routes } from '../../constants/routes';
@@ -13,13 +15,14 @@ import { authActions } from "../../redux/auth/actions";
 import styles from './Header.module.scss'
 
 export const Header = ({user = null}) => {
+    const router = useRouter();
+
     const [isLogin, setIsLogin] = useState('Log out');
 
     const dispatch = useDispatch();
 
     const setShowLogin = (state) => dispatch(authActions.showLoginModal(state));
     const setShowPlans = (state) => dispatch(authActions.showPlansModal(state));
-
 
     useEffect(() => {
         if (user !== null) {
@@ -45,7 +48,9 @@ export const Header = ({user = null}) => {
                 <div className={styles.navItems}>
                     {isLogin === 'Log out' ? <>
                             <Link href={routes.selling}>
-                                <a className={styles.menuItem}>Account</a>
+                                <a className={classNames(styles.menuItem, {[styles.active]: (router.pathname === routes.selling || router.pathname === routes.purchases || router.pathname === routes.membership)})}>
+                                    Account
+                                </a>
                             </Link>
                         </>
                         : <>
@@ -72,12 +77,12 @@ export const Header = ({user = null}) => {
                             </Link>
                         </>}
                     <Link href={routes.marketplace}>
-                        <a className={styles.menuItem}>
+                        <a className={classNames(styles.menuItem, {[styles.active]: router.pathname === routes.marketplace})}>
                             Buy
                         </a>
                     </Link>
                     <Link href={routes.premium}>
-                        <a className={styles.menuItem}>
+                        <a className={classNames(styles.menuItem, {[styles.active]: router.pathname === routes.premium})}>
                             Premium
                         </a>
                     </Link>
@@ -89,7 +94,7 @@ export const Header = ({user = null}) => {
                                     e.preventDefault()
                                 }
                             }}
-                            className={styles.menuItem}>
+                            className={classNames(styles.menuItem, {[styles.active]: router.pathname === routes.productList})}>
                             Sell
                         </a>
                     </Link>
